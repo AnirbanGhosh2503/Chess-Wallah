@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# ♟️ Chess Wallah — Online Chess Coaching Website (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> 🚧 **Work in Progress** — This project is currently under development. Stay tuned for updates!
 
-## Available Scripts
+Chess Wallah is a responsive and engaging **frontend website** for an online chess coaching platform. The goal is to provide a modern user experience to parents and students looking for high-quality online chess lessons from certified coaches around the globe.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🔍 Features (So Far)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- ✅ Glassmorphism-style **Navbar with interactive dropdown**
+- ✅ Dynamic **Hero Section** with:
+  - Auto-rotating key descriptors (interactive, fun, etc.)
+  - Real-time animated stats
+  - Prominent chess grandmaster highlight
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## ✨ Live Preview (Coming Soon)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📸 Current Preview
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🧭 Navbar & Hero Section
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Screenshot - Navbar and Hero Section]()
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🛠️ Tech Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- [React.js](https://reactjs.org/)
+- [Bootstrap 5](https://getbootstrap.com/)
+- Vanilla CSS
+- `react-countup` for number animations
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🧪 Status
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Hero and Navbar ✅
+- Responsive Adjustments 🔄
+- Booking Popup Modal 🔜
+- Section-wise Scroll Navigation 🔜
+- Footer & Other Pages 🔜
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 📁 Setup Instructions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Clone the repo and run:
 
-### Analyzing the Bundle Size
+```bash
+npm install
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+🙏 Acknowledgements
+Figma designs provided by the client.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Grandmaster image is a placeholder and will be replaced with proper attribution.
 
-### Advanced Configuration
+Inspiration: chessbrainz.com
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+📌 License
+This is a private or client-facing project. Please do not reuse assets without permission.
