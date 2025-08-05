@@ -25,7 +25,7 @@ Chess Wallah is a responsive and engaging **frontend website** for an online che
 
 ### 🧭 Navbar & Hero Section
 
-![Screenshot - Navbar and Hero Section](./Screenshot%202025-08-05%20173243.png)
+![Screenshot - Navbar and Hero Section](./Screenshot.png)
 
 
 ---
