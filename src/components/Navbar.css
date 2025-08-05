@@ -1,0 +1,89 @@
+.dropdown-item {
+  position: relative;
+}
+
+.hover-preview {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 200px;
+  height: 100px;
+  background: #f8f9fa;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  z-index: 10;
+}
+
+.dropdown-item:hover .hover-preview {
+  display: block;
+}
+
+/* Smooth hover transition */
+.dropdown-menu {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Glassmorphism for dropdown menu */
+.dropdown-menu {
+  background: rgba(40, 40, 40, 0.6); /* Darker gray with opacity */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+}
+
+/* Dropdown item styles */
+.dropdown-item {
+  position: relative;
+  color: #ffffff;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+  padding: 0.75rem 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dropdown-item:hover {
+  background-color: rgba(99, 176, 76, 0.3); /* Soft green hover */
+}
+
+/* Glassmorphism for hover preview */
+.hover-preview {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 220px;
+  height: 100px;
+  background: rgba(40, 40, 40, 0.6); /* Matching dark gray */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.75rem;
+  z-index: 10;
+  color: white;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+}
+
+.dropdown-item:hover .hover-preview {
+  display: block;
+}
+
+
+/* Our Classroom Button Custom Hover */
+.navbar .btn-outline-light {
+  border: 2px solid #ffffff !important;
+  color: #ffffff !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar .btn-outline-light:hover {
+  background-color: #63B04C !important;
+  border-color: #63B04C !important;
+  color: #ffffff !important;
+}

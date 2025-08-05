@@ -1,0 +1,99 @@
+.hero-section {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0;
+}
+
+/* Typography */
+.main-heading {
+  font-size: 4rem;
+  line-height: 1.2;
+}
+
+.sub-heading {
+  font-size: 1.75rem;
+  line-height: 1.6;
+}
+
+.text-section {
+  padding-left: 2rem;  /* Add left padding */
+}
+
+
+/* Green Text */
+.text-green {
+  color: #63B04C;
+}
+
+/* Animated Changing Word */
+.text-changing {
+  color: #63B04C;
+  display: inline-block;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+/* Buttons */
+.btn-success {
+  background-color: #63B04C;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #51913d;
+}
+
+/* Image Styling */
+.big-image {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.img-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Caption Styling */
+.caption-box-inside {
+  background-color: #63B04C;
+  color: #ffffff;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;               /* 🔄 Reduced from 110% */
+  max-width: 740px;          /* 🔄 Just a little more than 700px image */
+  font-size: 1.05rem;
+  text-align: center;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Stats Section */
+.stats-container {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+}
+
+.stat-box {
+  min-width: 120px;
+}
+
+.stat-number {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: #ffffff;
+}
