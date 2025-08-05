@@ -87,3 +87,64 @@
   border-color: #63B04C !important;
   color: #ffffff !important;
 }
+
+/* Flag Dropdown Styles */
+.country-dropdown {
+  position: relative;
+}
+
+.btn-flag {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.btn-flag:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-icon {
+  font-size: 0.6rem;
+  margin-left: 4px;
+}
+
+.country-menu {
+  display: none;
+  top: 120%;
+  right: 0;
+  background: rgba(40, 40, 40, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.5rem;
+  z-index: 999;
+  min-width: 150px;
+  list-style: none;
+}
+
+.country-menu li {
+  padding: 0.4rem 0.6rem;
+  display: flex;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s ease-in-out;
+}
+
+.country-menu li:hover {
+  background-color: rgba(99, 176, 76, 0.3);
+}
+
+/* Show dropdown on hover */
+.country-dropdown:hover .country-menu {
+  display: block;
+}
+
+img.rounded-circle {
+  border-radius: 100%;
+}

@@ -58,12 +58,25 @@ function Navbar() {
           </ul>
         </div>
 
-        {/* Right: Buttons */}
-        <div className="d-flex gap-2">
-          <a className="btn btn-outline-light" href="#">Our Classroom</a>
-          <a className="btn btn-success text-white" href="#">Contact Us</a>
+            {/* Right: Buttons and Country Selector */}
+            <div className="d-flex align-items-center gap-2">
+            <a className="btn btn-outline-light" href="#">Our Classroom</a>
+            <a className="btn btn-success text-white" href="#">Contact Us</a>
+
+            {/* Country Selector */}
+            <div className="country-dropdown ms-2">
+                <button className="btn btn-flag d-flex align-items-center" type="button">
+                <img src="/India.svg" alt="India" width="32" height="32" className="rounded-circle me-2" />
+                <span className="dropdown-icon">&#9662;</span>
+                </button>
+                <ul className="country-menu position-absolute">
+                <li><img src="/India.svg" alt="India" width="20"  height="20" className="rounded-circle me-2" />India</li>
+                <li><img src="/canada.svg" alt="Canada" width="20" height="20" className="rounded-circle me-2" />Canada</li>
+                <li><img src="/UK.svg" alt="UK" width="20" height="20" className="rounded-circle me-2" />United Kingdom</li>
+                </ul>
+            </div>
+            </div>
         </div>
-      </div>
     </nav>
   );
 }
