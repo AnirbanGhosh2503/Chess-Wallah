@@ -1,0 +1,63 @@
+.why-chess-wallah {
+  background-color: #000000; /* Set background to black */
+  color: #ffffff; /* White text */
+  padding: 3rem 1rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-title .highlight {
+  color: #63B04C; /* Brand green */
+}
+
+/* Feature Boxes */
+.feature-box {
+  background: rgba(99, 176, 76, 0.05); /* Light green tint */
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid rgba(99, 176, 76, 0.1);
+  box-shadow: 0 2px 10px rgba(99, 176, 76, 0.08);
+  color: white;
+}
+
+.feature-box:hover {
+  background: rgba(99, 176, 76, 0.15); /* Slightly stronger on hover */
+  transform: translateY(-2px);
+}
+
+/* Icons */
+.feature-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+  filter: brightness(1.2);
+}
+
+/* US Chess / logos */
+.logo-icon {
+  width: 40px;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(1.2);
+}
+
+/* Kid Image */
+.chess-kid-img {
+  width: 100%;
+  height: auto;
+  max-width: 500px; /* Increase this as needed */
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(99, 176, 76, 0.3);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+

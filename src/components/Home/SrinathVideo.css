@@ -1,0 +1,24 @@
+.srinath-section {
+  background-color: #000;
+}
+
+.video-wrapper {
+  max-width: 960px;
+  width: 100%;
+  border: 4px solid #63B04C; /* Green border */
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(99, 176, 76, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.video-wrapper:hover {
+  transform: scale(1.01);
+}
+
+.video-iframe {
+  width: 100%;
+  height: 540px;
+  border: none;
+  display: block;
+}
