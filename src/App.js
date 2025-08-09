@@ -1,22 +1,19 @@
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import WhyChessWallah from "./components/Home/WhyChessWallah";
-import SrinathVideo from './components/Home/SrinathVideo';
-import Testimonials from './components/Testimonials';
-import OurPride from './components/OurPride';
-import Courses from './components/Courses';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import CoursesPage from './pages/Courses';
+import Blog from './pages/Blog';
+import AboutUs from './pages/AboutUs';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Hero />
-      <WhyChessWallah />
-      <SrinathVideo />
-      <Testimonials />
-      <OurPride />
-      <Courses />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/courses" element={<CoursesPage />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/about" element={<AboutUs />} />
+      </Routes>
+    </Router>
   );
 }
 
