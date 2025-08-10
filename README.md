@@ -16,7 +16,8 @@ Chess Wallah is a responsive and engaging **frontend website** for an online che
 
 ---
 
-## ✨ Live Preview (Coming Soon)
+## ✨ Live Preview 
+https://chess-wallah.vercel.app/
 
 
 ---
