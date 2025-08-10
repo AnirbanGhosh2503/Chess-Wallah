@@ -64,7 +64,5 @@ Figma designs provided by the client.
 
 Grandmaster image is a placeholder and will be replaced with proper attribution.
 
-Inspiration: chessbrainz.com
-
 📌 License
 This is a private or client-facing project. Please do not reuse assets without permission.
