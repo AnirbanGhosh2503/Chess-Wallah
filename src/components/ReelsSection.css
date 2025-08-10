@@ -21,13 +21,12 @@
 
 .reels-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Exactly 4 columns */
+  grid-template-columns: repeat(4, 1fr); /* Default: 4 columns */
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
-
 
 .reel-card {
   position: relative;
@@ -66,4 +65,27 @@
 
 .reel-placeholder {
   visibility: hidden;
+}
+
+/* 📱 Responsive Adjustments */
+@media (max-width: 992px) {
+  .reels-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+  }
+}
+
+@media (max-width: 576px) {
+  .reels-grid {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+    gap: 20px;
+  }
+
+  .reels-title {
+    font-size: 22px;
+  }
+
+  .reel-label {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
 }
