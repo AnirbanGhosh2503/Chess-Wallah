@@ -1,0 +1,105 @@
+.coursepage-container {
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  padding-bottom: 50px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Hero Section */
+.course-hero {
+  text-align: center;
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #00ff88, #004d26);
+  color: black;
+  border-bottom: 4px solid #00ff88;
+}
+
+.course-hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.course-hero p {
+  max-width: 700px;
+  margin: 20px auto;
+  font-size: 1.1rem;
+}
+
+.course-price-enroll {
+  margin-top: 20px;
+}
+
+.course-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.enroll-btn {
+  background-color: black;
+  border: 2px solid #00ff88;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #00ff88;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.enroll-btn:hover {
+  background-color: #00ff88;
+  color: black;
+}
+
+/* Curriculum Section */
+.curriculum-section {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.curriculum-section h2 {
+  text-align: center;
+  color: #00ff88;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.curriculum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.curriculum-card {
+  background-color: #111;
+  border: 1px solid #00ff88;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.curriculum-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 0px 15px #00ff88;
+}
+
+.class-number {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background-color: #00ff88;
+  color: black;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 8px 12px;
+  border-radius: 50%;
+}
+
+.curriculum-card p {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.4;
+}

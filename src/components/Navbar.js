@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // <-- Import Link
 import "./Navbar.css";
 
 function Navbar() {
@@ -9,21 +10,21 @@ function Navbar() {
       <div className="container-fluid d-flex justify-content-between align-items-center w-100">
 
         {/* Left: Logo */}
-        <a className="navbar-brand d-flex align-items-center" href="#">
+        <Link className="navbar-brand d-flex align-items-center" to="/">
           <img src="/logo.png" alt="Logo" width="180" className="me-2" />
-        </a>
+        </Link>
 
-        {/* Center: NavLinks */}
+        {/* Center: Navigation */}
         <div className="d-none d-lg-flex flex-grow-1 justify-content-center">
           <ul className="navbar-nav text-white flex-row">
             <li className="nav-item px-3">
-              <a className="nav-link" href="#">Home</a>
+              <Link className="nav-link" to="/">Home</Link>
             </li>
             <li className="nav-item px-3">
-              <a className="nav-link" href="#">About Us</a>
+              <Link className="nav-link" to="/about">About Us</Link>
             </li>
             <li className="nav-item px-3">
-              <a className="nav-link" href="#">Our Services</a>
+              <Link className="nav-link" to="/services">Our Services</Link>
             </li>
 
             {/* Courses Dropdown */}
@@ -32,51 +33,37 @@ function Navbar() {
               onMouseEnter={() => setShowDropdown(true)}
               onMouseLeave={() => setShowDropdown(false)}
             >
-              <a className="nav-link dropdown-toggle" href="#">
-                Courses
-              </a>
+              <span className="nav-link dropdown-toggle">Courses</span>
               {showDropdown && (
                 <ul className="dropdown-menu show bg-light text-dark">
-                  {["Beginner", "Intermediate", "Advanced"].map((level) => (
-                    <li key={level} className="dropdown-item dropdown-hover">
-                      {level}
-                      <div className="hover-preview">
-                        Glimpse of {level} page coming soon
-                      </div>
-                    </li>
-                  ))}
+                  <li>
+                    <Link className="dropdown-item" to="/courses/beginner">Beginner</Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/courses/intermediate">Intermediate</Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/courses/advanced">Advanced</Link>
+                  </li>
                 </ul>
               )}
             </li>
 
             <li className="nav-item px-3">
-              <a className="nav-link" href="#">Blog</a>
+              <Link className="nav-link" to="/blog">Blog</Link>
             </li>
             <li className="nav-item px-3">
-              <a className="nav-link" href="#">Gallery</a>
+              <Link className="nav-link" to="/gallery">Gallery</Link>
             </li>
           </ul>
         </div>
 
-            {/* Right: Buttons and Country Selector */}
-            <div className="d-flex align-items-center gap-2">
-            <a className="btn btn-outline-light" href="#">Our Classroom</a>
-            <a className="btn btn-success text-white" href="#">Contact Us</a>
-
-            {/* Country Selector */}
-            <div className="country-dropdown ms-2">
-                <button className="btn btn-flag d-flex align-items-center" type="button">
-                <img src="/India.svg" alt="India" width="32" height="32" className="rounded-circle me-2" />
-                <span className="dropdown-icon">&#9662;</span>
-                </button>
-                <ul className="country-menu position-absolute">
-                <li><img src="/India.svg" alt="India" width="20"  height="20" className="rounded-circle me-2" />India</li>
-                <li><img src="/canada.svg" alt="Canada" width="20" height="20" className="rounded-circle me-2" />Canada</li>
-                <li><img src="/UK.svg" alt="UK" width="20" height="20" className="rounded-circle me-2" />United Kingdom</li>
-                </ul>
-            </div>
-            </div>
+        {/* Right: Buttons */}
+        <div className="d-flex align-items-center gap-2">
+          <Link className="btn btn-outline-light" to="/classroom">Our Classroom</Link>
+          <Link className="btn btn-success text-white" to="/contact">Contact Us</Link>
         </div>
+      </div>
     </nav>
   );
 }

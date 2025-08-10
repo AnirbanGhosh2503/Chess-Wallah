@@ -1,0 +1,169 @@
+.blog-page {
+  background-color: black;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Hero */
+.blog-hero {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: linear-gradient(135deg, #0a0a0a, #0f5132);
+  border-bottom: 2px solid #00ff88;
+}
+
+.blog-hero h1 {
+  font-size: 2.5rem;
+  color: #00ff88;
+  font-weight: 700;
+}
+
+.blog-hero p {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.search-bar {
+  position: relative;
+  width: 60%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #0f5132;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.6rem 2.5rem;
+  border: 2px solid #00ff88;
+  border-radius: 50px;
+  background: white;
+  color: black;
+  outline: none;
+}
+
+.search-bar input:focus {
+  box-shadow: 0 0 10px #00ff88;
+}
+
+/* Blog Cards */
+.blog-card {
+  display: flex;
+  gap: 1rem;
+  background: #111;
+  border: 1px solid #00ff88;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
+
+.blog-thumb {
+  width: 140px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-info {
+  padding: 1rem;
+}
+
+.blog-info h4 {
+  color: #00ff88;
+  margin-bottom: 0.5rem;
+}
+
+.blog-info p {
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+.read-more-btn {
+  background: #00ff88;
+  color: black;
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.read-more-btn:hover {
+  background: #0f5132;
+  color: white;
+}
+
+/* Sidebar */
+.side-widget {
+  background: #111;
+  border: 1px solid #00ff88;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.side-widget h4 {
+  color: #00ff88;
+  margin-bottom: 1rem;
+}
+
+.social-links a {
+  display: block;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: #00ff88;
+}
+
+.popular-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.popular-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag-list span {
+  background: #00ff88;
+  color: black;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+
+.tag-list span:hover {
+  background: #0f5132;
+  color: white;
+}
+
+/* No results */
+.no-results {
+  color: #888;
+  font-style: italic;
+  margin-top: 2rem;
+}

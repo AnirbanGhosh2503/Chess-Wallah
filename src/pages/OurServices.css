@@ -1,0 +1,82 @@
+.services-page {
+  background-color: white;
+  color: black;
+  font-family: 'Poppins', sans-serif;
+}
+
+.services-header {
+  background-color: black;
+  color: white;
+  padding: 4rem 1rem;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.services-header h1 {
+  font-weight: bold;
+  color: #00ff7f; /* Green Accent */
+}
+
+.service-section {
+  border-bottom: 1px solid #ddd;
+}
+
+.service-text h2 {
+  color: #00ff7f;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.service-text p {
+  color: #444;
+}
+
+.service-text ul {
+  padding-left: 20px;
+}
+
+.service-text li {
+  margin-bottom: 0.5rem;
+}
+
+.service-img {
+  transition: transform 0.4s ease-in-out;
+}
+
+.service-img:hover {
+  transform: scale(1.05);
+}
+
+.book-demo {
+  background-color: black;
+  color: white;
+  animation: slideUp 1.2s ease-in-out;
+}
+
+.book-demo h2 {
+  color: #00ff7f;
+  font-weight: bold;
+}
+
+.book-demo .btn {
+  background-color: #00ff7f;
+  border: none;
+  color: black;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.book-demo .btn:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}

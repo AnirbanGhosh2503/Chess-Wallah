@@ -28,7 +28,6 @@ function Home() {
     <>
       <FreeDemoModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
 
-      <Navbar />
       <Hero />
       <WhyChessWallah />
       <SrinathVideo />
@@ -63,7 +62,6 @@ function Home() {
         ]}
       />
 
-      <Footer />
     </>
   );
 }
