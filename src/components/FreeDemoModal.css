@@ -1,7 +1,13 @@
+/*
+ * Updated CSS for a stunning glassmorphic modal.
+ * All dimensions have been reduced by approximately 10% to make the form slightly smaller.
+ */
+
 .modal-overlay {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
+  /* The background is solid here to ensure the modal's effect stands out */
   background: rgba(0,0,0,0.6);
   display: flex; align-items: center; justify-content: center;
   z-index: 999;
@@ -9,72 +15,134 @@
 }
 
 .modal-box {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  max-width: 500px;
+  /* Retained the glassmorphic effects */
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(25px);
+  /* Reduced padding by 10% */
+  padding: 1.8rem;
+  /* Reduced border-radius by 10% */
+  border-radius: 7px;
+  /* Reduced max-width by 10% */
+  max-width: 450px;
   width: 100%;
   position: relative;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  /* Thinner, more subtle border for a delicate outline */
+  border: 1px solid rgba(255, 255, 255, 0.2); 
+  /* Retained the improved shadow */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  /* Setting a base text color to white for high contrast */
+  color: #ffffff; 
+  /* Adding a subtle text shadow for readability */
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  /* Smooth transitions for all visual changes */
+  transition: all 0.3s ease;
 }
 
 .close-btn {
   position: absolute;
-  top: 12px; right: 12px;
+  top: 10px; 
+  right: 10px;
   background: none; border: none;
-  font-size: 1.2rem;
+  /* Reduced font-size by 10% */
+  font-size: 1.1rem;
   cursor: pointer;
+  /* Using white for better visibility on the dark background */
+  color: #ffffff;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #f9c600;
 }
 
 .modal-title {
-  font-size: 1.5rem;
+  /* Reduced font-size by 10% */
+  font-size: 1.35rem;
+  font-weight: 700;
   margin-bottom: 0.3rem;
+  color: #ffffff;
 }
 
 .modal-subtitle {
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 1.2rem;
+  /* Reduced font-size and margin by 10% */
+  font-size: 0.8rem;
+  color: #e0e0e0;
+  margin-bottom: 1.1rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
   flex: 1;
+  /* Reduced margin by 10% */
+  margin-bottom: 1.35rem;
 }
 
 .form-group label {
-  font-size: 0.85rem;
+  /* Reduced font-size by 10% */
+  font-size: 0.75rem;
   font-weight: 500;
   margin-bottom: 0.3rem;
+  /* Lighter color for labels to work with the white text */
+  color: #f0f0f0;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  padding: 0.6rem 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 0.9rem;
+  /* Retained the glassmorphic styling but reverted padding and font-size */
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  /* Reduced padding and border-radius by 10% */
+  padding: 0.5rem 0.7rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+/* Placeholder styling for a consistent look */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Focus state for a better user experience */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #f9c600;
+    box-shadow: 0 0 10px rgba(249, 198, 0, 0.5);
 }
 
 .form-group textarea {
   resize: vertical;
-  min-height: 80px;
+  /* Reduced min-height by 10% */
+  min-height: 70px;
 }
 
 .submit-btn {
-  margin-top: 1rem;
+  /* Reduced margin by 10% */
+  margin-top: 0.9rem; 
   background: #f9c600;
+  /* Changed text color to a dark tone for contrast on the yellow button */
+  color: #111;
   border: none;
-  padding: 0.8rem;
-  border-radius: 6px;
+  /* Reduced padding, border-radius, and font-size by 10% */
+  padding: 0.7rem;
+  border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
   width: 100%;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  /* Retained the improved shadow and transition */
+  box-shadow: 0 4px 15px rgba(249, 198, 0, 0.4);
+  transition: all 0.3s ease;
 }
 
 .submit-btn:hover {
   background: #e0b200;
+  box-shadow: 0 6px 20px rgba(249, 198, 0, 0.6);
+  transform: translateY(-2px);
 }
