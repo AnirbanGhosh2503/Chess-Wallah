@@ -16,7 +16,8 @@ Chess Wallah is a responsive and engaging **frontend website** for an online che
 
 ---
 
-## ✨ Live Preview (Coming Soon)
+## ✨ Live Preview 
+https://chess-wallah.vercel.app/
 
 
 ---
@@ -62,8 +63,6 @@ npm start
 Figma designs provided by the client.
 
 Grandmaster image is a placeholder and will be replaced with proper attribution.
-
-Inspiration: chessbrainz.com
 
 📌 License
 This is a private or client-facing project. Please do not reuse assets without permission.
