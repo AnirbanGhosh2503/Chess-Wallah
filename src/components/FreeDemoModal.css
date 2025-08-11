@@ -29,6 +29,22 @@
   color: #ffffff; 
   text-shadow: 0 1px 3px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
+  
+  /* Animation properties for the pop-in effect */
+  animation: slideInFromRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0; /* Starts hidden for the animation */
+}
+
+/* Keyframes for the animation */
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100vw) scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
 }
 
 .close-btn {
@@ -127,9 +143,7 @@
 /* Media query for larger screens (e.g., desktops) */
 @media (min-width: 1024px) {
   .modal-box {
-    /* Further reduced max-width for a more compact form on large screens */
     max-width: 400px;
-    /* Reduced padding for a smaller feel */
     padding: 1.5rem;
   }
   
