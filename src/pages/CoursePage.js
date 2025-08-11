@@ -32,6 +32,56 @@ export default function CoursePage() {
     "Class 24 - Middle game basic strategy planning (Attack and defence)"
   ];
 
+  const intermediateCurriculum = [
+    "Class 1- Introduction and Fundamentals  of chess | Homework - Points remember",
+
+"Class 2 - Every Pieces Movement ( Queen , Rook , Bishop) , | Homework - Practice moving the pieces (link will be shared)",
+
+"Class 3 - Knight Movement and Pawn Movement | Homework - (link will be shared)",
+
+"Class 4 - Check in one and Out of Check | Homework - (link will be shared)",
+
+"Class 5 - Check and mate ( Mate in one Basic ) | Homework - (link will be shared)",
+
+"Class 6 - Final Revision of all previous topics with puzzles",
+
+"Class 7 - Castling theory with puzzles practice | Home work - Theory will be given to learn and Practice link",
+
+"Class 8 - Short revision of castling then En-passant theory | Home work - Theory will be given to learn and revise",
+
+"Class 9 - Piece value and Check in two | Homework - practice link",
+
+"Class 10 - Play Introduction ( Centre control, Pieces develop theory ) | Homework - practice link",
+
+"Class 11 - King's Pawn opening ( Basic 10 Move opening theory)",
+
+"Class 12 - King's pawn Opening revision Test ( 11th class ka test )",
+
+"Class 13 - Double Attack | Home work - practice link",
+
+"Class 14 - Check Mate With Double Rook | Home work - practice link",
+
+"Class 15 - Final revision of all previous topics with puzzles test",
+
+"Class 16 - game Analysis",
+
+"Class 17 - The Pin | Home work - practice link",
+
+"Class 18 - The fork | Homework - practice link",
+
+"Class 19 - Game Analysis | Homework - practice link",
+
+"Class 20 - Under Promotion",
+
+"Class 21 - Double knight opening",
+
+"Class 22 - double knight opening revision practice | Home work - practice link with theory revision",
+
+"Class 23 - Queen check mate | Homework - Practice link",
+
+"Class 24 -  middle game basic strategy planning ( Attack and defence )"
+  ];
+
   const allCourses = {
     beginner: {
       title: "Beginner's Chess Bootcamp",
@@ -43,7 +93,7 @@ export default function CoursePage() {
       title: "Intermediate Strategy Mastery",
       description: "Level up your middlegame with powerful strategies, positional understanding, and planning.",
       price: "₹1999",
-      curriculum: beginnerCurriculum // temp same
+      curriculum: intermediateCurriculum
     },
     advanced: {
       title: "Advanced Tournament Prep",

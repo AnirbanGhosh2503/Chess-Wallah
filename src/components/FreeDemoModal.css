@@ -176,6 +176,32 @@
   }
 }
 
+@media (min-width: 600px) and (max-width: 900px) {
+  .modal-content {
+    max-width: 380px;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+  }
+  .modal-title {
+    font-size: 1.15rem;
+  }
+  .modal-subtitle {
+    font-size: 0.98rem;
+  }
+  .login-btn {
+    font-size: 1rem;
+    padding: 0.7rem;
+  }
+  .prefix,
+  .login-form input,
+  .login-form select {
+    font-size: 0.98rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+  }
+}
+
 @media (min-width: 900px) {
   .modal-content {
     max-width: 480px;
