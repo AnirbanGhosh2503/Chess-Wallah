@@ -1,0 +1,252 @@
+/*
+ * Sleek Animated Contact Form CSS
+ * Color Palette:
+ * --black: #080808
+ * --dark-grey: #1a1a1a
+ * --light-green: #00ff99
+ * --white: #f0f0f0
+ */
+
+/* Overall Page Styling */
+.sleek-container {
+  /* Removed the full-height and centering properties to make it a self-contained component */
+  font-family: 'Inter', sans-serif;
+  color: var(--white);
+  box-sizing: border-box;
+}
+
+/* The main card container with a subtle glow animation */
+.sleek-card {
+  background-color: var(--dark-grey);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 255, 153, 0.1), 0 5px 15px rgba(0, 0, 0, 0.5);
+  padding: 20px; /* Reduced padding for a smaller form */
+  max-width: 1000px; /* Made wider */
+  width: 100%;
+  animation: fadeIn 1s ease-out forwards;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Animated background glow effect for the card */
+.sleek-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(transparent 0%, rgba(0, 255, 153, 0.3) 20%, transparent 40%, transparent 60%, rgba(0, 255, 153, 0.3) 80%, transparent 100%);
+  animation: rotateGlow 8s linear infinite;
+  z-index: 0;
+  filter: blur(15px);
+}
+
+/* Header styling */
+.sleek-header {
+  text-align: center;
+  margin-bottom: 15px; /* Reduced margin */
+  position: relative;
+  z-index: 1;
+}
+
+.sleek-title {
+  font-size: 1.6rem; /* Reduced font size for a smaller look */
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 1.5px;
+}
+
+.sleek-green-text {
+  color: var(--light-green);
+}
+
+.sleek-subtitle {
+  font-size: 0.7rem; /* Reduced font size for a smaller look */
+  font-weight: 300;
+  margin-top: 5px;
+  color: #a0a0a0;
+}
+
+/* Form styling */
+.sleek-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Reduced gap between form elements */
+  position: relative;
+  z-index: 1;
+}
+
+/* Animated form group with floating labels */
+.form-group-sleek {
+  position: relative;
+}
+
+.form-icon-sleek {
+  position: absolute;
+  left: 10px; /* Reduced left position */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+  font-size: 0.9rem; /* Reduced font size */
+  transition: color 0.3s ease;
+}
+
+.form-group-sleek:focus-within .form-icon-sleek {
+  color: var(--light-green);
+}
+
+.form-label-sleek {
+  position: absolute;
+  top: 8px; /* Adjusted position */
+  left: 35px; /* Adjusted position */
+  color: #a0a0a0;
+  font-size: 0.75rem; /* Smaller font */
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.form-input-sleek,
+.form-textarea-sleek {
+  width: 100%;
+  padding: 8px 10px 8px 35px; /* Reduced padding for smaller height */
+  background-color: var(--black);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: var(--white);
+  font-size: 0.85rem; /* Smaller font */
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-textarea-sleek {
+  padding: 8px 10px; /* Reduced padding for smaller height */
+  padding-left: 10px;
+  resize: vertical;
+}
+
+.form-group-sleek.textarea-group .form-icon-sleek {
+  display: none;
+}
+
+/* The floating label logic */
+.form-input-sleek:not(:placeholder-shown) + .form-label-sleek,
+.form-input-sleek:focus + .form-label-sleek,
+.form-textarea-sleek:not(:placeholder-shown) + .form-label-sleek,
+.form-textarea-sleek:focus + .form-label-sleek {
+  top: -8px; /* Adjusted position */
+  left: 10px; /* Adjusted position */
+  font-size: 0.65rem; /* Smaller font */
+  color: var(--light-green);
+  background-color: var(--dark-grey);
+  padding: 0 5px;
+  transform: translateY(0);
+}
+
+.form-input-sleek:focus,
+.form-textarea-sleek:focus {
+  border-color: var(--light-green);
+  box-shadow: 0 0 10px rgba(0, 255, 153, 0.3);
+}
+
+/* Submit button styling and animation */
+.submit-button-sleek {
+  background-color: var(--light-green);
+  color: var(--black);
+  border: none;
+  border-radius: 10px;
+  padding: 8px 15px; /* Reduced padding for smaller height */
+  font-size: 0.9rem; /* Adjusted font size */
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 5px; /* Reduced margin */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.submit-button-sleek:hover {
+  background-color: var(--lighter-green);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0, 255, 153, 0.3);
+}
+
+.submit-icon-sleek {
+  transition: transform 0.3s ease;
+}
+
+.submit-button-sleek:hover .submit-icon-sleek {
+  transform: translateX(5px);
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotateGlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive design for larger screens */
+@media (min-width: 768px) {
+  .sleek-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px; /* Reduced gap */
+  }
+
+  .form-group-sleek:nth-child(1),
+  .form-group-sleek:nth-child(2) {
+    grid-column: span 1;
+  }
+  
+  .form-group-sleek:nth-child(3),
+  .form-group-sleek:nth-child(4),
+  .submit-button-sleek {
+    grid-column: span 2;
+  }
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .sleek-card {
+    padding: 15px; /* Reduced padding for mobile */
+    border-radius: 15px;
+  }
+  
+  .sleek-title {
+    font-size: 1.5rem; /* Smaller font for mobile */
+  }
+  
+  .sleek-subtitle {
+    font-size: 0.7rem; /* Smaller font for mobile */
+  }
+
+  .form-input-sleek,
+  .form-textarea-sleek {
+    padding: 8px;
+  }
+
+  .form-label-sleek {
+    left: 8px;
+  }
+}

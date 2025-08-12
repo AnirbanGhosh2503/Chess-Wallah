@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import Contact from "./Contact"; // Adjust path if needed
 
 function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-black px-4 py-2">
         <div className="container-fluid">
-
           {/* Logo */}
           <Link className="navbar-brand d-flex align-items-center" to="/">
             <img src="/logo.png" alt="Logo" width="180" className="me-2" />
@@ -37,7 +38,6 @@ function Navbar() {
               <li className="nav-item px-3">
                 <Link className="nav-link" to="/services">Our Services</Link>
               </li>
-
               {/* Courses dropdown */}
               <li
                 className="nav-item dropdown px-3"
@@ -53,7 +53,6 @@ function Navbar() {
                   </ul>
                 )}
               </li>
-
               <li className="nav-item px-3">
                 <Link className="nav-link" to="/blog">Blog</Link>
               </li>
@@ -61,11 +60,15 @@ function Navbar() {
                 <Link className="nav-link" to="/gallery">Gallery</Link>
               </li>
             </ul>
-
             {/* Right side buttons */}
             <div className="d-flex gap-2 mt-2 mt-lg-0">
               <Link className="btn btn-outline-light" to="/classroom">Our Classroom</Link>
-              <Link className="btn btn-success text-white" to="/contact">Contact Us</Link>
+              <button
+                className="btn btn-success text-white"
+                onClick={() => setShowContactModal(true)}
+              >
+                Contact Us
+              </button>
             </div>
           </div>
         </div>
@@ -76,11 +79,9 @@ function Navbar() {
         <span className="close-btn" onClick={() => setMenuOpen(false)}>
           &times;
         </span>
-
         <Link className="nav-link" to="/" onClick={() => setMenuOpen(false)}>Home</Link>
         <Link className="nav-link" to="/about" onClick={() => setMenuOpen(false)}>About Us</Link>
         <Link className="nav-link" to="/services" onClick={() => setMenuOpen(false)}>Our Services</Link>
-
         {/* Courses */}
         <div className="mobile-dropdown">
           <span className="nav-link">Courses</span>
@@ -90,13 +91,26 @@ function Navbar() {
             <Link to="/courses/advanced" onClick={() => setMenuOpen(false)}>Advanced</Link>
           </div>
         </div>
-
         <Link className="nav-link" to="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
         <Link className="nav-link" to="/gallery" onClick={() => setMenuOpen(false)}>Gallery</Link>
-
         <button className="btn btn-outline-light mt-3" onClick={() => setMenuOpen(false)}>Our Classroom</button>
-        <button className="btn btn-success mt-2" onClick={() => setMenuOpen(false)}>Contact Us</button>
+        <button
+          className="btn btn-success mt-2"
+          onClick={() => { setMenuOpen(false); setShowContactModal(true); }}
+        >
+          Contact Us
+        </button>
       </div>
+
+      {/* Contact Modal */}
+      {showContactModal && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <span className="close-btn" onClick={() => setShowContactModal(false)}>&times;</span>
+            <Contact onClose={() => setShowContactModal(false)} />
+          </div>
+        </div>
+      )}
     </>
   );
 }
