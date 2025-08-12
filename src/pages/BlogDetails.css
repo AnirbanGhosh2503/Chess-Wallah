@@ -2,7 +2,8 @@
   max-width: 850px;
   margin: auto;
   padding: 20px;
-  color: #e0e0e0;
+  background-color: #000; /* pure black */
+  color: #00ff88; /* neon green text */
   font-family: 'Segoe UI', Tahoma, sans-serif;
   line-height: 1.7;
 }
@@ -18,21 +19,24 @@
   text-decoration: none;
   margin-bottom: 1rem;
   font-weight: bold;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease-in-out;
 }
 
 .back-link:hover {
-  text-decoration: underline;
+  border-color: #00ff88;
 }
 
 .blog-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
+  font-weight: bold;
   margin-bottom: 0.5rem;
   color: #00ff88;
 }
 
 .blog-meta {
   font-size: 0.9rem;
-  color: #aaa;
+  color: #00995c; /* darker green for subtlety */
   margin-bottom: 1.5rem;
 }
 
@@ -40,6 +44,7 @@
   width: 100%;
   border-radius: 8px;
   margin-bottom: 1.5rem;
+  border: 2px solid #00ff88;
 }
 
 /* Markdown Styles */
@@ -52,33 +57,37 @@
 
 .blog-content p {
   margin-bottom: 1rem;
+  color: #00ff88;
 }
 
 .blog-content a {
   color: #00ff88;
+  font-weight: bold;
   text-decoration: underline;
 }
 
 .blog-content blockquote {
   border-left: 4px solid #00ff88;
   padding-left: 1rem;
-  color: #ccc;
   font-style: italic;
-  background: rgba(0, 255, 136, 0.05);
+  background: rgba(0, 255, 136, 0.1);
   margin: 1.5rem 0;
+  color: #00ff88;
 }
 
 .blog-content pre {
-  background: #1e1e1e;
+  background: #0d0d0d;
   padding: 1rem;
   border-radius: 6px;
   overflow-x: auto;
-  color: #fff;
+  color: #00ff88;
+  border: 1px solid #00ff88;
 }
 
 .blog-content code {
-  background: rgba(0, 255, 136, 0.1);
+  background: rgba(0, 255, 136, 0.15);
   padding: 2px 5px;
   border-radius: 4px;
   font-family: 'Courier New', monospace;
+  color: #00ff88;
 }
