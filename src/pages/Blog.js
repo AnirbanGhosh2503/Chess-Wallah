@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Blog.css";
 import { FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -80,14 +81,10 @@ const Blog = () => {
                   <div className="blog-info">
                     <h4>{blog.title}</h4>
                     <p>{blog.text}</p>
-                    <a
-                      href={blog.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="read-more-btn"
-                    >
-                      Read More
-                    </a>
+                    <Link to={`/blog/${blog.id}`} className="read-more-btn">
+                      Read More →
+                    </Link>
+
                   </div>
                 </div>
               ))
