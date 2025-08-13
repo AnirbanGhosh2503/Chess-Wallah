@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FiX } from "react-icons/fi";
+import { FiX, FiCheckCircle, FiAlertCircle } from "react-icons/fi";
 import emailjs from "emailjs-com";
 import "./FreeDemoModal.css";
 
@@ -10,10 +10,15 @@ function FreeDemoModal({ isOpen, onClose, autoShowOnLoad = true }) {
     childName: "",
     phone: "",
     age: "",
-    source: ""
+    source: "",
   });
 
   const [show, setShow] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState(null); // 'success' or 'error'
+
+  // State to manage input focus for dynamic labels
+  const [focusedInput, setFocusedInput] = useState(null);
 
   useEffect(() => {
     if (autoShowOnLoad) setShow(true);
@@ -27,10 +32,19 @@ function FreeDemoModal({ isOpen, onClose, autoShowOnLoad = true }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleFocus = (e) => {
+    setFocusedInput(e.target.name);
+  };
 
-    // WhatsApp Integration
+  const handleBlur = () => {
+    setFocusedInput(null);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmissionStatus(null);
+
     const phoneNumber = "9475959839";
     const message = `New Demo Booking:
 Parent Email: ${formData.email}
@@ -42,79 +56,166 @@ Source: ${formData.source}`;
 
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
 
-    // EmailJS Integration
-    emailjs.send(
-      "service_1q6rbrf",
-      "template_ysdx28v",
-      formData,
-      "PUmhM-4_UpXyOPN1M"
-    ).then(res => console.log("Email sent:", res.text))
-     .catch(err => console.error("Email error:", err));
-
-    setShow(false);
-    if (onClose) onClose();
+    try {
+      await emailjs.send(
+        "service_1q6rbrf",
+        "template_ysdx28v",
+        formData,
+        "PUmhM-4_UpXyOPN1M"
+      );
+      setSubmissionStatus("success");
+    } catch (err) {
+      console.error("Email error:", err);
+      setSubmissionStatus("error");
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => {
+        setShow(false);
+        if (onClose) onClose();
+      }, 3000);
+    }
   };
 
   if (!show) return null;
 
+  const renderFormContent = () => (
+    <>
+      <div className="modal-header">
+        <h2 className="modal-title">Elevate Your Child's Future</h2>
+        <p className="modal-subtitle">
+          Book a free, personalized demo class to unlock their potential.
+        </p>
+      </div>
+      <form onSubmit={handleSubmit} className="demo-form">
+        <div className="form-grid">
+          {["email", "parentName", "childName", "phone"].map((name) => (
+            <div className="form-group" key={name}>
+              <label 
+                htmlFor={name}
+                className={formData[name] || focusedInput === name ? "active" : ""}
+              >
+                {name === "email" && "Parent’s Email ID"}
+                {name === "parentName" && "Parent’s Name"}
+                {name === "childName" && "Child’s Name"}
+                {name === "phone" && "Phone (WhatsApp)"}
+              </label>
+              <input
+                type={name === "email" ? "email" : "text"}
+                id={name}
+                name={name}
+                value={formData[name]}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                required
+              />
+            </div>
+          ))}
+
+          <div className="form-group select-group">
+            <label 
+              htmlFor="age"
+              className={formData.age || focusedInput === "age" ? "active" : ""}
+            >
+              Age
+            </label>
+            <div className="custom-select-wrapper">
+              <select
+                id="age"
+                name="age"
+                value={formData.age}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                required
+              >
+                <option value="" disabled>Select Age</option>
+                {[...Array(18)].map((_, i) => (
+                  <option key={i} value={i + 3}>
+                    {i + 3}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="form-group select-group">
+            <label
+              htmlFor="source"
+              className={formData.source || focusedInput === "source" ? "active" : ""}
+            >
+              How did you hear about us?
+            </label>
+            <div className="custom-select-wrapper">
+              <select
+                id="source"
+                name="source"
+                value={formData.source}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                required
+              >
+                <option value="" disabled>Select</option>
+                <option>Facebook</option>
+                <option>Instagram</option>
+                <option>Google</option>
+                <option>YouTube</option>
+                <option>Word of Mouth</option>
+                <option>Others</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button type="submit" className="submit-btn" disabled={isSubmitting}>
+          <span className="btn-text">
+            {isSubmitting ? "Submitting..." : "Book My Demo"}
+          </span>
+          <span className="btn-icon">→</span>
+        </button>
+      </form>
+    </>
+  );
+
+  const renderStatusMessage = () => (
+    <div className="status-message">
+      {submissionStatus === "success" ? (
+        <>
+          <div className="status-icon success-icon">
+            <FiCheckCircle />
+          </div>
+          <h3 className="status-title">Success!</h3>
+          <p className="status-text">
+            Your request is in. We'll reach out on WhatsApp to schedule your demo.
+          </p>
+        </>
+      ) : (
+        <>
+          <div className="status-icon error-icon">
+            <FiAlertCircle />
+          </div>
+          <h3 className="status-title">Oops!</h3>
+          <p className="status-text">
+            Something went wrong. Please try again or contact us directly.
+          </p>
+        </>
+      )}
+    </div>
+  );
+
   return (
     <div className="modal-overlay">
-      <div className="modal-box">
-        <button className="close-btn" onClick={() => { setShow(false); if (onClose) onClose(); }}>
+      <div className={`modal-box ${submissionStatus ? "status-view" : ""}`}>
+        <button
+          className="close-btn"
+          onClick={() => {
+            setShow(false);
+            if (onClose) onClose();
+          }}
+        >
           <FiX />
         </button>
-
-        <h2 className="modal-title">Book a Free Demo</h2>
-        <p className="modal-subtitle">
-          Tell us a bit about your child. We’ll schedule a friendly assessment and demo class.
-        </p>
-
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Parent’s Email ID</label>
-            <input type="email" name="email" placeholder="you@example.com" onChange={handleChange} required />
-          </div>
-
-          <div className="form-group">
-            <label>Parent’s Full Name</label>
-            <input type="text" name="parentName" placeholder="Your Name" onChange={handleChange} required />
-          </div>
-
-          <div className="form-group">
-            <label>Child’s Name</label>
-            <input type="text" name="childName" placeholder="Child’s Name" onChange={handleChange} required />
-          </div>
-
-          <div className="form-group">
-            <label>Phone (WhatsApp Number)</label>
-            <input type="tel" name="phone" placeholder="10-digit mobile" pattern="[0-9]{10}" maxLength="10" onChange={handleChange} required />
-          </div>
-
-          <div className="form-group">
-            <label>Age</label>
-            <select name="age" onChange={handleChange} required>
-              <option value="">Select Age</option>
-              {[...Array(18)].map((_, i) => (
-                <option key={i} value={i + 3}>{i + 3}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="form-group">
-            <label>How did you hear about us?</label>
-            <select name="source" onChange={handleChange} required>
-              <option value="">Select</option>
-              <option>Facebook</option>
-              <option>Instagram</option>
-              <option>Google</option>
-              <option>YouTube</option>
-              <option>Word of Mouth</option>
-              <option>Others</option>
-            </select>
-          </div>
-
-          <button type="submit" className="submit-btn">Submit Request</button>
-        </form>
+        {submissionStatus ? renderStatusMessage() : renderFormContent()}
+        <div className="modal-bg-glow"></div>
       </div>
     </div>
   );
