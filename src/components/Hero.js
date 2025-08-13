@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Hero.css";
 import CountUp from 'react-countup';
 import FreeDemoModal from "./FreeDemoModal"; // make sure path is correct
+import heroimg from "../assets/hero.jpg"; // unused import, can be removed if not needed
 
 const words = ["interactive", "productive", "enjoyable", "fun", "educational"];
 
@@ -70,7 +71,7 @@ function Hero() {
         <div className="image-section col-md-6 position-relative text-center mt-5 mt-md-0">
           <div className="img-wrapper position-relative">
             <img
-              src="/srinath.png"
+              src={heroimg}
               alt="GM Srinath"
               className="img-fluid rounded-circle shadow-lg big-image"
             />
