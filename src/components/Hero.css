@@ -52,13 +52,20 @@
 
 /* Image Styling */
 .big-image {
-  max-width: 1200px;
-  width: 100%;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  transition: width 0.3s, height 0.3s;
 }
 
 .img-wrapper {
   position: relative;
   display: inline-block;
+  width: 300px;
+  height: 300px;
 }
 
 /* Caption Styling */
@@ -99,13 +106,31 @@
 }
 
 @media screen and (max-width: 850px) {
-    .caption-box-inside {
-      display: none;
-    }
-    .big-image {
-      max-width: 300px;
-      width: 100%;
+  .big-image {
+    max-width: 300px;
+    width: 100%;
+  }
+  /* .caption-box-inside { display: none; }  <-- REMOVE or COMMENT THIS OUT */
 }
+
+@media screen and (max-width: 600px) {
+  .big-image {
+    width: 210px;
+    height: 210px;
+    max-width: 210px;
+    max-height: 210px;
+  }
+  .img-wrapper {
+    width: 210px;
+    height: 210px;
+    max-width: 210px;
+    max-height: 210px;
+  }
+  .caption-box-inside {
+    max-width: 210px;
+    font-size: 0.92rem;
+    padding: 0.7rem 0.6rem;
+  }
 }
 
 @media screen and (max-width: 300px) {
