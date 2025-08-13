@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FiX, FiCheckCircle, FiAlertCircle } from "react-icons/fi";
+import { FiX, FiCheckCircle, FiAlertCircle } from "react-icons/fi"; // Using new icons
 import emailjs from "emailjs-com";
 import "./FreeDemoModal.css";
 
@@ -17,9 +17,6 @@ function FreeDemoModal({ isOpen, onClose, autoShowOnLoad = true }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState(null); // 'success' or 'error'
 
-  // State to manage input focus for dynamic labels
-  const [focusedInput, setFocusedInput] = useState(null);
-
   useEffect(() => {
     if (autoShowOnLoad) setShow(true);
   }, [autoShowOnLoad]);
@@ -32,19 +29,12 @@ function FreeDemoModal({ isOpen, onClose, autoShowOnLoad = true }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleFocus = (e) => {
-    setFocusedInput(e.target.name);
-  };
-
-  const handleBlur = () => {
-    setFocusedInput(null);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmissionStatus(null);
 
+    // WhatsApp Integration
     const phoneNumber = "9475959839";
     const message = `New Demo Booking:
 Parent Email: ${formData.email}
@@ -72,7 +62,7 @@ Source: ${formData.source}`;
       setTimeout(() => {
         setShow(false);
         if (onClose) onClose();
-      }, 3000);
+      }, 3000); // Wait 3 seconds to show success/error message
     }
   };
 
@@ -88,48 +78,61 @@ Source: ${formData.source}`;
       </div>
       <form onSubmit={handleSubmit} className="demo-form">
         <div className="form-grid">
-          {["email", "parentName", "childName", "phone"].map((name) => (
-            <div className="form-group" key={name}>
-              <label 
-                htmlFor={name}
-                className={formData[name] || focusedInput === name ? "active" : ""}
-              >
-                {name === "email" && "Parent’s Email ID"}
-                {name === "parentName" && "Parent’s Name"}
-                {name === "childName" && "Child’s Name"}
-                {name === "phone" && "Phone (WhatsApp)"}
-              </label>
-              <input
-                type={name === "email" ? "email" : "text"}
-                id={name}
-                name={name}
-                value={formData[name]}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                required
-              />
-            </div>
-          ))}
-
-          <div className="form-group select-group">
-            <label 
-              htmlFor="age"
-              className={formData.age || focusedInput === "age" ? "active" : ""}
-            >
-              Age
-            </label>
+          <div className="form-group">
+            <label htmlFor="email">Parent’s Email ID</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your email"
+              onChange={handleChange}
+              required
+            />
+            <span className="input-focus-line"></span>
+          </div>
+          <div className="form-group">
+            <label htmlFor="parentName">Parent’s Name</label>
+            <input
+              type="text"
+              id="parentName"
+              name="parentName"
+              placeholder="Your name"
+              onChange={handleChange}
+              required
+            />
+            <span className="input-focus-line"></span>
+          </div>
+          <div className="form-group">
+            <label htmlFor="childName">Child’s Name</label>
+            <input
+              type="text"
+              id="childName"
+              name="childName"
+              placeholder="Child’s name"
+              onChange={handleChange}
+              required
+            />
+            <span className="input-focus-line"></span>
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone">Phone (WhatsApp)</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="10-digit mobile"
+              pattern="[0-9]{10}"
+              maxLength="10"
+              onChange={handleChange}
+              required
+            />
+            <span className="input-focus-line"></span>
+          </div>
+          <div className="form-group">
+            <label htmlFor="age">Age</label>
             <div className="custom-select-wrapper">
-              <select
-                id="age"
-                name="age"
-                value={formData.age}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                required
-              >
-                <option value="" disabled>Select Age</option>
+              <select id="age" name="age" onChange={handleChange} required>
+                <option value="">Select Age</option>
                 {[...Array(18)].map((_, i) => (
                   <option key={i} value={i + 3}>
                     {i + 3}
@@ -138,24 +141,11 @@ Source: ${formData.source}`;
               </select>
             </div>
           </div>
-          <div className="form-group select-group">
-            <label
-              htmlFor="source"
-              className={formData.source || focusedInput === "source" ? "active" : ""}
-            >
-              How did you hear about us?
-            </label>
+          <div className="form-group">
+            <label htmlFor="source">How did you hear about us?</label>
             <div className="custom-select-wrapper">
-              <select
-                id="source"
-                name="source"
-                value={formData.source}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                required
-              >
-                <option value="" disabled>Select</option>
+              <select id="source" name="source" onChange={handleChange} required>
+                <option value="">Select</option>
                 <option>Facebook</option>
                 <option>Instagram</option>
                 <option>Google</option>

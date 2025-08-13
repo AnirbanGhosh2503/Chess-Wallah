@@ -16,9 +16,8 @@
 }
 
 .text-section {
-  padding-left: 2rem;  /* Add left padding */
+  padding-left: 2rem;
 }
-
 
 /* Green Text */
 .text-green {
@@ -73,18 +72,20 @@
   background-color: #63B04C;
   color: #ffffff;
   padding: 1rem 1.2rem;
-  border-radius: 12px;
+  border-radius: 18px;
   position: absolute;
-  bottom: 12%;
   left: 50%;
+  /* Slight overlap: set bottom to a negative value so it overlaps just a bit */
+  bottom: -18px;
   transform: translateX(-50%);
-  width: 75%;               /* 🔄 Reduced from 110% */
-  max-width: 740px;          /* 🔄 Just a little more than 700px image */
-  font-size: 1.05rem;
+  width: 120%;
+  min-width: 180px;
+  max-width: none;
+  font-size: 1.08rem;
   text-align: center;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+  z-index: 2;
 }
-
 /* Stats Section */
 .stats-container {
   margin-top: 2rem;
@@ -105,14 +106,15 @@
   color: #ffffff;
 }
 
+/* Tablet */
 @media screen and (max-width: 850px) {
   .big-image {
     max-width: 300px;
     width: 100%;
   }
-  /* .caption-box-inside { display: none; }  <-- REMOVE or COMMENT THIS OUT */
 }
 
+/* Mobile */
 @media screen and (max-width: 600px) {
   .big-image {
     width: 210px;
@@ -127,25 +129,47 @@
     max-height: 210px;
   }
   .caption-box-inside {
-    max-width: 210px;
-    font-size: 0.92rem;
+    bottom: 5%;
+    width: 98%;
+    min-width: 100px;
+    max-width: 100%;
+    font-size: 0.98rem;
     padding: 0.7rem 0.6rem;
   }
 }
 
+/* Very Small Screens */
 @media screen and (max-width: 300px) {
   .big-image {
+    width: 50px !important;
+    height: 50px !important;
     max-width: 50px !important;
-    width: 100%;
-    height: auto;
+    max-height: 50px !important;
   }
   .img-wrapper {
-    max-width: 210px;
+    width: 50px !important;
+    height: 50px !important;
+    max-width: 50px !important;
+    max-height: 50px !important;
     margin: 0 auto;
   }
   .caption-box-inside {
-    max-width: 60px;
-    font-size: 0.92rem;
-    padding: 0.7rem 0.6rem;
+    width: 96%;
+    min-width: 40px;
+    max-width: 100px;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.3rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .caption-box-inside {
+    bottom: -12px;
+    width: 130%;
+    min-width: 120px;
+    max-width: none;
+    font-size: 1rem;
+    padding: 0.8rem 0.5rem;
+    border-radius: 14px;
   }
 }

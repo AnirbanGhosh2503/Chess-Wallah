@@ -1,20 +1,20 @@
 /*
- * Refined High-Tech Aesthetic
- * - Coherent Color Palette: Refined gradients and consistent dark background.
- * - Improved Typography: A cleaner, more modern font-family.
- * - Consistent Spacing: A new vertical rhythm for a cleaner look.
- * - Enhanced Animations: More subtle, yet powerful micro-interactions.
+ * High-Tech, Interactive Color Palette:
+ * - Background: #1C2030 (A deep, dark navy/charcoal)
+ * - Accent/Neon: #00FFFF (Cyan) and #FF00FF (Magenta) - used for gradients and highlights
+ * - Text: #E0E7FF (Off-white/light-blue for high contrast)
+ * - Button: linear-gradient(#00FFFF, #FF00FF)
  */
 
-/* ================== GLOBAL STYLES & LAYOUT ================== */
+/* General Modal Container */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(12px);
+  background-color: rgba(10, 10, 20, 0.8);
+  backdrop-filter: blur(10px); /* Enhanced blur for a smoother effect */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,96 +22,109 @@
   padding: 1rem;
 }
 
+/* Modal Box - New High-Tech Design */
 .modal-box {
-  background-color: #1a1e28;
+  background-color: #1c2030;
   border-radius: 16px;
-  max-width: 580px;
+  max-width: 550px;
   width: 100%;
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 255, 255, 0.15),
+    0 0 100px rgba(255, 0, 255, 0.05) inset;
   color: #e0e7ff;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transform: scale(0.95);
   opacity: 0;
-  animation: modalPopIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: modalPopIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   overflow: hidden;
 }
 
-/* Background Glow - More subtle and contained */
+/* Animated background glow */
 .modal-bg-glow {
+  content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1), transparent 70%);
+  top: -200px;
+  left: -200px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.1), transparent 70%);
   z-index: -1;
-  animation: bgPulse 25s linear infinite;
-}
-
-@keyframes modalPopIn {
-  0% { transform: scale(0.95); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  animation: bgPulse 15s linear infinite;
 }
 
 @keyframes bgPulse {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.8; }
+  25% { transform: translate(200px, 100px) rotate(90deg); opacity: 0.9; }
+  50% { transform: translate(400px, 0) rotate(180deg); opacity: 0.8; }
+  75% { transform: translate(200px, -100px) rotate(270deg); opacity: 0.9; }
+  100% { transform: translate(0, 0) rotate(360deg); opacity: 0.8; }
 }
 
-/* ================== HEADER & CLOSE BUTTON ================== */
+@keyframes modalPopIn {
+  0% { transform: scale(0.95) translateY(20px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.modal-box.status-view {
+  animation: none; /* Disable pop-in for status view transition */
+  transform: scale(1);
+}
+
+/* Close Button - Sleek and modern */
 .close-btn {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 15px;
+  right: 15px;
   background: none;
   border: none;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.5);
+  color: #a0a8b4;
   transition: color 0.3s ease, transform 0.3s ease;
   z-index: 10;
 }
 
 .close-btn:hover {
   color: #00ffff;
-  transform: rotate(90deg) scale(1.1);
+  transform: rotate(180deg) scale(1.1); /* More dramatic hover */
 }
 
+/* Header & Typography */
 .modal-header {
   text-align: center;
   padding: 40px 50px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
 }
 
 .modal-title {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 800;
+  color: #e0e7ff;
   background: linear-gradient(to right, #00ffff, #ff00ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;
-  text-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
 }
 
 .modal-subtitle {
   font-size: 1rem;
   color: #a0a8b4;
   font-weight: 300;
-  max-width: 90%;
+  max-width: 80%;
   margin: 0 auto;
 }
 
-/* ================== FORM ELEMENTS ================== */
+/* Form Layout & Styles */
 .demo-form {
-  padding: 30px 50px 40px;
+  padding: 20px 50px 50px;
 }
 
 .form-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem 1.5rem;
+  gap: 1.8rem;
 }
 
 @media (min-width: 600px) {
@@ -122,63 +135,71 @@
 
 .form-group {
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  font-size: 1rem;
-  color: #7d8494;
-  pointer-events: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #a0a8b4;
+  margin-bottom: 0.6rem;
   transition: all 0.3s ease;
-  transform-origin: left top;
-}
-
-.form-group label.active {
-  top: 0;
-  left: 0;
-  font-size: 0.75rem;
-  color: #e0e7ff;
-  transform: translateY(-100%);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
+/* New Input Styles with Neon Effect */
 .form-group input,
-.custom-select-wrapper select {
+.form-group select {
   width: 100%;
-  padding: 15px;
+  padding: 12px 15px;
   border: 1px solid #3d465c;
   border-radius: 8px;
   font-size: 1rem;
   color: #e0e7ff;
   background-color: #262c3e;
   transition: all 0.3s ease;
+  appearance: none;
+  font-family: inherit;
 }
 
+.form-group input::placeholder {
+  color: #5a647d;
+  font-weight: 300;
+}
+
+/* Interactive Input States */
 .form-group input:focus,
-.custom-select-wrapper select:focus {
+.form-group select:focus {
   outline: none;
   border-color: #00ffff;
   box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
   background-color: #1e2233;
 }
 
-/* Custom Select Dropdown - Refined */
-.custom-select-wrapper {
-  position: relative;
-  height: 100%;
+/* "Focus Line" animation */
+.input-focus-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #00ffff, #ff00ff);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.custom-select-wrapper select {
-  /*
-  * This is the fix to remove the default arrow.
-  * Adding vendor prefixes for better browser support.
-  */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+.form-group input:focus + .input-focus-line {
+  width: 100%;
+}
+
+/* Custom Select Dropdown - Neon */
+.custom-select-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #3d465c;
+  transition: border-color 0.3s ease;
 }
 
 .custom-select-wrapper::after {
@@ -190,30 +211,25 @@
   color: #00ffff;
   font-size: 0.8rem;
   pointer-events: none;
-  transition: transform 0.3s ease;
+  transition: color 0.3s ease;
 }
 
-.custom-select-wrapper select:focus + .custom-select-wrapper::after {
-  transform: translateY(-50%) rotate(180deg);
+.custom-select-wrapper:hover {
+  border-color: #ff00ff;
 }
 
-.form-group.select-group label {
-  top: 0;
-  left: 0;
-  font-size: 0.75rem;
-  color: #e0e7ff;
-  transform: translateY(-150%);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.custom-select-wrapper select:focus {
+  border-color: #00ffff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
 }
 
-/* ================== SUBMIT BUTTON ================== */
+/* Submit Button - Vibrant, Interactive */
 .submit-btn {
-  margin-top: 2.5rem;
-  background: linear-gradient(45deg, #00ffff, #ff00ff);
-  color: #1a1e28;
+  margin-top: 2rem;
+  background: linear-gradient(45deg, #00FFFF, #FF00FF);
+  color: #1C2030;
   border: none;
-  padding: 16px 25px;
+  padding: 15px 25px;
   border-radius: 8px;
   font-weight: 700;
   cursor: pointer;
@@ -222,22 +238,43 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s ease;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #FF00FF, #00FFFF);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .submit-btn:hover:not(:disabled) {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(255, 0, 255, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 25px rgba(255, 0, 255, 0.4);
+}
+
+.submit-btn:hover:not(:disabled)::before {
+  opacity: 1;
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(1px);
 }
 
 .btn-icon {
   margin-left: 10px;
-  display: inline-block;
   transition: transform 0.3s ease;
+  display: inline-block;
 }
 
 .submit-btn:hover .btn-icon {
-  transform: translateX(8px);
+  transform: translateX(5px);
 }
 
 .submit-btn:disabled {
@@ -248,20 +285,20 @@
   transform: none;
 }
 
-/* ================== STATUS MESSAGE ================== */
+/* Submission Status View */
 .status-message {
   text-align: center;
-  padding: 50px;
+  padding: 40px;
 }
 
 .status-icon {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   margin: 0 auto 20px;
-  font-size: 4rem;
-  line-height: 90px;
+  font-size: 3rem;
+  line-height: 80px;
   border-radius: 50%;
-  color: #1a1e28;
+  color: #1c2030;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -275,16 +312,16 @@
 
 .success-icon {
   background: #00ffff;
-  box-shadow: 0 0 25px #00ffff;
+  box-shadow: 0 0 20px #00ffff;
 }
 
 .error-icon {
   background: #ff00ff;
-  box-shadow: 0 0 25px #ff00ff;
+  box-shadow: 0 0 20px #ff00ff;
 }
 
 .status-title {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #e0e7ff;
   margin-bottom: 10px;
@@ -294,5 +331,5 @@
 .status-text {
   font-size: 1rem;
   color: #a0a8b4;
-  line-height: 1.6;
+  line-height: 1.5;
 }
