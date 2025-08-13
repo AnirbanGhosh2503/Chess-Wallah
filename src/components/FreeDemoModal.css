@@ -51,25 +51,13 @@
 }
 
 @keyframes modalPopIn {
-  0% {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 @keyframes bgPulse {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* ================== HEADER & CLOSE BUTTON ================== */
@@ -124,7 +112,6 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem 1.5rem;
-  /* Larger vertical gap */
 }
 
 @media (min-width: 600px) {
@@ -135,50 +122,11 @@
 
 .form-group {
   position: relative;
-  /* Animation for input group on entry */
-  animation: fadeInDown 0.6s ease-out both;
-}
-
-.form-group:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.form-group:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.form-group:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-.form-group:nth-child(4) {
-  animation-delay: 0.4s;
-}
-
-.form-group:nth-child(5) {
-  animation-delay: 0.5s;
-}
-
-.form-group:nth-child(6) {
-  animation-delay: 0.6s;
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .form-group label {
   position: absolute;
   top: 15px;
-  /* Adjusting initial position */
   left: 15px;
   font-size: 1rem;
   color: #7d8494;
@@ -224,6 +172,10 @@
 }
 
 .custom-select-wrapper select {
+  /*
+  * This is the fix to remove the default arrow.
+  * Adding vendor prefixes for better browser support.
+  */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -241,7 +193,7 @@
   transition: transform 0.3s ease;
 }
 
-.custom-select-wrapper select:focus+.custom-select-wrapper::after {
+.custom-select-wrapper select:focus + .custom-select-wrapper::after {
   transform: translateY(-50%) rotate(180deg);
 }
 
@@ -317,15 +269,8 @@
 }
 
 @keyframes iconPopIn {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 .success-icon {
