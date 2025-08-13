@@ -30,7 +30,7 @@ function Home() {
 
       <Hero />
       <WhyChessWallah />
-      <SrinathVideo />
+      {/* <SrinathVideo /> */}
       <Testimonials />
       <OurPride />
       <Courses />
