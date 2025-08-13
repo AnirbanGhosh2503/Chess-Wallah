@@ -102,4 +102,8 @@
     .caption-box-inside {
       display: none;
     }
+    .big-image {
+      max-width: 500px;
+      width: 100%;
+}
 }
