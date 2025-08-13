@@ -97,3 +97,9 @@
   font-size: 1rem;
   color: #ffffff;
 }
+
+@media screen and (max-width: 850px) {
+    .caption-box-inside {
+      display: none;
+    }
+}
