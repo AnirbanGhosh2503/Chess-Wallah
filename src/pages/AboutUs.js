@@ -673,7 +673,7 @@ const App = () => {
             }
 
             .section-heading {
-              font-size: 5rem !important;
+              font-size: 10rem !important;
             }
 
             .section-subheading {
