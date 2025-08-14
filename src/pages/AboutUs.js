@@ -663,7 +663,7 @@ const App = () => {
             color: #fff;
             border-color: #fff;
           }
-            @media (max-width: 600px) {
+            @media (max-width: 850px) {
             .section,
             .team-section,
             .impact-section,
