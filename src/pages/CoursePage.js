@@ -74,7 +74,22 @@ const App = () => {
     "Endgame Essentials: King and Pawn, Rook Endgames",
     "Analyzing Grandmaster Games",
     "Psychology of Competitive Chess",
-    "Tournament Preparation and Time Management"
+    "Tournament Preparation and Time Management",
+    "Intermediate Endgame Drills",
+    "Mastering Pawn Endings",
+    "Understanding the Initiative",
+    "Defensive Techniques",
+    "Creating and Converting Advantages",
+    "Advanced Tactical Puzzles",
+    "Building a Solid Opening Repertoire",
+    "Practical Game Analysis",
+    "Playing against different styles",
+    "Understanding Bishop Pair vs Knight Pair",
+    "Advanced Middlegame Concepts",
+    "Queen and Rook Endgames",
+    "Opposite-Color Bishop Endgames",
+    "Building a Thinking Process",
+    "Preparation for Intermediate Tournaments",
   ];
 
   const advancedCurriculum = [
@@ -86,7 +101,22 @@ const App = () => {
     "Practical Tournament Game Analysis",
     "Attacking the King in the Center",
     "Hypermodern Openings and Positional Grinding",
-    "Preparing for a Specific Opponent"
+    "Preparing for a Specific Opponent",
+    "Advanced Endgame Theory",
+    "Rook and Pawn Endgames",
+    "The Principle of Two Weaknesses",
+    "Deep Calculation Drills",
+    "Mastering Exchange Sacrifices",
+    "Advanced Positional Concepts",
+    "Practical Training Games",
+    "Using Engines for Analysis",
+    "Psychology of Grandmaster Play",
+    "Building an Opening Database",
+    "Advanced Tactical Combinations",
+    "Endgame Tablebase Study",
+    "Fortress and Stalemate",
+    "Playing with a Material Disadvantage",
+    "Tournament Mental Preparation",
   ];
 
   const allCourses = {
@@ -112,19 +142,28 @@ const App = () => {
 
   const course = allCourses[level];
 
-  // Divide the curriculum into three columns
-  const getCurriculumColumns = (items) => {
-    const totalItems = items.length;
-    const itemsPerColumn = Math.ceil(totalItems / 3);
-    return [
-      items.slice(0, itemsPerColumn),
-      items.slice(itemsPerColumn, itemsPerColumn * 2),
-      items.slice(itemsPerColumn * 2),
+  // Divide the curriculum into two rows of three columns each
+  const getCurriculumRows = (items) => {
+    const itemsPerColumn = Math.ceil(items.length / 6);
+    const firstRowItems = items.slice(0, itemsPerColumn * 3);
+    const secondRowItems = items.slice(itemsPerColumn * 3);
+
+    const firstRowColumns = [
+      firstRowItems.slice(0, itemsPerColumn),
+      firstRowItems.slice(itemsPerColumn, itemsPerColumn * 2),
+      firstRowItems.slice(itemsPerColumn * 2),
     ];
+    const secondRowColumns = [
+      secondRowItems.slice(0, itemsPerColumn),
+      secondRowItems.slice(itemsPerColumn, itemsPerColumn * 2),
+      secondRowItems.slice(itemsPerColumn * 2),
+    ];
+
+    return [firstRowColumns, secondRowColumns];
   };
 
-  const curriculumColumns = getCurriculumColumns(course.curriculum);
-  
+  const curriculumRows = getCurriculumRows(course.curriculum);
+
   // SVG for diamond icon
   const diamondIcon = (
     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="diamond-icon">
@@ -305,35 +344,24 @@ const App = () => {
             margin-bottom: 3rem;
           }
 
+          /* New styles for the two-row curriculum layout */
           .curriculum-grid {
-            display: grid;
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
-            position: relative;
           }
           
-          @media (min-width: 768px) {
-            .curriculum-grid {
+          .curriculum-row {
+            display: grid;
+            gap: 2rem;
+          }
+
+          @media (min-width: 1024px) {
+            .curriculum-row {
               grid-template-columns: repeat(3, minmax(0, 1fr));
-              gap: 3rem;
-            }
-            .curriculum-grid::before, .curriculum-grid::after {
-              content: '';
-              display: block;
-              position: absolute;
-              top: 0;
-              bottom: 0;
-              width: 1px;
-              background-color: #d1d5db;
-            }
-            .curriculum-grid::before {
-              left: 33.333333%;
-              transform: translateX(-50%);
-            }
-            .curriculum-grid::after {
-              left: 66.666667%;
-              transform: translateX(-50%);
             }
           }
+          /* End of new styles */
 
           .curriculum-card {
             background-color: #fff;
@@ -349,7 +377,7 @@ const App = () => {
           }
 
           .curriculum-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 1rem;
             color: #2563eb;
@@ -376,7 +404,7 @@ const App = () => {
             margin-top: 0.25rem;
             color: #3b82f6;
           }
-
+          
           .why-learn-section {
             margin-top: 4rem;
           }
@@ -612,19 +640,23 @@ const App = () => {
         <div className="why-learn-section">
           <h2 className="section-title">Course Curriculum</h2>
           <div className="curriculum-grid">
-            {curriculumColumns.map((column, colIndex) => (
-              <div key={colIndex} className="curriculum-card">
-                <h3>
-                  {colIndex === 0 ? "Month 1" : colIndex === 1 ? "Month 2" : "Month 3"}
-                </h3>
-                <ul className="curriculum-list">
-                  {column.map((item, itemIndex) => (
-                    <li key={itemIndex} className="curriculum-item">
-                      <div className="diamond-icon-container">{diamondIcon}</div>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+            {curriculumRows.map((row, rowIndex) => (
+              <div key={rowIndex} className="curriculum-row">
+                {row.map((column, colIndex) => (
+                  <div key={colIndex} className="curriculum-card">
+                    <h3>
+                      {`Month ${rowIndex * 3 + colIndex + 1}`}
+                    </h3>
+                    <ul className="curriculum-list">
+                      {column.map((item, itemIndex) => (
+                        <li key={itemIndex} className="curriculum-item">
+                          <div className="diamond-icon-container">{diamondIcon}</div>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             ))}
           </div>
