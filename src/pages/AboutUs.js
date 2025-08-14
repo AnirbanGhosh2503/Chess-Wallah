@@ -154,6 +154,11 @@ const App = () => {
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
           }
+          
+          @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
 
           /* Hero Section */
           .hero-section {
@@ -169,8 +174,9 @@ const App = () => {
             border-bottom-right-radius: 6rem;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             background: linear-gradient(135deg, #101520, #0d1117);
+            padding: 2rem 1.5rem; /* Add padding for mobile */
           }
-
+          
           .hero-bg-gradient {
             position: absolute;
             top: -50%;
@@ -253,6 +259,40 @@ const App = () => {
             box-shadow: 0 10px 20px rgba(88, 166, 255, 0.3);
           }
           
+          /* Mobile-specific styles for the Hero section */
+          @media (max-width: 768px) {
+            .hero-section {
+              padding: 6rem 1.5rem; /* Reduced vertical padding */
+              height: auto; /* Allow height to adjust to content */
+              min-height: 100vh;
+            }
+          
+            .hero-content h1 {
+              font-size: 2.5rem;
+              letter-spacing: -1px;
+            }
+          
+            .hero-content p {
+              font-size: 1.1rem;
+            }
+          
+            .hero-buttons {
+              flex-direction: column; /* Stack buttons vertically */
+              gap: 1rem;
+              margin-top: 2rem;
+            }
+          
+            .hero-buttons a {
+              width: 100%; /* Make buttons full width */
+              justify-content: center;
+            }
+          
+            .hero-section {
+              border-bottom-left-radius: 3rem;
+              border-bottom-right-radius: 3rem;
+            }
+          }
+
           /* Values Section */
           .values-grid {
             display: grid;
@@ -559,11 +599,6 @@ const App = () => {
             left: -25%;
             animation: rotate-slow 20s linear infinite;
           }
-
-          @keyframes rotate-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-          }
           
           .cta-content {
             position: relative;
@@ -603,7 +638,7 @@ const App = () => {
             transform: scale(1.1) translateY(-5px);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
           }
-          .aboutus-demo-btn {
+            .aboutus-demo-btn {
             background: linear-gradient(135deg, #58a6ff 0%, #c471ed 100%);
             color: #fff;
             font-weight: 800;
@@ -819,8 +854,9 @@ const App = () => {
         <div className="cta-content">
           <h2 className="cta-heading">Ready to Begin Your Journey?</h2>
           <p className="cta-subheading">
-            Experience the difference our personalized approach makes. Book a free demo class today!
+            Experience the difference our personalized approach makes.
           </p>
+          {/* The button is now a placeholder as the modal component was not provided */}
           <button
             className="aboutus-demo-btn"
             onClick={() => setIsModalOpen(true)}
@@ -830,7 +866,7 @@ const App = () => {
         </div>
       </section>
     </div>
-      <FreeDemoModal
+    <FreeDemoModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         autoShowOnLoad={false} // prevent showing on page load
