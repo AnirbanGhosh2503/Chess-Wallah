@@ -344,7 +344,7 @@ const App = () => {
             margin-bottom: 3rem;
           }
 
-          /* New styles for the two-row curriculum layout */
+          /* Updated styles for the two-row curriculum layout to be more responsive */
           .curriculum-grid {
             display: flex;
             flex-direction: column;
@@ -356,12 +356,12 @@ const App = () => {
             gap: 2rem;
           }
 
-          @media (min-width: 1024px) {
+          @media (min-width: 768px) {
             .curriculum-row {
               grid-template-columns: repeat(3, minmax(0, 1fr));
             }
           }
-          /* End of new styles */
+          /* End of updated styles */
 
           .curriculum-card {
             background-color: #fff;
