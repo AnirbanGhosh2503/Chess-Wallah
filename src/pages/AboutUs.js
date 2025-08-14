@@ -663,6 +663,84 @@ const App = () => {
             color: #fff;
             border-color: #fff;
           }
+            @media (max-width: 600px) {
+            .section,
+            .team-section,
+            .impact-section,
+            .cta-section {
+              padding: 2.5rem 0.5rem !important;
+              border-radius: 1.5rem !important;
+            }
+
+            .section-heading {
+              font-size: 2rem !important;
+            }
+
+            .section-subheading {
+              font-size: 1rem !important;
+              margin-bottom: 2rem !important;
+            }
+
+            .values-grid,
+            .team-grid,
+            .impact-grid,
+            .testimonial-grid {
+              grid-template-columns: 1fr !important;
+              gap: 1.5rem !important;
+            }
+
+            .value-card,
+            .team-card,
+            .impact-card,
+            .testimonial-card {
+              padding: 1.2rem !important;
+              border-radius: 1.2rem !important;
+            }
+
+            .hero-section {
+              padding: 3rem 0.5rem !important;
+              min-height: 60vh !important;
+              border-bottom-left-radius: 1.5rem !important;
+              border-bottom-right-radius: 1.5rem !important;
+            }
+
+            .hero-content h1 {
+              font-size: 1.5rem !important;
+              margin-bottom: 0.7rem !important;
+            }
+
+            .hero-content p {
+              font-size: 1rem !important;
+            }
+
+            .hero-buttons {
+              flex-direction: column !important;
+              gap: 0.7rem !important;
+              margin-top: 1.2rem !important;
+            }
+
+            .hero-buttons a {
+              width: 100% !important;
+              justify-content: center !important;
+              font-size: 1rem !important;
+              padding: 0.8rem 1.2rem !important;
+            }
+
+            .cta-section h2 {
+              font-size: 1.5rem !important;
+            }
+
+            .cta-section p {
+              font-size: 1rem !important;
+              margin-bottom: 1.5rem !important;
+            }
+
+            .aboutus-demo-btn {
+              font-size: 1rem !important;
+              padding: 0.8rem 1.2rem !important;
+              margin-top: 1.2rem !important;
+            }
+          }
         `}
       </style>
 
