@@ -5,7 +5,7 @@ const Courses = () => {
   return (
     <section className="courses-section py-5" id="courses">
       <div className="container text-center">
-        <h2 className="section-title mb-5">
+        <h2 className="section-title mb-5 text-black">
           Our <span className="highlight">Courses</span>
         </h2>
 
@@ -13,7 +13,9 @@ const Courses = () => {
           {/* Beginner */}
           <div className="col-md-6 col-lg-4">
             <div className="course-card h-100">
-              <img src="/assets/courses/beginner.png" alt="Beginner Icon" className="course-icon-img" />
+              <div className="icon-background">
+                <img src="/assets/courses/beginner.png" alt="Beginner Icon" className="course-icon-img" />
+              </div>
               <h3 className="course-title">Beginner</h3>
               <ul className="course-features text-start">
                 <li>48 Training Sessions</li>
@@ -33,7 +35,9 @@ const Courses = () => {
           {/* Intermediate */}
           <div className="col-md-6 col-lg-4">
             <div className="course-card h-100">
-              <img src="/assets/courses/intermediate.png" alt="Intermediate Icon" className="course-icon-img" />
+              <div className="icon-background">
+                <img src="/assets/courses/intermediate.png" alt="Intermediate Icon" className="course-icon-img" />
+              </div>
               <h3 className="course-title">Intermediate</h3>
               <ul className="course-features text-start">
                 <li>48 Training Sessions</li>
@@ -53,7 +57,9 @@ const Courses = () => {
           {/* Advanced */}
           <div className="col-md-6 col-lg-4">
             <div className="course-card h-100">
-              <img src="/assets/courses/advanced.png" alt="Advanced Icon" className="course-icon-img" />
+              <div className="icon-background">
+                <img src="/assets/courses/advanced.png" alt="Advanced Icon" className="course-icon-img" />
+              </div>
               <h3 className="course-title">Advanced</h3>
               <ul className="course-features text-start">
                 <li>48 Training Sessions</li>

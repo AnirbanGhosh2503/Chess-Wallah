@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import "../styles/LearningSection.css";
+import "../styles/LearningSection.css"; // Assuming you have a CSS file for styles
 
 const LearningSection = ({ heading, points, imageURL, reverse = false }) => {
   return (
@@ -14,7 +14,7 @@ const LearningSection = ({ heading, points, imageURL, reverse = false }) => {
       >
         <img src={imageURL} alt="Learning Visual" />
       </motion.div>
-
+       
       <motion.div
         className="learning-content"
         initial={{ opacity: 0, y: 30 }}

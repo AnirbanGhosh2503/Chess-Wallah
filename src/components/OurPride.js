@@ -54,8 +54,8 @@ const OurPride = () => {
   return (
     <section className="our-pride-section py-5">
       <div className="container text-center">
-        <h2 className="section-title mb-5">Our Students <span className="highlight">Our Pride</span></h2>
-
+        <h2 className="section-title mb-5 text-black">Our Students <span className="highlight">Our Pride</span></h2>
+        
         <Swiper
           modules={[Navigation, Autoplay, Pagination]}
           autoplay={{ delay: 3000 }}

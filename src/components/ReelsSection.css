@@ -1,46 +1,63 @@
+/* ReelsSection Styles - Warm Wood Theme */
 .reels-section {
-  background-color: #000;
-  color: #fff;
-  padding: 60px 20px;
+  background-color: #F8F8F8; /* Overall light background */
+  padding: 64px 20px;
   text-align: center;
 }
 
+.reels-container {
+  background-color: rgba(184, 115, 51, 0.1); /* Warm wood tinted background */
+  border-radius: 16px;
+  padding: 48px 32px;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
 .reels-title {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
-  margin-bottom: 10px;
+  color: #374151; /* Dark gray text */
+  margin-bottom: 12px;
+}
+
+.chess-wallah-text {
+  color: #B87333; /* Warm wood color */
 }
 
 .reels-underline {
   height: 4px;
-  width: 60px;
-  background-color: #00ff88; /* Green highlight */
+  width: 64px;
+  background-color: #B87333; /* Warm wood color */
   margin: 0 auto 40px auto;
   border-radius: 2px;
 }
 
 .reels-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Default: 4 columns */
-  gap: 30px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  margin-bottom: 32px;
+}
+
+.reel-placeholder {
+  visibility: hidden;
 }
 
 .reel-card {
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 255, 136, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(184, 115, 51, 0.15); /* Warm wood shadow */
+  transition: all 0.3s ease;
   text-decoration: none;
   display: block;
 }
 
 .reel-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 25px rgba(0, 255, 136, 0.4);
+  transform: scale(1.05) translateY(-4px);
+  box-shadow: 0 8px 32px rgba(184, 115, 51, 0.25);
 }
 
 .reel-image {
@@ -52,40 +69,81 @@
 
 .reel-label {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background-color: #00ff88;
-  color: #000;
+  bottom: 12px;
+  left: 12px;
+  background-color: #B87333; /* Warm wood background */
+  color: white;
   font-weight: bold;
   font-size: 14px;
-  padding: 6px 12px;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0, 255, 136, 0.4);
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(184, 115, 51, 0.3);
+  transition: background-color 0.3s ease;
 }
 
-.reel-placeholder {
-  visibility: hidden;
+.reel-card:hover .reel-label {
+  background-color: #A0632A; /* Darker warm wood on hover */
 }
 
-/* 📱 Responsive Adjustments */
-@media (max-width: 992px) {
+.reel-border {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(184, 115, 51, 0.2);
+  border-radius: 12px;
+  transition: border-color 0.3s ease;
+  pointer-events: none;
+}
+
+.reel-card:hover .reel-border {
+  border-color: rgba(184, 115, 51, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
   .reels-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
+  .reels-section {
+    padding: 48px 16px;
+  }
+  
+  .reels-container {
+    padding: 32px 20px;
+    border-radius: 12px;
+  }
+  
+  .reels-title {
+    font-size: 24px;
+  }
+  
   .reels-grid {
-    grid-template-columns: 1fr; /* 1 column on mobile */
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
-
-  .reels-title {
-    font-size: 22px;
-  }
-
+  
   .reel-label {
     font-size: 12px;
-    padding: 5px 10px;
+    padding: 6px 10px;
+    bottom: 8px;
+    left: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reels-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .reels-title {
+    font-size: 20px;
+  }
+  
+  .reels-underline {
+    width: 48px;
   }
 }

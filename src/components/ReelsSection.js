@@ -13,27 +13,44 @@ const reels = [
 export default function ReelsSection() {
   return (
     <section className="reels-section">
-      <h2 className="reels-title">
-            What’s Happening at <span style={{ color: '#00ff88' }}>Chess Wallah</span>
+      <div className="reels-container">
+        <h2 className="reels-title">
+          What's Happening at <span className="chess-wallah-text">Chess Wallah</span>
         </h2>
-      <div className="reels-underline"></div>
-      <div className="reels-grid">
-        {reels.slice(0, 4).map(reel => (
-          <a className="reel-card" key={reel.id} href={reel.link} target="_blank" rel="noopener noreferrer">
-            <img src={`/reels/reel${reel.id}.jpg`} alt={reel.label} className="reel-image" />
-            <span className="reel-label">{reel.label}</span>
-          </a>
-        ))}
+        <div className="reels-underline"></div>
+        
+        <div className="reels-grid">
+          {reels.slice(0, 4).map(reel => (
+            <a 
+              className="reel-card" 
+              key={reel.id} 
+              href={reel.link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <img src={`/reels/reel${reel.id}.jpg`} alt={reel.label} className="reel-image" />
+              <span className="reel-label">{reel.label}</span>
+              <div className="reel-border"></div>
+            </a>
+          ))}
 
-        {/* Empty placeholders to center last 2 reels */}
-        <div className="reel-placeholder" />
-        {reels.slice(4).map(reel => (
-          <a className="reel-card" key={reel.id} href={reel.link} target="_blank" rel="noopener noreferrer">
-            <img src={`/reels/reel${reel.id}.jpg`} alt={reel.label} className="reel-image" />
-            <span className="reel-label">{reel.label}</span>
-          </a>
-        ))}
-        <div className="reel-placeholder" />
+          {/* Empty placeholders to center last 2 reels */}
+          <div className="reel-placeholder" />
+          {reels.slice(4).map(reel => (
+            <a 
+              className="reel-card" 
+              key={reel.id} 
+              href={reel.link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <img src={`/reels/reel${reel.id}.jpg`} alt={reel.label} className="reel-image" />
+              <span className="reel-label">{reel.label}</span>
+              <div className="reel-border"></div>
+            </a>
+          ))}
+          <div className="reel-placeholder" />
+        </div>
       </div>
     </section>
   );

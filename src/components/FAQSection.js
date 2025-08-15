@@ -37,27 +37,29 @@ const FAQSection = () => {
 
   return (
     <section className="faq-container container-fluid">
-      <h2 className="faq-heading">Frequently Asked Questions</h2>
-      <p className="faq-subheading">Chessbrainz Common FAQ's</p>
-      <div className="faq-list">
-        {faqs.map((question, index) => (
-          <div
-            key={index}
-            className={`faq-item ${activeIndex === index ? "active" : ""}`}
-            onClick={() => toggleFAQ(index)}
-          >
-            <div className="faq-question">
-              <span className="faq-bullet">•</span>
-              {question}
-              <span className={`faq-icon ${activeIndex === index ? "rotate" : ""}`}>
-                <FaChevronDown />
-              </span>
+      <div className="faq-content-wrapper">
+        <h2 className="faq-heading">Frequently Asked Questions</h2>
+        <p className="faq-subheading">Chessbrainz Common FAQ's</p>
+        <div className="faq-list">
+          {faqs.map((question, index) => (
+            <div
+              key={index}
+              className={`faq-item ${activeIndex === index ? "active" : ""}`}
+              onClick={() => toggleFAQ(index)}
+            >
+              <div className="faq-question">
+                <span className="faq-bullet">•</span>
+                {question}
+                <span className={`faq-icon ${activeIndex === index ? "rotate" : ""}`}>
+                  <FaChevronDown />
+                </span>
+              </div>
+              <div className="faq-answer">
+                <p>{answers[index]}</p>
+              </div>
             </div>
-            <div className="faq-answer">
-              <p>{answers[index]}</p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -4,7 +4,6 @@ import { FaInstagram, FaLinkedin } from 'react-icons/fa';
 import srinathImg from '../../assets/SN.png';
 import pratikImg from '../../assets/Pratik.png';
 
-
 const people = [
   {
     name: "Srinath Narayanan",
@@ -16,7 +15,7 @@ const people = [
   {
     name: "Pratik Vaidya",
     title: "Founder Of Chessbrainz",
-    description: `Pratik, our founder and international-level chess player, envisions a world where every child embraces the thrill of chess. With a passion for the game that transcends borders, Pratik has launched this academy to make chess a household joy for kids globally. Join us on an exciting journey as we transform the chessboard into a playground of strategy, fun, and boundless possibilities. Let’s together popularize the magic of chess in the hearts of children worldwide!`,
+    description: `Pratik, our founder and international-level chess player, envisions a world where every child embraces the thrill of chess. With a passion for the game that transcends borders, Pratik has launched this academy to make chess a household joy for kids globally. Join us on an exciting journey as we transform the chessboard into a playground of strategy, fun, and boundless possibilities. Let's together popularize the magic of chess in the hearts of children worldwide!`,
     img: pratikImg, // Put your local image path here
     reverse: true,
   },
@@ -31,7 +30,9 @@ const AboutUsSection = () => {
           key={index}
         >
           <div className="about-image">
-            <img src={person.img} alt={person.name} />
+            <div className="image-frame">
+              <img src={person.img} alt={person.name} />
+            </div>
           </div>
           <div className="about-content">
             <h2>{person.title}</h2>
@@ -39,10 +40,14 @@ const AboutUsSection = () => {
             <p>{person.description}</p>
             <div className="about-icons">
               <a href="https://instagram.com" target="_blank" rel="noreferrer">
-                <FaInstagram />
+                <div className="icon-wrapper">
+                  <FaInstagram />
+                </div>
               </a>
               <a href="https://linkedin.com" target="_blank" rel="noreferrer">
-                <FaLinkedin />
+                <div className="icon-wrapper">
+                  <FaLinkedin />
+                </div>
               </a>
             </div>
           </div>

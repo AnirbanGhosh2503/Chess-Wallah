@@ -14,31 +14,65 @@ const WhyChessWallah = () => {
     { icon: interactiveIcon, title: "Personalized Interactive Platform for Chess Playing" },
     { icon: certificateIcon, title: "Certificate Signed By GM Srinath" },
     { icon: aiIcon, title: "AI Analysis & Reports" },
-    { icon: usChessLogo, title: "Affiliated with", isLogo: true },
+    { icon: usChessLogo, title: "Affiliated with US Chess", isLogo: true },
     { icon: mentorIcon, title: "Guidance and Mentoring for Championships" },
   ];
 
   return (
-    <section className="why-chess-wallah container-fluid py-5">
-      <div className="row align-items-center">
-        {/* Left Side: Features */}
-        <div className="col-lg-7">
-          <h2 className="section-title mb-4">Why <span className="highlight">Chess Wallah</span>?</h2>
-          <div className="row g-4">
-            {features.map((feature, index) => (
-              <div key={index} className="col-md-6">
-                <div className="feature-box d-flex align-items-center gap-3">
-                  <img src={feature.icon} alt="icon" className={`feature-icon ${feature.isLogo ? "logo-icon" : ""}`} />
-                  <p className="mb-0">{feature.title}</p>
+    <section className="why-chess-wallah">
+      <div className="container">
+        <div className="content-wrapper">
+          {/* Section Header */}
+          <div className="section-header">
+            <h2 className="section-title text-black">
+              Why <span className="highlight">Chess Wallah</span>?
+            </h2>
+            <p className="section-subtitle">
+              Discover what makes our chess academy the perfect choice for your child's chess journey
+            </p>
+          </div>
+
+          <div className="main-content">
+            {/* Left Side: Features */}
+            <div className="features-section">
+              <div className="features-grid">
+                {features.map((feature, index) => (
+                  <div key={index} className="feature-item">
+                    <div className="feature-box">
+                      <div className="icon-wrapper">
+                        <img 
+                          src={feature.icon} 
+                          alt={feature.title} 
+                          className={`feature-icon ${feature.isLogo ? "logo-icon" : ""}`} 
+                        />
+                      </div>
+                      <div className="feature-content">
+                        <h3 className="feature-title">{feature.title}</h3>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Side: Image */}
+            <div className="image-section">
+              <div className="image-wrapper">
+                <img 
+                  src={childImg} 
+                  alt="Kid playing chess - Chess Wallah Academy" 
+                  className="chess-kid-img" 
+                  loading="lazy"
+                />
+                <div className="image-overlay">
+                  <div className="overlay-text">
+                    <h4>Join 10,000+ Happy Students</h4>
+                    <p>Start your chess journey today!</p>
+                  </div>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-
-        {/* Right Side: Image */}
-        <div className="col-lg-5 text-center mt-4 mt-lg-0">
-        <img src={childImg} alt="Kid playing chess" className="chess-kid-img" />
         </div>
       </div>
     </section>

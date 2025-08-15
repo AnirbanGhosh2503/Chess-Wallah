@@ -1,5 +1,5 @@
 .hero-section {
-  background-color: #000000;
+  background-color: #0A2463;
   color: #ffffff;
   padding: 0;
 }
@@ -21,12 +21,12 @@
 
 /* Green Text */
 .text-green {
-  color: #63B04C;
+  color: #FFBF00;
 }
 
 /* Animated Changing Word */
 .text-changing {
-  color: #63B04C;
+  color: #FFBF00;
   display: inline-block;
   transition: opacity 0.5s ease-in-out;
 }
@@ -41,14 +41,14 @@
 
 /* Buttons */
 .btn-success {
-  background-color: #63B04C;
+  background-color: #FFC300 !important;
   border: none;
+  color: #000000 !important;
 }
 
 .btn-success:hover {
-  background-color: #51913d;
+  background-color: #FFC300 !important;
 }
-
 /* Image Styling */
 .big-image {
   width: 300px;
@@ -69,8 +69,8 @@
 
 /* Caption Styling */
 .caption-box-inside {
-  background-color: #63B04C;
-  color: #ffffff;
+  background-color: #FFBF00;
+  color: #000000;
   padding: 1rem 1.2rem;
   border-radius: 18px;
   position: absolute;
@@ -86,6 +86,11 @@
   box-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
   z-index: 2;
 }
+
+.caption-box-inside strong {
+  color: #000000;
+}
+
 /* Stats Section */
 .stats-container {
   margin-top: 2rem;
@@ -105,6 +110,14 @@
   font-size: 1rem;
   color: #ffffff;
 }
+
+/* Creates a subtle shadow at the bottom of the hero section */
+.hero-section {
+    position: relative;
+    z-index: 1; /* Ensure it's above other elements if needed */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
 
 /* Tablet */
 @media screen and (max-width: 850px) {
@@ -128,6 +141,9 @@
     max-width: 210px;
     max-height: 210px;
   }
+  .image-section {
+        padding-bottom: 4rem;
+    }
   .caption-box-inside {
     bottom: 5%;
     width: 98%;
@@ -153,6 +169,9 @@
     max-height: 50px !important;
     margin: 0 auto;
   }
+  .image-section {
+        padding-bottom: 4rem;
+    }
   .caption-box-inside {
     width: 96%;
     min-width: 40px;
@@ -172,4 +191,7 @@
     padding: 0.8rem 0.5rem;
     border-radius: 14px;
   }
+  .image-section {
+        padding-bottom: 4rem;
+    }
 }

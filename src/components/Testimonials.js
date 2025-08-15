@@ -29,8 +29,8 @@ const testimonials = [
 function Testimonials() {
   return (
     <section className="testimonial-section py-5">
-      <h2 className="text-center text-white mb-5">
-        Our Student’s <span className="highlight">Happy Parents</span>
+      <h2 className="text-center black mb-5">
+        Our Students’ <span className="highlight">Happy Parents</span>
       </h2>
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
