@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import logo from "../assets/logo.png"; // Adjust the path as necessary
+import logoimg from "../assets/logo.png"; // Replace with your actual logo path
+
+// Mock logo - replace with your actual logo import
+const logo = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Ccircle cx='25' cy='25' r='20' fill='%2336d1dc'/%3E%3Ctext x='25' y='30' text-anchor='middle' fill='white' font-size='16' font-weight='bold'%3EL%3C/text%3E%3C/svg%3E";
 
 // Mock Contact component for demo
 const Contact = ({ onClose }) => (
   <div className="contact-modal-content">
-    <h3 style={{ color: '#1a0033', marginBottom: '1.5rem', fontSize: '1.8rem', fontWeight: '700' }}>Get In Touch</h3>
+    <h3 style={{ color: '#0A2463', marginBottom: '1.5rem', fontSize: '1.8rem', fontWeight: '700' }}>Get In Touch</h3>
     <p style={{ color: '#666', marginBottom: '2rem', lineHeight: '1.6' }}>
       Let's discuss how we can help you achieve your goals with our premium courses and services.
     </p>
@@ -24,10 +27,10 @@ const Contact = ({ onClose }) => (
             fontFamily: 'inherit'
           }} 
           onFocus={(e) => {
-            e.target.style.borderColor = '#667eea';
+            e.target.style.borderColor = '#0A2463';
             e.target.style.background = '#ffffff';
             e.target.style.transform = 'translateY(-2px)';
-            e.target.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.15)';
+            e.target.style.boxShadow = '0 8px 25px rgba(10, 36, 99, 0.15)';
           }}
           onBlur={(e) => {
             e.target.style.borderColor = '#e1e5e9';
@@ -52,10 +55,10 @@ const Contact = ({ onClose }) => (
             fontFamily: 'inherit'
           }} 
           onFocus={(e) => {
-            e.target.style.borderColor = '#667eea';
+            e.target.style.borderColor = '#0A2463';
             e.target.style.background = '#ffffff';
             e.target.style.transform = 'translateY(-2px)';
-            e.target.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.15)';
+            e.target.style.boxShadow = '0 8px 25px rgba(10, 36, 99, 0.15)';
           }}
           onBlur={(e) => {
             e.target.style.borderColor = '#e1e5e9';
@@ -81,10 +84,10 @@ const Contact = ({ onClose }) => (
             fontFamily: 'inherit'
           }} 
           onFocus={(e) => {
-            e.target.style.borderColor = '#667eea';
+            e.target.style.borderColor = '#0A2463';
             e.target.style.background = '#ffffff';
             e.target.style.transform = 'translateY(-2px)';
-            e.target.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.15)';
+            e.target.style.boxShadow = '0 8px 25px rgba(10, 36, 99, 0.15)';
           }}
           onBlur={(e) => {
             e.target.style.borderColor = '#e1e5e9';
@@ -97,7 +100,7 @@ const Contact = ({ onClose }) => (
       <button 
         type="submit" 
         style={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, #0A2463 0%, #247BA0 100%)',
           color: 'white',
           border: 'none',
           padding: '1rem 2.5rem',
@@ -112,11 +115,11 @@ const Contact = ({ onClose }) => (
         }}
         onMouseEnter={(e) => {
           e.target.style.transform = 'translateY(-3px)';
-          e.target.style.boxShadow = '0 20px 40px rgba(102, 126, 234, 0.4)';
+          e.target.style.boxShadow = '0 20px 40px rgba(10, 36, 99, 0.4)';
         }}
         onMouseLeave={(e) => {
           e.target.style.transform = 'translateY(0)';
-          e.target.style.boxShadow = '0 10px 25px rgba(102, 126, 234, 0.2)';
+          e.target.style.boxShadow = '0 10px 25px rgba(10, 36, 99, 0.2)';
         }}
       >
         Send Message
@@ -163,257 +166,44 @@ function Navbar() {
   ];
 
   const courseItems = [
-    { 
-      name: 'Beginner', 
-      path: '/courses/beginner', 
-      description: 'Start your journey with fundamental concepts and basic techniques.',
-      icon: '🌱'
-    },
-    { 
-      name: 'Intermediate', 
-      path: '/courses/intermediate', 
-      description: 'Build upon your foundation with advanced topics and practical applications.',
-      icon: '🚀'
-    },
-    { 
-      name: 'Advanced', 
-      path: '/courses/advanced', 
-      description: 'Master complex concepts and cutting-edge industry practices.',
-      icon: '👑'
-    }
+    { name: 'Beginner', path: '/courses/beginner', icon: '🌱' },
+    { name: 'Intermediate', path: '/courses/intermediate', icon: '🚀' },
+    { name: 'Advanced', path: '/courses/advanced', icon: '👑' }
   ];
 
   return (
     <>
-      {/* Spacer to prevent content overlap */}
-      <div className="navbar-spacer"></div>
-      
-      {/* Backdrop overlay for mobile menu */}
-      {menuOpen && <div className="mobile-backdrop" onClick={() => setMenuOpen(false)} />}
-      
-      <nav className={`premium-navbar ${scrolled ? 'scrolled' : ''}`}>
-        <div className="navbar-container">
-          {/* Logo */}
-          <div className="navbar-logo">
-            <div className="logo-container">
-              <img src={logo} alt="Logo" className="logo-image" />
-              <div className="logo-shine"></div>
-            </div>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="desktop-nav">
-            <ul className="nav-links">
-              {navLinks.map((link, index) => (
-                <li key={index} className="nav-item">
-                  <a href={link.path} className="nav-link">
-                    <span className="link-text">{link.name}</span>
-                    <div className="link-highlight"></div>
-                    <div className="link-glow"></div>
-                  </a>
-                </li>
-              ))}
-              
-              {/* Courses Dropdown */}
-              <li 
-                className="nav-item dropdown-container"
-                onMouseEnter={() => setShowDropdown(true)}
-                onMouseLeave={() => setShowDropdown(false)}
-              >
-                <span className="nav-link dropdown-trigger">
-                  <span className="link-text">Courses</span>
-                  <svg className={`dropdown-arrow ${showDropdown ? 'rotated' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="m6 9 6 6 6-6"/>
-                  </svg>
-                  <div className="link-highlight"></div>
-                  <div className="link-glow"></div>
-                </span>
-                
-                <div className={`premium-dropdown ${showDropdown ? 'show' : ''}`}>
-                  <div className="dropdown-header">
-                    <h4>Choose Your Path</h4>
-                    <p>Select the perfect course level for your journey</p>
-                  </div>
-                  {courseItems.map((course, index) => (
-                    <a key={index} href={course.path} className="dropdown-item">
-                      <div className="course-icon">{course.icon}</div>
-                      <div className="dropdown-content">
-                        <h4 className="course-name">{course.name}</h4>
-                        <p className="course-description">{course.description}</p>
-                      </div>
-                      <div className="dropdown-arrow-right">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="m9 18 6-6-6-6"/>
-                        </svg>
-                      </div>
-                    </a>
-                  ))}
-                  <div className="dropdown-footer">
-                    <a href="/courses" className="view-all-btn">
-                      View All Courses
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="m9 18 6-6-6-6"/>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          {/* Right Side Buttons */}
-          <div className="navbar-actions">
-            <a href="/classroom" className="btn btn-glass">
-              <span>Our Classroom</span>
-              <div className="btn-particles"></div>
-            </a>
-            <button 
-              className="btn btn-gradient"
-              onClick={() => setShowContactModal(true)}
-            >
-              <span>Contact Us</span>
-              <div className="btn-glow"></div>
-              <div className="btn-shine"></div>
-            </button>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button 
-            className={`mobile-toggle ${menuOpen ? 'active' : ''}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <div className="toggle-container">
-              <span className="toggle-line"></span>
-              <span className="toggle-line"></span>
-              <span className="toggle-line"></span>
-            </div>
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Slide Menu */}
-      <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
-        <div className="mobile-header">
-          <div className="mobile-logo">
-            <img src="/logo.png" alt="Logo" className="mobile-logo-image" />
-          </div>
-          <div className="mobile-greeting">
-            <h3>Welcome</h3>
-            <p>Explore our amazing features</p>
-          </div>
-        </div>
-        
-        <div className="mobile-nav-content">
-          {navLinks.map((link, index) => (
-            <a 
-              key={index}
-              href={link.path} 
-              className="mobile-nav-link"
-              onClick={() => setMenuOpen(false)}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <span className="mobile-link-text">{link.name}</span>
-              <div className="mobile-link-glow"></div>
-            </a>
-          ))}
-          
-          {/* Mobile Courses Section */}
-          <div className="mobile-courses-section">
-            <div className="mobile-section-header">
-              <span className="section-icon">📚</span>
-              <span className="section-title">Courses</span>
-            </div>
-            <div className="mobile-courses-grid">
-              {courseItems.map((course, index) => (
-                <a 
-                  key={index}
-                  href={course.path} 
-                  className="mobile-course-card"
-                  onClick={() => setMenuOpen(false)}
-                  style={{ animationDelay: `${(navLinks.length + index) * 0.1}s` }}
-                >
-                  <div className="course-card-icon">{course.icon}</div>
-                  <div className="course-card-content">
-                    <span className="course-card-name">{course.name}</span>
-                    <p className="course-card-desc">{course.description}</p>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-          
-          {/* Mobile Action Buttons */}
-          <div className="mobile-actions">
-            <a 
-              href="/classroom" 
-              className="mobile-btn mobile-btn-glass"
-              onClick={() => setMenuOpen(false)}
-            >
-              <span>Our Classroom</span>
-            </a>
-            <button 
-              className="mobile-btn mobile-btn-gradient"
-              onClick={() => { 
-                setMenuOpen(false); 
-                setShowContactModal(true); 
-              }}
-            >
-              <span>Contact Us</span>
-              <div className="mobile-btn-glow"></div>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Contact Modal */}
-      {showContactModal && (
-        <div className="modal-overlay">
-          <div className="modal-container">
-            <button 
-              className="modal-close"
-              onClick={() => setShowContactModal(false)}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-            <Contact onClose={() => setShowContactModal(false)} />
-          </div>
-        </div>
-      )}
-
       <style jsx>{`
         * {
           box-sizing: border-box;
         }
 
-        /* Navbar Spacer - prevents content overlap */
+        /* Navbar Spacer */
         .navbar-spacer {
           height: 80px;
         }
 
-        /* Premium Navbar Styles */
+        /* Premium Navbar */
         .premium-navbar {
           position: fixed;
           top: 0;
           left: 0;
           right: 0;
           z-index: 1000;
-          background: rgba(26, 0, 51, 0.95);
+          background: rgba(10, 36, 99, 0.95);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           padding: 1rem 0;
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 30px rgba(10, 36, 99, 0.2);
         }
 
         .premium-navbar.scrolled {
-          background: rgba(26, 0, 51, 0.98);
+          background: rgba(10, 36, 99, 0.98);
           padding: 0.75rem 0;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-          border-bottom: 1px solid rgba(102, 126, 234, 0.3);
+          box-shadow: 0 8px 32px rgba(10, 36, 99, 0.4);
+          border-bottom: 1px solid rgba(36, 123, 160, 0.3);
         }
 
         .navbar-container {
@@ -425,59 +215,26 @@ function Navbar() {
           padding: 0 2rem;
         }
 
-        /* Logo Styles */
+        /* Logo */
         .navbar-logo {
           flex-shrink: 0;
-        }
-
-        .logo-container {
-          position: relative;
-          padding: 0.5rem 1rem;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          border-radius: 12px;
-          overflow: hidden;
           cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .logo-container:hover {
-          transform: translateY(-2px) scale(1.02);
-          box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        .navbar-logo:hover {
+          transform: scale(1.05) rotateY(10deg);
         }
 
         .logo-image {
-          height: 45px;
+          height: 50px;
           width: auto;
-          position: relative;
-          z-index: 2;
+          filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.2));
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .logo-container:hover .logo-image {
-          transform: scale(1.05);
-          filter: brightness(1.1);
-        }
-
-        .logo-text {
-          font-size: 1.5rem;
-          font-weight: 800;
-          color: white;
-          position: relative;
-          z-index: 2;
-        }
-
-        .logo-shine {
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-          transition: left 0.6s;
-        }
-
-        .logo-container:hover .logo-shine {
-          left: 100%;
+        .navbar-logo:hover .logo-image {
+          filter: drop-shadow(0 8px 20px rgba(36, 123, 160, 0.4));
         }
 
         /* Desktop Navigation */
@@ -508,15 +265,15 @@ function Navbar() {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          padding: 0.75rem 1.25rem;
+          padding: 0.75rem 1rem;
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          border-radius: 10px;
+          border-radius: 8px;
           overflow: hidden;
         }
 
         .nav-link:hover {
-          color: white;
+          color: #ffffff;
           transform: translateY(-2px);
         }
 
@@ -525,39 +282,23 @@ function Navbar() {
           z-index: 2;
         }
 
-        .link-highlight {
+        .link-underline {
           position: absolute;
-          top: 0;
-          left: 0;
+          bottom: 0;
+          left: 50%;
           width: 0;
-          height: 100%;
-          background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
-          transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          border-radius: 10px;
+          height: 2px;
+          background: linear-gradient(90deg, #36d1dc, #5b86e5);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          transform: translateX(-50%);
+          border-radius: 1px;
         }
 
-        .nav-link:hover .link-highlight {
+        .nav-link:hover .link-underline {
           width: 100%;
         }
 
-        .link-glow {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 0;
-          height: 0;
-          background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          transform: translate(-50%, -50%);
-          border-radius: 50%;
-        }
-
-        .nav-link:hover .link-glow {
-          width: 120px;
-          height: 120px;
-        }
-
-        /* Dropdown Styles */
+        /* Dropdown */
         .dropdown-container {
           position: relative;
         }
@@ -569,7 +310,7 @@ function Navbar() {
         .dropdown-arrow {
           width: 16px;
           height: 16px;
-          transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .dropdown-arrow.rotated {
@@ -578,21 +319,21 @@ function Navbar() {
 
         .premium-dropdown {
           position: absolute;
-          top: calc(100% + 1.5rem);
+          top: calc(100% + 1rem);
           left: 50%;
           transform: translateX(-50%);
-          background: rgba(26, 0, 51, 0.98);
+          background: rgba(10, 36, 99, 0.98);
           backdrop-filter: blur(25px);
           -webkit-backdrop-filter: blur(25px);
           border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 20px;
-          padding: 1.5rem;
-          min-width: 420px;
+          border-radius: 12px;
+          padding: 0.75rem;
+          min-width: 200px;
           opacity: 0;
           visibility: hidden;
-          transform: translateX(-50%) translateY(-20px) scale(0.95);
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+          transform: translateX(-50%) translateY(-10px) scale(0.95);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 20px 40px rgba(10, 36, 99, 0.4);
           z-index: 100;
         }
 
@@ -602,42 +343,17 @@ function Navbar() {
           transform: translateX(-50%) translateY(0) scale(1);
         }
 
-        .dropdown-header {
-          text-align: center;
-          margin-bottom: 1.5rem;
-          padding-bottom: 1rem;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .dropdown-header h4 {
-          color: white;
-          font-size: 1.3rem;
-          font-weight: 700;
-          margin: 0 0 0.5rem 0;
-          background: linear-gradient(135deg, #667eea, #764ba2);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        .dropdown-header p {
-          color: rgba(255, 255, 255, 0.7);
-          font-size: 0.9rem;
-          margin: 0;
-        }
-
         .dropdown-item {
           display: flex;
           align-items: center;
-          padding: 1.25rem;
+          gap: 0.75rem;
+          padding: 0.75rem 1rem;
           color: rgba(255, 255, 255, 0.9);
           text-decoration: none;
-          border-radius: 15px;
+          border-radius: 8px;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           border: 1px solid transparent;
-          margin-bottom: 0.75rem;
-          position: relative;
-          overflow: hidden;
+          margin-bottom: 0.25rem;
         }
 
         .dropdown-item:last-child {
@@ -645,92 +361,24 @@ function Navbar() {
         }
 
         .dropdown-item:hover {
-          background: rgba(102, 126, 234, 0.15);
-          border-color: rgba(102, 126, 234, 0.3);
-          transform: translateX(8px);
-          box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+          background: rgba(36, 123, 160, 0.2);
+          border-color: rgba(36, 123, 160, 0.3);
+          color: #ffffff;
+          transform: translateX(4px);
         }
 
         .course-icon {
-          font-size: 2rem;
-          margin-right: 1rem;
+          font-size: 1.2rem;
           transition: transform 0.3s ease;
         }
 
         .dropdown-item:hover .course-icon {
-          transform: scale(1.1) rotate(5deg);
-        }
-
-        .dropdown-content {
-          flex: 1;
+          transform: scale(1.2) rotate(10deg);
         }
 
         .course-name {
-          font-size: 1.1rem;
-          font-weight: 600;
-          margin: 0 0 0.5rem 0;
-          color: white;
-          transition: color 0.3s ease;
-        }
-
-        .dropdown-item:hover .course-name {
-          color: #667eea;
-        }
-
-        .course-description {
-          font-size: 0.875rem;
-          color: rgba(255, 255, 255, 0.6);
-          margin: 0;
-          line-height: 1.4;
-        }
-
-        .dropdown-arrow-right {
-          width: 20px;
-          height: 20px;
-          color: #667eea;
-          opacity: 0;
-          transform: translateX(-10px);
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .dropdown-item:hover .dropdown-arrow-right {
-          opacity: 1;
-          transform: translateX(0);
-        }
-
-        .dropdown-footer {
-          margin-top: 1rem;
-          padding-top: 1rem;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-          text-align: center;
-        }
-
-        .view-all-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          color: #667eea;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 0.9rem;
-          padding: 0.5rem 1rem;
-          border-radius: 8px;
-          transition: all 0.3s ease;
-        }
-
-        .view-all-btn:hover {
-          background: rgba(102, 126, 234, 0.1);
-          transform: translateY(-2px);
-        }
-
-        .view-all-btn svg {
-          width: 16px;
-          height: 16px;
-          transition: transform 0.3s ease;
-        }
-
-        .view-all-btn:hover svg {
-          transform: translateX(3px);
+          font-weight: 500;
+          font-size: 0.95rem;
         }
 
         /* Action Buttons */
@@ -743,7 +391,7 @@ function Navbar() {
         .btn {
           position: relative;
           padding: 0.75rem 1.5rem;
-          border-radius: 12px;
+          border-radius: 8px;
           font-weight: 600;
           text-decoration: none;
           border: none;
@@ -751,64 +399,51 @@ function Navbar() {
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           overflow: hidden;
           font-size: 0.95rem;
-          z-index: 1;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
         }
 
-        .btn-glass {
-          background: rgba(255, 255, 255, 0.1);
+        .btn-outline {
+          background: transparent;
           color: rgba(255, 255, 255, 0.9);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          backdrop-filter: blur(10px);
+          border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        .btn-glass:hover {
-          background: rgba(255, 255, 255, 0.2);
-          color: white;
-          transform: translateY(-3px);
-          box-shadow: 0 12px 30px rgba(255, 255, 255, 0.1);
+        .btn-outline:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.5);
+          color: #ffffff;
+          transform: translateY(-2px);
         }
 
-        .btn-gradient {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .btn-primary {
+          background: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
           color: white;
           border: none;
           position: relative;
         }
 
-        .btn-gradient:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        .btn-primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 25px rgba(54, 209, 220, 0.3);
         }
 
-        .btn-glow {
+        .btn-ripple {
           position: absolute;
           top: 50%;
           left: 50%;
           width: 0;
           height: 0;
-          background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          transform: translate(-50%, -50%);
+          background: rgba(255, 255, 255, 0.3);
           border-radius: 50%;
+          transform: translate(-50%, -50%);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .btn-gradient:hover .btn-glow {
+        .btn-primary:hover .btn-ripple {
           width: 100px;
           height: 100px;
-        }
-
-        .btn-shine {
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-          transition: left 0.6s;
-        }
-
-        .btn-gradient:hover .btn-shine {
-          left: 100%;
         }
 
         /* Mobile Toggle */
@@ -818,39 +453,38 @@ function Navbar() {
           border: none;
           cursor: pointer;
           padding: 0.5rem;
-          border-radius: 8px;
-          transition: all 0.3s ease;
+          position: relative;
         }
 
-        .toggle-container {
+        .hamburger {
           width: 24px;
-          height: 20px;
-          position: relative;
+          height: 18px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          position: relative;
         }
 
-        .toggle-line {
+        .hamburger span {
           width: 100%;
-          height: 3px;
-          background: linear-gradient(135deg, #667eea, #764ba2);
-          border-radius: 2px;
+          height: 2px;
+          background: #ffffff;
+          border-radius: 1px;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           transform-origin: center;
         }
 
-        .mobile-toggle.active .toggle-line:nth-child(1) {
-          transform: translateY(8.5px) rotate(45deg);
+        .mobile-toggle.active .hamburger span:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
         }
 
-        .mobile-toggle.active .toggle-line:nth-child(2) {
+        .mobile-toggle.active .hamburger span:nth-child(2) {
           opacity: 0;
-          transform: translateX(-20px);
+          transform: scaleX(0);
         }
 
-        .mobile-toggle.active .toggle-line:nth-child(3) {
-          transform: translateY(-8.5px) rotate(-45deg);
+        .mobile-toggle.active .hamburger span:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
         }
 
         /* Mobile Backdrop */
@@ -862,7 +496,7 @@ function Navbar() {
           bottom: 0;
           background: rgba(0, 0, 0, 0.6);
           z-index: 1040;
-          backdrop-filter: blur(5px);
+          backdrop-filter: blur(8px);
           animation: fadeIn 0.3s ease;
         }
 
@@ -872,15 +506,15 @@ function Navbar() {
           top: 0;
           right: -100%;
           height: 100vh;
-          width: min(450px, 90vw);
-          background: linear-gradient(135deg, rgba(26, 0, 51, 0.98), rgba(38, 13, 77, 0.98));
+          width: min(400px, 85vw);
+          background: linear-gradient(135deg, rgba(10, 36, 99, 0.98), rgba(36, 123, 160, 0.98));
           backdrop-filter: blur(25px);
           -webkit-backdrop-filter: blur(25px);
-          border-left: 1px solid rgba(255, 255, 255, 0.1);
           z-index: 1050;
           transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           overflow-y: auto;
-          box-shadow: -10px 0 50px rgba(0, 0, 0, 0.3);
+          border-left: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: -10px 0 50px rgba(10, 36, 99, 0.3);
         }
 
         .mobile-menu.open {
@@ -888,248 +522,185 @@ function Navbar() {
         }
 
         .mobile-header {
-          padding: 2.5rem 2rem 2rem 2rem;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          padding: 2rem;
           text-align: center;
-          background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.05);
         }
 
-        .mobile-logo-image {
-          height: 40px;
+        .mobile-logo {
+          height: 45px;
           width: auto;
-          transition: all 0.3s ease;
+          margin-bottom: 1rem;
+          filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.2));
         }
 
-        .mobile-logo .logo-text {
-          font-size: 1.8rem;
-          font-weight: 800;
-          background: linear-gradient(135deg, #667eea, #764ba2);
+        .mobile-title {
+          color: #ffffff;
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin: 0;
+          background: linear-gradient(135deg, #36d1dc, #5b86e5);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
-        }
-
-        .mobile-greeting {
-          margin-top: 1rem;
-        }
-
-        .mobile-greeting h3 {
-          color: white;
-          font-size: 1.4rem;
-          font-weight: 700;
-          margin: 0 0 0.5rem 0;
-        }
-
-        .mobile-greeting p {
-          color: rgba(255, 255, 255, 0.7);
-          font-size: 0.9rem;
-          margin: 0;
         }
 
         .mobile-nav-content {
           padding: 2rem;
         }
 
+        .mobile-links {
+          margin-bottom: 2rem;
+        }
+
         .mobile-nav-link {
-          position: relative;
-          display: block;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1rem 1.25rem;
           color: rgba(255, 255, 255, 0.9);
           text-decoration: none;
           font-size: 1.1rem;
           font-weight: 500;
-          padding: 1.25rem 1.5rem;
-          border-radius: 15px;
+          border-radius: 12px;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           margin-bottom: 0.75rem;
-          overflow: hidden;
           border: 1px solid transparent;
           animation: slideInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+          background: rgba(255, 255, 255, 0.05);
         }
 
         .mobile-nav-link:hover {
-          color: white;
-          background: rgba(102, 126, 234, 0.15);
-          border-color: rgba(102, 126, 234, 0.3);
-          transform: translateX(8px);
-          box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+          color: #ffffff;
+          background: rgba(36, 123, 160, 0.2);
+          border-color: rgba(36, 123, 160, 0.3);
+          transform: translateX(8px) scale(1.02);
+          box-shadow: 0 8px 25px rgba(36, 123, 160, 0.2);
         }
 
-        .mobile-link-text {
-          position: relative;
-          z-index: 2;
+        .mobile-nav-link svg {
+          width: 18px;
+          height: 18px;
+          opacity: 0.7;
+          transition: all 0.3s ease;
         }
 
-        .mobile-link-glow {
-          position: absolute;
-          top: 50%;
-          left: 0;
-          width: 0;
-          height: 100%;
-          background: linear-gradient(90deg, rgba(102, 126, 234, 0.3), transparent);
-          transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          transform: translateY(-50%);
-          border-radius: 15px;
+        .mobile-nav-link:hover svg {
+          opacity: 1;
+          transform: translateX(4px);
         }
 
-        .mobile-nav-link:hover .mobile-link-glow {
-          width: 100%;
+        /* Mobile Courses */
+        .mobile-courses {
+          margin-bottom: 2rem;
         }
 
-        /* Mobile Courses Section */
-        .mobile-courses-section {
-          margin: 2rem 0;
-          padding: 1.5rem;
-          background: rgba(255, 255, 255, 0.05);
-          border-radius: 20px;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-section-header {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          margin-bottom: 1.5rem;
-          padding-bottom: 1rem;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .section-icon {
-          font-size: 1.5rem;
-        }
-
-        .section-title {
-          font-size: 1.3rem;
+        .courses-title {
+          color: #ffffff;
+          font-size: 1.2rem;
           font-weight: 700;
-          color: white;
+          margin: 0 0 1rem 0;
+          text-align: center;
+          background: linear-gradient(135deg, #36d1dc, #5b86e5);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
 
-        .mobile-courses-grid {
-          display: flex;
-          flex-direction: column;
+        .courses-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
           gap: 1rem;
         }
 
-        .mobile-course-card {
+        .course-card {
           display: flex;
+          flex-direction: column;
           align-items: center;
-          padding: 1.25rem;
-          background: rgba(255, 255, 255, 0.05);
+          padding: 1.5rem 1rem;
+          background: rgba(255, 255, 255, 0.08);
           border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 15px;
+          border-radius: 16px;
           color: rgba(255, 255, 255, 0.9);
           text-decoration: none;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           animation: slideInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
-          position: relative;
-          overflow: hidden;
+          text-align: center;
         }
 
-        .mobile-course-card:hover {
-          background: rgba(102, 126, 234, 0.15);
-          border-color: rgba(102, 126, 234, 0.3);
-          transform: translateY(-3px);
-          box-shadow: 0 12px 30px rgba(102, 126, 234, 0.2);
+        .course-card:hover {
+          background: rgba(36, 123, 160, 0.2);
+          border-color: rgba(36, 123, 160, 0.4);
+          transform: translateY(-4px) scale(1.05);
+          box-shadow: 0 12px 30px rgba(36, 123, 160, 0.3);
+          color: #ffffff;
         }
 
-        .course-card-icon {
-          font-size: 2rem;
-          margin-right: 1rem;
+        .card-icon {
+          font-size: 2.5rem;
+          margin-bottom: 0.75rem;
           transition: transform 0.3s ease;
         }
 
-        .mobile-course-card:hover .course-card-icon {
-          transform: scale(1.1) rotate(5deg);
+        .course-card:hover .card-icon {
+          transform: scale(1.2) rotate(10deg);
         }
 
-        .course-card-content {
-          flex: 1;
-        }
-
-        .course-card-name {
+        .card-title {
           font-weight: 600;
-          color: white;
-          font-size: 1rem;
-          display: block;
-          margin-bottom: 0.5rem;
-          transition: color 0.3s ease;
-        }
-
-        .mobile-course-card:hover .course-card-name {
-          color: #667eea;
-        }
-
-        .course-card-desc {
-          font-size: 0.875rem;
-          color: rgba(255, 255, 255, 0.6);
-          margin: 0;
-          line-height: 1.4;
+          font-size: 0.95rem;
         }
 
         /* Mobile Actions */
         .mobile-actions {
-          margin-top: 2.5rem;
           display: flex;
           flex-direction: column;
           gap: 1rem;
+          margin-top: 2rem;
+          padding-top: 2rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .mobile-btn {
-          padding: 1.25rem 1.5rem;
-          border-radius: 15px;
+          padding: 1rem 1.5rem;
+          border-radius: 12px;
           font-weight: 600;
           text-decoration: none;
           text-align: center;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           font-size: 1rem;
+          border: none;
+          cursor: pointer;
           position: relative;
           overflow: hidden;
         }
 
-        .mobile-btn-glass {
-          background: rgba(255, 255, 255, 0.1);
+        .mobile-btn.outline {
+          background: transparent;
           color: rgba(255, 255, 255, 0.9);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          backdrop-filter: blur(10px);
+          border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        .mobile-btn-glass:hover {
-          background: rgba(255, 255, 255, 0.2);
-          color: white;
-          transform: translateY(-3px);
-          box-shadow: 0 12px 30px rgba(255, 255, 255, 0.1);
+        .mobile-btn.outline:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.5);
+          color: #ffffff;
+          transform: translateY(-2px);
         }
 
-        .mobile-btn-gradient {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .mobile-btn.primary {
+          background: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
           color: white;
           border: none;
-          cursor: pointer;
-          position: relative;
         }
 
-        .mobile-btn-gradient:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        .mobile-btn.primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 25px rgba(54, 209, 220, 0.3);
         }
 
-        .mobile-btn-glow {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 0;
-          height: 0;
-          background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          transform: translate(-50%, -50%);
-          border-radius: 50%;
-        }
-
-        .mobile-btn-gradient:hover .mobile-btn-glow {
-          width: 120px;
-          height: 120px;
-        }
-
-        /* Modal Styles */
+        /* Contact Modal */
         .modal-overlay {
           position: fixed;
           top: 0;
@@ -1141,22 +712,20 @@ function Navbar() {
           align-items: center;
           justify-content: center;
           z-index: 2000;
+          padding: 1rem;
           backdrop-filter: blur(10px);
-          padding: 2rem;
-          animation: fadeIn 0.3s ease;
         }
 
         .modal-container {
-          background: linear-gradient(135deg, #ffffff, #f8fafc);
+          background: white;
           border-radius: 20px;
-          padding: 3rem;
-          max-width: 600px;
+          padding: 2rem;
+          max-width: 500px;
           width: 100%;
           max-height: 90vh;
           overflow-y: auto;
           position: relative;
           box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-          border: 1px solid rgba(255, 255, 255, 0.2);
           animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -1164,22 +733,18 @@ function Navbar() {
           position: absolute;
           top: 1.5rem;
           right: 1.5rem;
-          background: rgba(26, 0, 51, 0.1);
+          background: none;
           border: none;
+          padding: 0.5rem;
           cursor: pointer;
-          color: #1a0033;
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          border-radius: 8px;
           transition: all 0.3s ease;
+          color: #666;
         }
 
         .modal-close:hover {
-          background: rgba(26, 0, 51, 0.2);
-          transform: rotate(90deg);
+          background: rgba(0, 0, 0, 0.1);
+          color: #333;
         }
 
         .modal-close svg {
@@ -1187,14 +752,14 @@ function Navbar() {
           height: 20px;
         }
 
+        .contact-modal-content {
+          margin-top: 0.5rem;
+        }
+
         /* Animations */
         @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
 
         @keyframes slideInRight {
@@ -1211,17 +776,28 @@ function Navbar() {
         @keyframes modalSlideIn {
           from {
             opacity: 0;
-            transform: translateY(-50px) scale(0.9);
+            transform: scale(0.9) translateY(-20px);
           }
           to {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: scale(1) translateY(0);
           }
         }
 
         /* Responsive Design */
         @media (max-width: 1024px) {
-          .desktop-nav {
+          .navbar-container {
+            padding: 0 1.5rem;
+          }
+          
+          .nav-links {
+            gap: 1.5rem;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .desktop-nav,
+          .navbar-actions {
             display: none;
           }
 
@@ -1229,189 +805,189 @@ function Navbar() {
             display: block;
           }
 
-          .navbar-actions {
-            display: none;
-          }
-
-          .navbar-container {
-            padding: 0 1.5rem;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .navbar-spacer {
-            height: 70px;
-          }
-
-          .premium-navbar {
-            padding: 0.75rem 0;
-          }
-
-          .premium-navbar.scrolled {
-            padding: 0.6rem 0;
-          }
-
           .navbar-container {
             padding: 0 1rem;
-          }
-
-          .logo-text {
-            font-size: 1.3rem;
-          }
-
-          .mobile-menu {
-            width: min(400px, 95vw);
-          }
-
-          .mobile-nav-content {
-            padding: 1.5rem;
-          }
-
-          .mobile-header {
-            padding: 2rem 1.5rem 1.5rem 1.5rem;
-          }
-
-          .mobile-courses-section {
-            margin: 1.5rem 0;
-            padding: 1.25rem;
           }
         }
 
         @media (max-width: 480px) {
-          .navbar-spacer {
-            height: 65px;
+          .navbar-container {
+            padding: 0 1rem;
+          }
+
+          .mobile-menu {
+            width: 100vw;
           }
 
           .modal-container {
-            padding: 2rem;
             margin: 1rem;
-          }
-
-          .mobile-header {
-            padding: 1.5rem 1rem 1rem 1rem;
-          }
-
-          .mobile-nav-content {
-            padding: 1rem;
-          }
-
-          .mobile-logo-image {
-            height: 28px;
-          }
-
-          .mobile-logo .logo-text {
-            font-size: 1.5rem;
-          }
-
-          .mobile-greeting h3 {
-            font-size: 1.2rem;
-          }
-
-          .premium-dropdown {
-            min-width: 320px;
-            left: 0;
-            transform: none;
-          }
-
-          .premium-dropdown.show {
-            transform: none;
-          }
-        }
-
-        /* Scrollbar Styles */
-        .mobile-menu::-webkit-scrollbar {
-          width: 6px;
-        }
-
-        .mobile-menu::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu::-webkit-scrollbar-thumb {
-          background: rgba(102, 126, 234, 0.5);
-          border-radius: 3px;
-        }
-
-        .mobile-menu::-webkit-scrollbar-thumb:hover {
-          background: rgba(102, 126, 234, 0.7);
-        }
-
-        /* Additional Premium Effects */
-        .btn-particles {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-          overflow: hidden;
-        }
-
-        .btn-particles::before {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 0;
-          height: 0;
-          background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          transform: translate(-50%, -50%);
-          border-radius: 50%;
-        }
-
-        .btn-glass:hover .btn-particles::before {
-          width: 100px;
-          height: 100px;
-        }
-
-        /* Focus Styles for Accessibility */
-        .nav-link:focus,
-        .btn:focus,
-        .mobile-nav-link:focus {
-          outline: 2px solid #667eea;
-          outline-offset: 2px;
-        }
-
-        .mobile-toggle:focus {
-          outline: 2px solid #667eea;
-          outline-offset: 2px;
-          border-radius: 8px;
-        }
-
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-          .premium-navbar {
-            background: rgba(0, 0, 0, 0.95);
-            border-bottom: 2px solid #667eea;
-          }
-
-          .nav-link {
-            color: white;
-          }
-
-          .dropdown-item {
-            border: 1px solid rgba(255, 255, 255, 0.3);
-          }
-        }
-
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-          * {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-          }
-
-          .mobile-nav-link {
-            animation: none;
-          }
-
-          .mobile-course-card {
-            animation: none;
+            padding: 1.5rem;
           }
         }
       `}</style>
+
+      {/* Spacer to prevent content overlap */}
+      <div className="navbar-spacer"></div>
+      
+      {/* Backdrop overlay for mobile menu */}
+      {menuOpen && <div className="mobile-backdrop" onClick={() => setMenuOpen(false)} />}
+      
+      <nav className={`premium-navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="navbar-container">
+          {/* Logo */}
+          <div className="navbar-logo">
+            <img src={logoimg} alt="Logo" className="logo-image" />
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="desktop-nav">
+            <ul className="nav-links">
+              {navLinks.map((link, index) => (
+                <li key={index} className="nav-item">
+                  <a href={link.path} className="nav-link">
+                    <span className="link-text">{link.name}</span>
+                    <div className="link-underline"></div>
+                  </a>
+                </li>
+              ))}
+              
+              {/* Courses Dropdown */}
+              <li 
+                className="nav-item dropdown-container"
+                onMouseEnter={() => setShowDropdown(true)}
+                onMouseLeave={() => setShowDropdown(false)}
+              >
+                <span className="nav-link dropdown-trigger">
+                  <span className="link-text">Courses</span>
+                  <svg className={`dropdown-arrow ${showDropdown ? 'rotated' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                  <div className="link-underline"></div>
+                </span>
+                
+                <div className={`premium-dropdown ${showDropdown ? 'show' : ''}`}>
+                  {courseItems.map((course, index) => (
+                    <a key={index} href={course.path} className="dropdown-item">
+                      <span className="course-icon">{course.icon}</span>
+                      <span className="course-name">{course.name}</span>
+                    </a>
+                  ))}
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Right Side Buttons */}
+          <div className="navbar-actions">
+            <a href="/classroom" className="btn btn-outline">
+              <span>Our Classroom</span>
+            </a>
+            <button 
+              className="btn btn-primary"
+              onClick={() => setShowContactModal(true)}
+            >
+              <span>Contact Us</span>
+              <div className="btn-ripple"></div>
+            </button>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button 
+            className={`mobile-toggle ${menuOpen ? 'active' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <div className="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
+      <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
+        <div className="mobile-header">
+          <img src={logo} alt="Logo" className="mobile-logo" />
+          <h3 className="mobile-title">Menu</h3>
+        </div>
+        
+        <div className="mobile-nav-content">
+          <div className="mobile-links">
+            {navLinks.map((link, index) => (
+              <a 
+                key={index}
+                href={link.path} 
+                className="mobile-nav-link"
+                onClick={() => setMenuOpen(false)}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <span>{link.name}</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </a>
+            ))}
+          </div>
+          
+          {/* Mobile Courses Grid */}
+          <div className="mobile-courses">
+            <h4 className="courses-title">Courses</h4>
+            <div className="courses-grid">
+              {courseItems.map((course, index) => (
+                <a 
+                  key={index}
+                  href={course.path} 
+                  className="course-card"
+                  onClick={() => setMenuOpen(false)}
+                  style={{ animationDelay: `${(navLinks.length + index) * 0.1}s` }}
+                >
+                  <span className="card-icon">{course.icon}</span>
+                  <span className="card-title">{course.name}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+          
+          {/* Mobile Actions */}
+          <div className="mobile-actions">
+            <a 
+              href="/classroom" 
+              className="mobile-btn outline"
+              onClick={() => setMenuOpen(false)}
+            >
+              Our Classroom
+            </a>
+            <button 
+              className="mobile-btn primary"
+              onClick={() => { 
+                setMenuOpen(false); 
+                setShowContactModal(true); 
+              }}
+            >
+              Contact Us
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact Modal */}
+      {showContactModal && (
+        <div className="modal-overlay">
+          <div className="modal-container">
+            <button 
+              className="modal-close"
+              onClick={() => setShowContactModal(false)}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+            <Contact onClose={() => setShowContactModal(false)} />
+          </div>
+        </div>
+      )}
     </>
   );
 }

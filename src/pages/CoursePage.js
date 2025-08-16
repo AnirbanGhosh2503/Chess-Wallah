@@ -15,7 +15,7 @@ const FreeDemoModal = ({ isOpen, onClose }) => {
         <p className="modal-description">
           Ready to start your chess journey? Fill out the form below to book a free demo class with our certified instructors.
         </p>
-        <form className="modal-form">
+        <div className="modal-form">
           <div>
             <label htmlFor="name" className="modal-label">Name</label>
             <input type="text" id="name" placeholder="Your Name" className="modal-input" />
@@ -24,10 +24,10 @@ const FreeDemoModal = ({ isOpen, onClose }) => {
             <label htmlFor="email" className="modal-label">Email</label>
             <input type="email" id="email" placeholder="you@example.com" className="modal-input" />
           </div>
-          <button type="submit" className="modal-submit-button">
+          <button onClick={onClose} className="modal-submit-button">
             Submit Request
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );
@@ -189,50 +189,7 @@ const App = () => {
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             color: #1f2937;
-            padding-bottom: 3rem;
-          }
-
-          .level-selector {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background-color: #fff;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            padding: 1rem 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.5rem;
-            border-bottom: 1px solid #e5e7eb;
-          }
-
-          @media (min-width: 640px) {
-            .level-selector {
-              gap: 1rem;
-            }
-          }
-
-          .level-button {
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            border: none;
-            background-color: #e5e7eb;
-            color: #4b5563;
-          }
-          .level-button:hover {
-            background-color: #dbeafe;
-          }
-
-          .level-button.active {
-            background-color: #2563eb;
-            color: #fff;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 2rem 0 3rem 0;
           }
 
           .container {
@@ -243,12 +200,66 @@ const App = () => {
             padding-right: 1rem;
           }
 
+          .course-selector {
+            text-align: center;
+            margin-bottom: 2rem;
+          }
+
+          .selector-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+          }
+
+          .level-selector {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+          }
+
+          @media (min-width: 640px) {
+            .level-selector {
+              gap: 1rem;
+            }
+          }
+
+          .level-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: 2px solid #e5e7eb;
+            background-color: #fff;
+            color: #4b5563;
+          }
+          .level-button:hover {
+            background-color: #f3f4f6;
+            border-color: #d1d5db;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+          }
+
+          .level-button.active {
+            background-color: #2563eb;
+            color: #fff;
+            border-color: #2563eb;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          }
+
           .hero-section {
             background-image: linear-gradient(to bottom right, #3b82f6, #4f46e5);
             color: #fff;
             border-radius: 1.5rem;
             padding: 2rem;
-            margin-top: 2rem;
+            margin-bottom: 4rem;
             text-align: center;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             transition: all 0.5s;
@@ -269,6 +280,7 @@ const App = () => {
             line-height: 1;
             font-weight: 800;
             margin-bottom: 1rem;
+            color: #fff;
           }
 
           @media (min-width: 768px) {
@@ -289,7 +301,8 @@ const App = () => {
             max-width: 48rem;
             margin-left: auto;
             margin-right: auto;
-            opacity: 0.9;
+            opacity: 0.95;
+            color: #fff;
           }
 
           @media (min-width: 768px) {
@@ -317,6 +330,7 @@ const App = () => {
           .price {
             font-size: 2.25rem;
             font-weight: 700;
+            color: #fff;
           }
 
           .enroll-button {
@@ -342,6 +356,7 @@ const App = () => {
             font-weight: 700;
             text-align: center;
             margin-bottom: 3rem;
+            color: #1f2937;
           }
 
           /* Updated styles for the two-row curriculum layout to be more responsive */
@@ -444,6 +459,7 @@ const App = () => {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
+            color: #1f2937;
           }
 
           .feature-description {
@@ -600,30 +616,33 @@ const App = () => {
           }
         `}
       </style>
-      
-      {/* Course Level Selector */}
-      <div className="level-selector">
-        <button
-          onClick={() => setLevel("beginner")}
-          className={`level-button ${level === "beginner" ? "active" : ""}`}
-        >
-          <GraduationCap size={20} /> Beginner
-        </button>
-        <button
-          onClick={() => setLevel("intermediate")}
-          className={`level-button ${level === "intermediate" ? "active" : ""}`}
-        >
-          <Star size={20} /> Intermediate
-        </button>
-        <button
-          onClick={() => setLevel("advanced")}
-          className={`level-button ${level === "advanced" ? "active" : ""}`}
-        >
-          <Gem size={20} /> Advanced
-        </button>
-      </div>
 
       <div className="container">
+        {/* Course Selection */}
+        <div className="course-selector">
+          <h1 className="selector-title">Choose Your Chess Journey</h1>
+          <div className="level-selector">
+            <button
+              onClick={() => setLevel("beginner")}
+              className={`level-button ${level === "beginner" ? "active" : ""}`}
+            >
+              <GraduationCap size={20} /> Beginner
+            </button>
+            <button
+              onClick={() => setLevel("intermediate")}
+              className={`level-button ${level === "intermediate" ? "active" : ""}`}
+            >
+              <Star size={20} /> Intermediate
+            </button>
+            <button
+              onClick={() => setLevel("advanced")}
+              className={`level-button ${level === "advanced" ? "active" : ""}`}
+            >
+              <Gem size={20} /> Advanced
+            </button>
+          </div>
+        </div>
+
         {/* Hero Section */}
         <div className="hero-section">
           <h1 className="hero-title">{course.title}</h1>

@@ -1,70 +1,118 @@
-.community-section {
-  background-color: #000;
-  color: #fff;
-  padding: 60px 0;
-  width: 100vw;
-  margin: 0;
-  overflow-x: hidden;
+.our-pride-section {
+  background-color: #F8F8F8;
+  color: #333;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-}
-
-.image-wrapper {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.image-wrapper img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 5px solid #0f0;
-  box-shadow: 0 0 15px #0f0;
-}
-
-.content {
-  flex: 1;
-  max-width: 600px;
-}
-
-.title {
+.section-title {
   font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.section-title .highlight {
+  color: #63B04C;
+}
+
+.pride-card {
+  background: white;
+  border: 2px solid #63B04C;
+  border-radius: 20px;
+  padding: 3rem 1rem 1.5rem;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 50px; /* Adds space for the image to float above */
+  min-height: 350px;
+}
+
+.pride-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.student-img-wrapper {
+  position: absolute;
+  top: -55px; /* Lifts it above the card */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #63B04C;
+  background: white;
+  z-index: 5;
+  box-shadow: 0 4px 15px rgba(99, 176, 76, 0.3);
+}
+
+.student-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.pride-card-body {
+  padding-top: 70px;
+  text-align: center;
+}
+
+.pride-card-body h4 {
+  margin: 0.5rem 0 0.2rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  margin-bottom: 20px;
+  color: #333;
 }
 
-.points {
-  margin-top: 20px;
+.pride-card-body .age {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 0.5rem;
 }
 
-.point {
-  font-size: 1.1rem;
-  color: #ccc;
-  margin-bottom: 10px;
+.pride-card-body .achievement {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.75rem;
+  padding: 0 10px;
+  line-height: 1.4;
 }
 
-.point strong {
-  color: #0f0;
+.flag-img {
+  width: 34px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  margin-top: 0.5rem;
 }
 
-.highlight {
-  color: #0f0;
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-top: 20px;
+/* Swiper navigation buttons */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #63B04C;
+  width: 28px;
+  height: 28px;
+  top: 40%;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px;
+}
+
+/* Swiper pagination bullets */
+.swiper-pagination-bullet {
+  background-color: #ccc;
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #63B04C;
+}
+
+/* Ensure cards are not cut by their container */
+.swiper-slide {
+  overflow: visible !important;
 }

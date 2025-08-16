@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Users, Lightbulb, Award, Star, Zap, Heart, PlayCircle, ArrowRight } from "lucide-react";
-import FreeDemoModal from "../components/FreeDemoModal";
 
 const App = () => {
   const [inView, setInView] = useState(false);
@@ -196,10 +195,8 @@ const App = () => {
             animation: fadeInFromTop 1s ease-out forwards;
             animation-delay: 0.2s;
             opacity: 0;
-            background: ${colors.gradientText};
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(201, 209, 217, 0.4);
+            color: #00D9FF;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.6), 0 0 40px rgba(0, 217, 255, 0.3);
           }
 
           .hero-content p {
@@ -663,22 +660,40 @@ const App = () => {
             color: #fff;
             border-color: #fff;
           }
-            @media (max-width: 1000px) {
+            @media (max-width: 1200px) {
+            .section-heading {
+              font-size: 2.8rem !important;
+            }
+            
+            .section-subheading {
+              font-size: 1.1rem !important;
+            }
+            
+            .hero-content h1 {
+              font-size: 3.2rem !important;
+            }
+            
+            .values-grid, .team-grid, .impact-grid {
+              gap: 2rem !important;
+            }
+          }
+
+          @media (max-width: 1000px) {
             .section,
             .team-section,
             .impact-section,
             .cta-section {
-              padding: 2.5rem 0.5rem !important;
-              border-radius: 1.5rem !important;
+              padding: 4rem 1.5rem !important;
+              border-radius: 3rem !important;
             }
 
             .section-heading {
-              font-size: 10rem !important;
+              font-size: 2.5rem !important;
             }
 
             .section-subheading {
               font-size: 1rem !important;
-              margin-bottom: 2rem !important;
+              margin-bottom: 3rem !important;
             }
 
             .values-grid,
@@ -686,7 +701,283 @@ const App = () => {
             .impact-grid,
             .testimonial-grid {
               grid-template-columns: 1fr !important;
+              gap: 2rem !important;
+            }
+
+            .value-card,
+            .team-card,
+            .impact-card,
+            .testimonial-card {
+              padding: 2rem !important;
+              border-radius: 1.5rem !important;
+            }
+
+            .hero-section {
+              padding: 4rem 1.5rem !important;
+              min-height: 80vh !important;
+              border-bottom-left-radius: 3rem !important;
+              border-bottom-right-radius: 3rem !important;
+            }
+
+            .hero-content h1 {
+              font-size: 2.8rem !important;
+              margin-bottom: 1rem !important;
+            }
+
+            .hero-content p {
+              font-size: 1.2rem !important;
+            }
+
+            .hero-buttons {
+              gap: 1rem !important;
+              margin-top: 2rem !important;
+            }
+
+            .hero-buttons a {
+              font-size: 1.1rem !important;
+              padding: 1rem 2rem !important;
+            }
+
+            .cta-section h2 {
+              font-size: 2.5rem !important;
+            }
+
+            .cta-section p {
+              font-size: 1.1rem !important;
+              margin-bottom: 2rem !important;
+            }
+
+            .aboutus-demo-btn {
+              font-size: 1.1rem !important;
+              padding: 1rem 2.5rem !important;
+              margin-top: 2rem !important;
+            }
+            
+            .impact-card h3 {
+              font-size: 3rem !important;
+            }
+            
+            .team-card img {
+              width: 120px !important;
+              height: 120px !important;
+            }
+            
+            .profile-ring {
+              width: 140px !important;
+              height: 140px !important;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .section,
+            .team-section,
+            .impact-section,
+            .cta-section {
+              padding: 3rem 1rem !important;
+              border-radius: 2rem !important;
+            }
+
+            .section-heading {
+              font-size: 2.2rem !important;
+              line-height: 1.2 !important;
+            }
+
+            .section-subheading {
+              font-size: 1rem !important;
+              margin-bottom: 2.5rem !important;
+              padding: 0 1rem !important;
+            }
+
+            .hero-section {
+              padding: 3rem 1rem !important;
+              min-height: 70vh !important;
+              border-bottom-left-radius: 2rem !important;
+              border-bottom-right-radius: 2rem !important;
+            }
+
+            .hero-content h1 {
+              font-size: 2.2rem !important;
+              letter-spacing: -1px !important;
+              line-height: 1.2 !important;
+            }
+
+            .hero-content p {
+              font-size: 1.1rem !important;
+              padding: 0 1rem !important;
+            }
+
+            .hero-buttons {
+              flex-direction: column !important;
+              gap: 1rem !important;
+              margin-top: 2rem !important;
+              padding: 0 1rem !important;
+            }
+
+            .hero-buttons a {
+              width: 100% !important;
+              justify-content: center !important;
+              font-size: 1rem !important;
+              padding: 1rem 1.5rem !important;
+            }
+
+            .values-grid {
               gap: 1.5rem !important;
+            }
+
+            .value-card {
+              padding: 1.5rem !important;
+              text-align: center !important;
+            }
+
+            .value-card h3 {
+              font-size: 1.4rem !important;
+            }
+
+            .value-card p {
+              font-size: 0.95rem !important;
+            }
+
+            .team-grid {
+              gap: 2rem !important;
+            }
+
+            .team-card {
+              padding: 1.5rem !important;
+            }
+
+            .team-card img {
+              width: 100px !important;
+              height: 100px !important;
+              margin-bottom: 1rem !important;
+            }
+
+            .profile-ring {
+              width: 120px !important;
+              height: 120px !important;
+              top: 1rem !important;
+            }
+
+            .team-card h3 {
+              font-size: 1.3rem !important;
+            }
+
+            .team-card p {
+              font-size: 0.9rem !important;
+            }
+
+            .impact-grid {
+              gap: 1.5rem !important;
+            }
+
+            .impact-card {
+              padding: 1.5rem !important;
+            }
+
+            .impact-card h3 {
+              font-size: 2.5rem !important;
+            }
+
+            .impact-card p {
+              font-size: 1rem !important;
+            }
+
+            .testimonial-grid {
+              gap: 2rem !important;
+            }
+
+            .testimonial-card {
+              padding: 1.5rem !important;
+            }
+
+            .quote {
+              font-size: 1rem !important;
+            }
+
+            .testimonial-author img {
+              width: 4rem !important;
+              height: 4rem !important;
+            }
+
+            .testimonial-author h4 {
+              font-size: 1.1rem !important;
+            }
+
+            .testimonial-author p {
+              font-size: 0.9rem !important;
+            }
+
+            .cta-section {
+              padding: 3rem 1rem !important;
+            }
+
+            .cta-section h2 {
+              font-size: 2rem !important;
+              line-height: 1.2 !important;
+            }
+
+            .cta-section p {
+              font-size: 1rem !important;
+              margin-bottom: 2rem !important;
+              padding: 0 1rem !important;
+            }
+
+            .aboutus-demo-btn {
+              font-size: 1rem !important;
+              padding: 1rem 2rem !important;
+              margin-top: 2rem !important;
+              width: auto !important;
+            }
+          }
+
+          @media (max-width: 576px) {
+            .section,
+            .team-section,
+            .impact-section,
+            .cta-section {
+              padding: 2rem 0.75rem !important;
+              border-radius: 1.5rem !important;
+            }
+
+            .section-heading {
+              font-size: 1.8rem !important;
+              line-height: 1.1 !important;
+            }
+
+            .section-subheading {
+              font-size: 0.9rem !important;
+              margin-bottom: 2rem !important;
+              padding: 0 0.5rem !important;
+            }
+
+            .hero-section {
+              padding: 2rem 0.75rem !important;
+              min-height: 60vh !important;
+              border-bottom-left-radius: 1.5rem !important;
+              border-bottom-right-radius: 1.5rem !important;
+            }
+
+            .hero-content h1 {
+              font-size: 1.8rem !important;
+              letter-spacing: -0.5px !important;
+              line-height: 1.1 !important;
+              margin-bottom: 0.8rem !important;
+            }
+
+            .hero-content p {
+              font-size: 1rem !important;
+              padding: 0 0.5rem !important;
+              line-height: 1.4 !important;
+            }
+
+            .hero-buttons {
+              margin-top: 1.5rem !important;
+              gap: 0.8rem !important;
+              padding: 0 0.5rem !important;
+            }
+
+            .hero-buttons a {
+              font-size: 0.9rem !important;
+              padding: 0.8rem 1.2rem !important;
             }
 
             .value-card,
@@ -694,51 +985,159 @@ const App = () => {
             .impact-card,
             .testimonial-card {
               padding: 1.2rem !important;
-              border-radius: 1.2rem !important;
+              border-radius: 1rem !important;
+            }
+
+            .value-card h3 {
+              font-size: 1.2rem !important;
+            }
+
+            .value-card p {
+              font-size: 0.85rem !important;
+              line-height: 1.4 !important;
+            }
+
+            .team-card img {
+              width: 80px !important;
+              height: 80px !important;
+            }
+
+            .profile-ring {
+              width: 100px !important;
+              height: 100px !important;
+              top: 0.8rem !important;
+            }
+
+            .team-card h3 {
+              font-size: 1.1rem !important;
+            }
+
+            .team-card p {
+              font-size: 0.8rem !important;
+            }
+
+            .impact-card h3 {
+              font-size: 2rem !important;
+            }
+
+            .impact-card p {
+              font-size: 0.9rem !important;
+            }
+
+            .testimonial-card {
+              padding: 1.2rem !important;
+            }
+
+            .quote {
+              font-size: 0.9rem !important;
+              line-height: 1.4 !important;
+              margin-bottom: 1.5rem !important;
+            }
+
+            .quote::before {
+              font-size: 3rem !important;
+              top: -1.5rem !important;
+              left: -0.5rem !important;
+            }
+
+            .testimonial-author {
+              gap: 0.8rem !important;
+            }
+
+            .testimonial-author img {
+              width: 3rem !important;
+              height: 3rem !important;
+            }
+
+            .testimonial-author h4 {
+              font-size: 1rem !important;
+            }
+
+            .testimonial-author p {
+              font-size: 0.8rem !important;
+            }
+
+            .cta-section {
+              padding: 2.5rem 0.75rem !important;
+            }
+
+            .cta-section h2 {
+              font-size: 1.6rem !important;
+              line-height: 1.1 !important;
+              margin-bottom: 0.8rem !important;
+            }
+
+            .cta-section p {
+              font-size: 0.9rem !important;
+              margin-bottom: 1.5rem !important;
+              padding: 0 0.5rem !important;
+              line-height: 1.4 !important;
+            }
+
+            .aboutus-demo-btn {
+              font-size: 0.9rem !important;
+              padding: 0.8rem 1.5rem !important;
+              margin-top: 1.5rem !important;
+            }
+          }
+
+          @media (max-width: 400px) {
+            .section,
+            .team-section,
+            .impact-section,
+            .cta-section {
+              padding: 1.5rem 0.5rem !important;
             }
 
             .hero-section {
-              padding: 3rem 0.5rem !important;
-              min-height: 60vh !important;
-              border-bottom-left-radius: 1.5rem !important;
-              border-bottom-right-radius: 1.5rem !important;
+              padding: 1.5rem 0.5rem !important;
+              min-height: 50vh !important;
             }
 
             .hero-content h1 {
               font-size: 1.5rem !important;
-              margin-bottom: 0.7rem !important;
+              margin-bottom: 0.6rem !important;
             }
 
             .hero-content p {
-              font-size: 1rem !important;
-            }
-
-            .hero-buttons {
-              flex-direction: column !important;
-              gap: 0.7rem !important;
-              margin-top: 1.2rem !important;
+              font-size: 0.9rem !important;
             }
 
             .hero-buttons a {
-              width: 100% !important;
-              justify-content: center !important;
-              font-size: 1rem !important;
-              padding: 0.8rem 1.2rem !important;
+              font-size: 0.8rem !important;
+              padding: 0.7rem 1rem !important;
             }
 
-            .cta-section h2 {
+            .section-heading {
               font-size: 1.5rem !important;
             }
 
+            .section-subheading {
+              font-size: 0.8rem !important;
+            }
+
+            .value-card,
+            .team-card,
+            .impact-card,
+            .testimonial-card {
+              padding: 1rem !important;
+            }
+
+            .impact-card h3 {
+              font-size: 1.8rem !important;
+            }
+
+            .cta-section h2 {
+              font-size: 1.4rem !important;
+            }
+
             .cta-section p {
-              font-size: 1rem !important;
-              margin-bottom: 1.5rem !important;
+              font-size: 0.8rem !important;
             }
 
             .aboutus-demo-btn {
-              font-size: 1rem !important;
-              padding: 0.8rem 1.2rem !important;
-              margin-top: 1.2rem !important;
+              font-size: 0.8rem !important;
+              padding: 0.7rem 1.2rem !important;
             }
           }
         `}
@@ -944,11 +1343,6 @@ const App = () => {
         </div>
       </section>
     </div>
-    <FreeDemoModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        autoShowOnLoad={false} // prevent showing on page load
-      />
     </>
   );
 };

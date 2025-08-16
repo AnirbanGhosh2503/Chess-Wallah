@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import heroImg from "../assets/hero.jpg";
+import video from "../assets/video.mp4"
 
 // Enhanced CSS with comprehensive responsive design for phones and tablets
 const fullStyles = `
@@ -166,34 +166,32 @@ body {
     transform: translateY(-1px);
 }
 
-/* Image Styling - Mobile Optimized */
-.big-image {
-    width: min(280px, 80vw);
-    height: min(280px, 80vw);
-    max-width: 350px;
-    max-height: 350px;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
-    margin: 0 auto;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
-    animation: pulse-glow 3s infinite;
+/* Video Styling - Mobile Optimized with Rounded Rectangle */
+.big-video {
+  width: min(350px, 85vw);
+  height: min(250px, 60vw);
+  max-width: 450px;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.5s ease;
+  animation: pulse-glow 3s infinite;
+  transform: rotate(0deg);
 }
 
-.img-wrapper {
-    position: relative;
-    display: inline-block;
-    width: min(280px, 80vw);
-    height: min(280px, 80vw);
-    max-width: 350px;
-    max-height: 350px;
-    margin: 0 auto;
-    transition: transform 0.3s ease;
+.big-video:hover {
+  transform: scale(1.03);
 }
 
-.img-wrapper:hover {
-    transform: scale(1.03);
+@media (min-width: 1024px) {
+  .big-video {
+    max-width: 600px;
+    max-height: 400px;
+    width: min(500px, 60vw);
+    height: min(350px, 40vw);
+  }
 }
 
 @keyframes pulse-glow {
@@ -206,33 +204,6 @@ body {
     100% {
         box-shadow: 0 0 0 0 rgba(255, 195, 0, 0);
     }
-}
-
-/* Caption Styling - Mobile Enhanced */
-.caption-box-inside {
-    background-color: #FFBF00;
-    color: #000000;
-    padding: clamp(0.75rem, 2vw, 1.2rem);
-    border-radius: clamp(12px, 3vw, 18px);
-    position: absolute;
-    left: 50%;
-    bottom: clamp(-15px, -3vw, -25px);
-    transform: translateX(-50%);
-    width: clamp(200px, 115%, 380px);
-    max-width: calc(100vw - 2rem);
-    font-size: clamp(0.875rem, 2.2vw, 1.125rem);
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
-    z-index: 2;
-    transition: transform 0.3s ease;
-    line-height: 1.3;
-    box-sizing: border-box;
-}
-
-.caption-box-inside strong {
-    color: #000000;
-    display: block;
-    margin-bottom: 0.25rem;
 }
 
 /* Stats Section - Mobile Grid */
@@ -673,8 +644,54 @@ body {
 }
 
 /* Responsive Breakpoints */
-/* Extra small phones (320px - 480px) */
-@media screen and (max-width: 480px) {
+/* Extra small phones (280px - 479px) */
+@media screen and (max-width: 479px) {
+    .hero-section {
+        padding: 2rem 0.75rem;
+        min-height: auto;
+    }
+    
+    .container {
+        padding: 0 10px;
+    }
+    
+    .row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .col-md-6 {
+        min-width: 100%;
+    }
+    
+    .text-section {
+        text-align: center;
+    }
+    
+    .hero-btn-cta {
+        padding: 1rem 1.5rem;
+        margin: 1.5rem auto 0;
+        max-width: 280px;
+    }
+    
+    .stats-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 2rem;
+        max-width: 320px;
+    }
+    
+    .stat-box {
+        padding: 0.75rem 0.25rem;
+    }
+    
+    .big-video {
+        width: min(300px, 90vw);
+        height: min(220px, 65vw);
+        max-width: 320px;
+        max-height: 240px;
+    }
+    
     .modal-overlay {
         padding: 0.75rem;
     }
@@ -726,15 +743,10 @@ body {
     }
 }
 
-/* Small phones and hero adjustments */
-@media screen and (max-width: 480px) {
+/* Small phones (480px - 767px) */
+@media screen and (min-width: 480px) and (max-width: 767px) {
     .hero-section {
-        padding: 2rem 0.75rem;
-        min-height: auto;
-    }
-    
-    .container {
-        padding: 0 10px;
+        padding: 3rem 1rem;
     }
     
     .row {
@@ -742,34 +754,18 @@ body {
         gap: 2rem;
     }
     
-    .col-md-6 {
-        min-width: 100%;
+    .text-section {
+        text-align: center;
     }
     
     .hero-btn-cta {
-        padding: 1rem 1.5rem;
-        margin-top: 1.5rem;
-    }
-    
-    .stats-container {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        margin-top: 2rem;
-    }
-    
-    .stat-box {
-        padding: 0.75rem 0.25rem;
-    }
-}
-
-/* Medium phones and tablets (481px - 767px) */
-@media screen and (min-width: 481px) and (max-width: 767px) {
-    .hero-section {
-        padding: 3rem 1rem;
+        margin: 2rem auto 0;
+        max-width: 300px;
     }
     
     .stats-container {
         grid-template-columns: repeat(3, 1fr);
+        max-width: 450px;
     }
     
     .modal-box {
@@ -777,8 +773,8 @@ body {
     }
 }
 
-/* Tablets (768px - 1024px) */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+/* Tablets (768px - 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
     .hero-section {
         padding: 4rem 1.5rem;
     }
@@ -794,7 +790,7 @@ body {
     
     .hero-btn-cta {
         max-width: 280px;
-        margin-left: 0;
+        margin: 2rem 0 0;
     }
     
     .stats-container {
@@ -808,8 +804,8 @@ body {
     }
 }
 
-/* Large tablets and desktops (1025px+) */
-@media screen and (min-width: 1025px) {
+/* Large tablets and desktops (1024px+) */
+@media screen and (min-width: 1024px) {
     .text-section {
         text-align: left;
         padding-right: 2rem;
@@ -817,7 +813,7 @@ body {
     
     .hero-btn-cta {
         max-width: 250px;
-        margin-left: 0;
+        margin: 2rem 0 0 8rem;
     }
     
     .stats-container {
@@ -830,6 +826,58 @@ body {
     }
 }
 
+/* Very small screens (below 320px) */
+@media screen and (max-width: 319px) {
+    .hero-section {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    .main-heading {
+        font-size: 1.8rem;
+    }
+    
+    .sub-heading {
+        font-size: 1rem;
+    }
+    
+    .hero-btn-cta {
+        padding: 0.875rem 1.25rem;
+        font-size: 0.9rem;
+        max-width: 250px;
+    }
+    
+    .stats-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+        max-width: 280px;
+    }
+    
+    .big-video {
+        width: min(280px, 95vw);
+        height: min(200px, 70vw);
+    }
+}
+
+/* Ultra-wide screens (1920px+) */
+@media screen and (min-width: 1920px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .main-heading {
+        font-size: 4.5rem;
+    }
+    
+    .sub-heading {
+        font-size: 2rem;
+    }
+    
+    .big-video {
+        max-width: 700px;
+        max-height: 500px;
+    }
+}
+
 /* Landscape and short screens */
 @media screen and (orientation: landscape) and (max-height: 600px) {
     .hero-section {
@@ -839,6 +887,8 @@ body {
     
     .modal-box {
         padding: 1rem 1.25rem;
+        max-height: 90vh;
+        overflow-y: auto;
     }
     
     .modal-header {
@@ -858,14 +908,14 @@ body {
 @media (prefers-reduced-motion: reduce) {
     .text-changing,
     .hero-btn-cta,
-    .img-wrapper,
+    .big-video,
     .stat-box,
     .modal-box {
         transition: none;
         animation: none;
     }
     
-    .big-image {
+    .big-video {
         animation: none;
     }
 }
@@ -889,7 +939,7 @@ body {
         box-shadow: 0 4px 15px rgba(255, 195, 0, 0.3);
     }
     
-    .img-wrapper:hover {
+    .big-video:hover {
         transform: none;
     }
     
@@ -1453,20 +1503,21 @@ function App() {
                             </div>
                         </div>
 
-                        {/* Right Image Section */}
+                        {/* Right Video Section */}
                         <div className="col-md-6 text-center mt-5 mt-md-0">
-                            <div className="img-wrapper">
-                                <img
-                                    src={heroImg}
-                                    alt="Grandmaster Srinath Narayanan - Captain of Gold-Winning Indian Chess Olympiad Team"
-                                    className="img-fluid rounded-circle shadow-lg big-image"
-                                    loading="lazy"
-                                />
-                                <div className="caption-box-inside">
-                                    <strong>Grandmaster Srinath Narayanan</strong>
-                                    Captain Of The Gold-Winning Indian Chess Olympiad Team
-                                </div>
-                            </div>
+                            <video
+                                className="big-video"
+                                loading="lazy"
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                controls={false}
+                                aria-label="Chess academy promotional video featuring Grandmaster Srinath Narayanan"
+                            >
+                                <source src={video} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                     </div>
                 </div>
