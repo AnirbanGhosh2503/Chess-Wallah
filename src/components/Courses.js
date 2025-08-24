@@ -211,6 +211,7 @@ const Courses = () => {
             padding: 0;
             margin-bottom: 1.2rem;
             width: 100%;
+            color: #000;
           }
 
           .course-features li {

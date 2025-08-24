@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import video from "../assets/video.mp4"
+import srinath from '../assets/srinath.png'; // Ensure you have this image in the specified path
 
-// Enhanced CSS with comprehensive responsive design for phones and tablets
+// Enhanced CSS without navbar/header styles
 const fullStyles = `
-/* Import Google Fonts - use Inter for a clean, modern look */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 * {
     box-sizing: border-box;
@@ -18,235 +18,324 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #000;
+    background: #f7f7f7;
     overflow-x: hidden;
 }
 
-/* Base Hero Section Styling */
+/* Hero Section - Exact pixel match */
 .hero-section {
-    background: radial-gradient(
-        circle at top left,
-        rgba(10, 36, 99, 1) 0%,
-        rgba(0, 0, 0, 1) 100%
-    );
-    color: #ffffff;
-    padding: 3rem 1rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-    position: relative;
-    z-index: 1;
+    background: #f7f7f7;
+    padding: 2rem 3rem 2rem;
     min-height: 100vh;
     display: flex;
     align-items: center;
+    position: relative;
 }
 
-/* Container and Layout */
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 15px;
     width: 100%;
-    box-sizing: border-box;
 }
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
+.hero-content {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    gap: 3rem;
     align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    width: 100%;
-    box-sizing: border-box;
 }
 
-.col-md-6 {
-    flex: 1;
-    min-width: 280px;
-    max-width: 100%;
-    box-sizing: border-box;
+/* Left Content - Exact text styling */
+.hero-text {
+    padding-right: 1rem;
 }
 
-/* Typography - Mobile First */
 .main-heading {
-    font-size: clamp(2rem, 8vw, 4rem);
-    line-height: 1.2;
-    font-weight: 800;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 0.95;
     margin-bottom: 1rem;
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+}
+
+.text-highlight {
+    color: #ff8c00;
 }
 
 .sub-heading {
-    font-size: clamp(1.125rem, 4vw, 1.75rem);
-    line-height: 1.6;
-    font-weight: 600;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 2.5rem;
+    color: #555;
 }
 
-.text-section {
-    text-align: center;
-}
-
-/* Yellow Text */
-.text-yellow {
-    color: #FFBF00;
-}
-
-/* Animated Changing Word */
-.text-changing {
-    color: #FFBF00;
+.rotating-word-container {
     display: inline-block;
-    transition: opacity 0.5s ease-in-out;
-    min-width: 140px;
+    width: 170px;
+    text-align: left;
+    vertical-align: baseline;
 }
 
-.fade-in {
-    opacity: 1;
+.text-orange {
+    color: #ff8c00;
+    font-weight: 500;
+    display: inline-block;
+    width: 100%;
+    transition: opacity 0.3s ease;
+    text-align: left;
 }
 
-.fade-out {
+.text-orange.fade-out {
     opacity: 0;
 }
 
-/* Hero Section Buttons - Specific Classes */
+.text-orange.fade-in {
+    opacity: 1;
+}
+
 .hero-btn {
-    display: inline-block;
-    font-weight: 600;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: 0.875rem 2rem;
-    font-size: clamp(1rem, 2.5vw, 1.125rem);
-    line-height: 1.5;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.hero-btn-cta {
-    background-color: #FFC300 !important;
+    background: #4f5fd8;
+    color: white;
     border: none;
-    color: #000000 !important;
-    font-weight: bold;
-    padding: 1.25rem 2.5rem;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 300px;
-    margin: 2rem auto 0;
-    display: block;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-btn-cta::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s;
-}
-
-.hero-btn-cta:hover::before {
-    left: 100%;
-}
-
-.hero-btn-cta:hover {
-    background-color: #FFC300 !important;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 195, 0, 0.4);
-}
-
-.hero-btn-cta:active {
-    transform: translateY(-1px);
-}
-
-/* Video Styling - Mobile Optimized with Rounded Rectangle */
-.big-video {
-  width: min(350px, 85vw);
-  height: min(250px, 60vw);
-  max-width: 450px;
-  max-height: 320px;
-  object-fit: cover;
-  border-radius: 20px;
-  display: block;
-  margin: 0 auto;
-  transition: transform 0.5s ease;
-  animation: pulse-glow 3s infinite;
-  transform: rotate(0deg);
-}
-
-.big-video:hover {
-  transform: scale(1.03);
-}
-
-@media (min-width: 1024px) {
-  .big-video {
-    max-width: 600px;
-    max-height: 400px;
-    width: min(500px, 60vw);
-    height: min(350px, 40vw);
-  }
-}
-
-@keyframes pulse-glow {
-    0% {
-        box-shadow: 0 0 0 0 rgba(255, 195, 0, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 15px rgba(255, 195, 0, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(255, 195, 0, 0);
-    }
-}
-
-/* Stats Section - Mobile Grid */
-.stats-container {
-    margin-top: 3rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 1.5rem;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.stat-box {
-    text-align: center;
-    transition: transform 0.3s ease;
+    padding: 1rem 2.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
-    padding: 1rem 0.5rem;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 3.5rem;
+    box-shadow: 0 4px 12px rgba(79, 95, 216, 0.25);
 }
 
-.stat-box:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 195, 0, 0.1);
+.hero-btn:hover {
+    background: #424fb5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 95, 216, 0.35);
+}
+
+.hero-btn::after {
+    content: '▶';
+    font-size: 0.75rem;
+    margin-left: 0.3rem;
+}
+
+/* Stats Section - Exact positioning */
+.stats-section {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+    margin-top: 0;
+}
+
+.stat-item {
+    text-align: left;
+    position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+    content: '|';
+    position: absolute;
+    right: -2rem;
+    top: 1rem;
+    color: #ddd;
+    font-size: 2rem;
+    font-weight: 300;
 }
 
 .stat-number {
-    font-size: clamp(1.25rem, 4vw, 1.875rem);
-    font-weight: bold;
-    color: #FFBF00;
-    transition: color 0.3s ease;
-    line-height: 1.2;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #ff8c00;
+    line-height: 1;
+    margin-bottom: 0.3rem;
 }
 
 .stat-label {
-    font-size: clamp(0.75rem, 2vw, 1rem);
-    color: #ffffff;
-    transition: color 0.3s ease;
-    margin-top: 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.1rem;
 }
 
-/* Modal Styles - Compact Two-Column Design */
+.stat-sublabel {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #666;
+}
+
+/* Right Content - Instructor with blue background matching original */
+.hero-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 2rem;
+}
+
+.instructor-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 600px;
+}
+
+/* Blue circular background */
+.instructor-bg {
+    width: 480px;
+    height: 480px;
+    background: #4f5fd8;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    box-shadow: 0 20px 50px rgba(79, 95, 216, 0.25);
+}
+
+/* Dashed border circle */
+.instructor-bg::before {
+    content: '';
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border: 3px dashed #4f5fd8;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.4;
+    z-index: 0;
+}
+
+.instructor-image {
+    width: 800px;
+    height: 800px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    margin-top: -60px;
+}
+
+.instructor-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff8c00;
+    color: white;
+    padding: 1.3rem 2.2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    min-width: 600px;
+    text-align: center;
+    z-index: 4;
+    box-shadow: 0 15px 40px rgba(255, 140, 0, 0.4);
+    line-height: 1.4;
+}
+
+.badge-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.3px;
+    color: #000;
+}
+
+.badge-subtitle {
+    font-size: 0.8rem;
+    opacity: 1;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    color: white;
+}
+
+/* Large Chess Piece Background Props */
+.chess-king-left {
+    position: absolute;
+    top: 15%;
+    left: -20%;
+    font-size: 15rem;
+    color: rgba(200, 200, 200, 0.15);
+    z-index: 0;
+    transform: rotate(-20deg);
+    user-select: none;
+    pointer-events: none;
+}
+
+.chess-queen-right {
+    position: absolute;
+    bottom: 5%;
+    right: -25%;
+    font-size: 12rem;
+    color: rgba(200, 200, 200, 0.12);
+    z-index: 0;
+    transform: rotate(25deg);
+    user-select: none;
+    pointer-events: none;
+}
+
+/* Decorative Elements - Exact positioning matching image */
+.trophy-icon {
+    position: absolute;
+    top: 5%;
+    left: -10%;
+    font-size: 3rem;
+    z-index: 3;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.star-icon {
+    position: absolute;
+    top: 15%;
+    right: -8%;
+    font-size: 2.2rem;
+    z-index: 3;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.plus-icon {
+    position: absolute;
+    bottom: 25%;
+    right: -10%;
+    font-size: 2.5rem;
+    color: #bbb;
+    z-index: 3;
+    font-weight: 300;
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.1));
+}
+
+/* Bottom Section */
+.bottom-section {
+    background: #4c63d2;
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.bottom-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+}
+
+.bottom-subtitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* Demo Form Modal - Matching Original Functionality */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -394,115 +483,6 @@ body {
     box-sizing: border-box;
 }
 
-.form-group select {
-    background-color: rgba(255, 255, 255, 0.12);
-    cursor: pointer;
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid rgba(255, 195, 0, 0.3);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    /* Firefox scrollbar */
-    scrollbar-width: thin;
-    scrollbar-color: #FFC300 rgba(30, 58, 138, 0.3);
-}
-
-.form-group select:hover {
-    background-color: rgba(255, 255, 255, 0.2) !important;
-    border-color: rgba(255, 195, 0, 0.7) !important;
-    box-shadow: 0 6px 20px rgba(255, 195, 0, 0.25) !important;
-    transform: translateY(-2px) !important;
-}
-
-.form-group select:focus {
-    outline: none !important;
-    background-color: rgba(255, 255, 255, 0.25) !important;
-    border-color: #FFC300 !important;
-    box-shadow: 0 0 0 4px rgba(255, 195, 0, 0.2), 0 8px 25px rgba(255, 195, 0, 0.3) !important;
-    transform: translateY(-3px) !important;
-}
-
-/* Custom scrollbar for dropdown - WebKit browsers */
-.form-group select::-webkit-scrollbar {
-    width: 12px;
-}
-
-.form-group select::-webkit-scrollbar-track {
-    background: #1e3a8a;
-    border-radius: 6px;
-    border: 2px solid #0c1a40;
-}
-
-.form-group select::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #FFC300 0%, #ff9100 100%);
-    border-radius: 6px;
-    border: 2px solid #1e3a8a;
-    min-height: 20px;
-}
-
-.form-group select::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, #ffd700 0%, #ffa500 100%);
-    box-shadow: 0 0 10px rgba(255, 195, 0, 0.6);
-}
-
-.form-group select::-webkit-scrollbar-thumb:active {
-    background: linear-gradient(45deg, #e6b800 0%, #e68600 100%);
-}
-
-.form-group select::-webkit-scrollbar-corner {
-    background: #1e3a8a;
-}
-
-/* Enhanced dropdown options with better styling */
-.form-group select option {
-    background-color: #1e3a8a !important;
-    color: #ffffff !important;
-    padding: 12px 16px !important;
-    border: none !important;
-    font-size: 0.9rem !important;
-    font-weight: 500 !important;
-    line-height: 1.4 !important;
-    min-height: 48px !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-.form-group select option:hover {
-    background-color: #2563eb !important;
-    background-image: linear-gradient(90deg, rgba(255, 195, 0, 0.2) 0%, rgba(255, 195, 0, 0.05) 100%) !important;
-    color: #FFC300 !important;
-    font-weight: 600 !important;
-}
-
-.form-group select option:checked,
-.form-group select option:selected {
-    background-color: #FFC300 !important;
-    background-image: linear-gradient(90deg, #FFC300 0%, #ff9100 100%) !important;
-    color: #000000 !important;
-    font-weight: 700 !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
-}
-
-.form-group select option[disabled] {
-    background-color: #374151 !important;
-    color: #9CA3AF !important;
-    font-style: italic !important;
-    opacity: 0.5 !important;
-    cursor: not-allowed !important;
-}
-
-.form-group select option:first-child {
-    color: rgba(255, 255, 255, 0.6) !important;
-    font-style: italic !important;
-    background-color: #0f172a !important;
-    font-weight: 400 !important;
-}
-
-/* Additional hover effect for the dropdown arrow */
-.custom-select-wrapper:hover::after {
-    color: #ffcc33 !important;
-    transform: translateY(-50%) scale(1.2) !important;
-    transition: all 0.3s ease !important;
-}
-
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
@@ -578,6 +558,21 @@ body {
     margin-left: 0.75rem;
 }
 
+.spinner {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top: 3px solid #FFC300;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* Status Message Styles */
 .status-message {
     padding: 2rem 1rem;
@@ -611,390 +606,341 @@ body {
     line-height: 1.5;
 }
 
-.spinner {
-    border: 3px solid rgba(0, 0, 0, 0.1);
-    border-top: 3px solid #FFC300;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 1s linear infinite;
-    margin-right: 10px;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Background Glow Effect */
-.modal-bg-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 150%;
-    height: 150%;
-    background: radial-gradient(
-        circle,
-        rgba(255, 195, 0, 0.1),
-        transparent 70%
-    );
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: -1;
-}
-
-/* Responsive Breakpoints */
-/* Extra small phones (280px - 479px) */
-@media screen and (max-width: 479px) {
-    .hero-section {
-        padding: 2rem 0.75rem;
-        min-height: auto;
-    }
-    
-    .container {
-        padding: 0 10px;
-    }
-    
-    .row {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    
-    .col-md-6 {
-        min-width: 100%;
-    }
-    
-    .text-section {
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
         text-align: center;
     }
     
-    .hero-btn-cta {
-        padding: 1rem 1.5rem;
-        margin: 1.5rem auto 0;
-        max-width: 280px;
+    .hero-text {
+        padding-right: 0;
+        order: 2;
     }
     
-    .stats-container {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        margin-top: 2rem;
-        max-width: 320px;
+    .hero-image {
+        order: 1;
+        padding-left: 0;
     }
     
-    .stat-box {
-        padding: 0.75rem 0.25rem;
+    .instructor-container {
+        width: 500px;
+        height: 500px;
     }
     
-    .big-video {
-        width: min(300px, 90vw);
-        height: min(220px, 65vw);
-        max-width: 320px;
-        max-height: 240px;
+    .main-heading {
+        font-size: 4rem;
     }
     
-    .modal-overlay {
-        padding: 0.75rem;
+    .sub-heading {
+        font-size: 1.5rem;
     }
     
-    .modal-box {
-        max-width: calc(100vw - 1.5rem);
-        padding: 1rem;
-        border-radius: 12px;
+    .rotating-word-container {
+        width: 140px;
     }
     
-    .modal-header {
-        margin-bottom: 0.75rem;
-        padding-right: 2.5rem;
+    .instructor-bg {
+        width: 400px;
+        height: 400px;
     }
     
-    .modal-title {
-        font-size: 1rem;
+    .instructor-image {
+        width: 800px;
+        height: 800px;
+    }
+    
+    .stats-section {
+        justify-content: space-around;
+        max-width: 600px;
+        margin: 2rem auto 0;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero-section {
+        padding: 2rem 2rem 2rem;
+        min-height: auto;
+    }
+    
+    .instructor-container {
+        width: 600px;
+        height: 600px;
+    }
+    
+    .main-heading {
+        font-size: 3.5rem;
+        line-height: 1;
+    }
+    
+    .sub-heading {
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+    }
+    
+    .rotating-word-container {
+        width: 130px;
+    }
+    
+    .instructor-bg {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .instructor-image {
+        width: 360px;
+        height: 360px;
+    }
+    
+    .instructor-badge {
+        min-width: 280px;
+        padding: 1rem 1.8rem;
+        font-size: 0.85rem;
+        bottom: -10px;
+    }
+    
+    .badge-title {
+        font-size: 0.95rem;
+    }
+    
+    .badge-subtitle {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 2rem 1rem 2rem;
+    }
+    
+    .hero-content {
+        gap: 1.5rem;
+    }
+    
+    .instructor-container {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .main-heading {
+        font-size: 2.8rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .sub-heading {
+        font-size: 1.3rem;
+        margin-bottom: 1.8rem;
+    }
+    
+    .rotating-word-container {
+        width: 120px;
+    }
+    
+    .hero-btn {
+        padding: 0.9rem 2rem;
+        font-size: 0.95rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .instructor-bg {
+        width: 260px;
+        height: 260px;
+    }
+    
+    .instructor-image {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .instructor-badge {
+        min-width: 240px;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.8rem;
+        bottom: -15px;
+    }
+    
+    .badge-title {
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .badge-subtitle {
+        font-size: 0.7rem;
+    }
+    
+    .stats-section {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0.5rem;
+        text-align: center;
+        margin-top: 1.5rem;
+        max-width: 100%;
+    }
+    
+    .stat-item {
+        flex: 1;
+    }
+    
+    .stat-item:not(:last-child)::after {
+        display: none;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .stat-sublabel {
+        font-size: 0.8rem;
+    }
+    
+    .bottom-title {
+        font-size: 2.2rem;
         line-height: 1.2;
     }
     
-    .modal-subtitle {
-        font-size: 0.75rem;
-    }
-    
-    .close-btn {
-        width: 28px;
-        height: 28px;
-        top: 8px;
-        right: 8px;
+    .bottom-subtitle {
+        font-size: 1rem;
     }
     
     .demo-form .form-grid {
         grid-template-columns: 1fr;
-        gap: 0.75rem;
-    }
-    
-    .form-group input,
-    .form-group select {
-        min-height: 38px;
-        padding: 0.6rem;
-        font-size: 0.8rem;
-    }
-    
-    .modal-submit-btn {
-        min-height: 42px;
-        padding: 0.75rem;
-        font-size: 0.85rem;
-        margin-top: 1rem;
     }
 }
 
-/* Small phones (480px - 767px) */
-@media screen and (min-width: 480px) and (max-width: 767px) {
+@media (max-width: 480px) {
     .hero-section {
-        padding: 3rem 1rem;
+        padding: 2rem 0.8rem 1.5rem;
     }
     
-    .row {
-        flex-direction: column;
-        gap: 2rem;
-    }
-    
-    .text-section {
-        text-align: center;
-    }
-    
-    .hero-btn-cta {
-        margin: 2rem auto 0;
-        max-width: 300px;
-    }
-    
-    .stats-container {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 450px;
-    }
-    
-    .modal-box {
-        max-width: min(85vw, 420px);
-    }
-}
-
-/* Tablets (768px - 1023px) */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-    .hero-section {
-        padding: 4rem 1.5rem;
-    }
-    
-    .row {
-        flex-direction: row;
-        align-items: center;
-    }
-    
-    .text-section {
-        text-align: left;
-    }
-    
-    .hero-btn-cta {
-        max-width: 280px;
-        margin: 2rem 0 0;
-    }
-    
-    .stats-container {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 400px;
-        margin-left: 0;
-    }
-    
-    .modal-box {
-        max-width: min(75vw, 460px);
-    }
-}
-
-/* Large tablets and desktops (1024px+) */
-@media screen and (min-width: 1024px) {
-    .text-section {
-        text-align: left;
-        padding-right: 2rem;
-    }
-    
-    .hero-btn-cta {
-        max-width: 250px;
-        margin: 2rem 0 0 8rem;
-    }
-    
-    .stats-container {
-        margin-left: 0;
-        justify-content: flex-start;
-    }
-    
-    .modal-box {
-        max-width: 480px;
-    }
-}
-
-/* Very small screens (below 320px) */
-@media screen and (max-width: 319px) {
-    .hero-section {
-        padding: 1.5rem 0.5rem;
+    .instructor-container {
+        width: 280px;
+        height: 280px;
     }
     
     .main-heading {
+        font-size: 2.2rem;
+        margin-bottom: 0.7rem;
+    }
+    
+    .sub-heading {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .rotating-word-container {
+        width: 100px;
+    }
+    
+    .hero-btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+    }
+    
+    .instructor-bg {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .instructor-image {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .instructor-badge {
+        min-width: 200px;
+        padding: 0.8rem 1.2rem;
+        font-size: 0.75rem;
+        bottom: -20px;
+    }
+    
+    .badge-title {
+        font-size: 0.85rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .badge-subtitle {
+        font-size: 0.65rem;
+    }
+    
+    .stats-section {
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .stat-number {
         font-size: 1.8rem;
+    }
+    
+    .stat-label,
+    .stat-sublabel {
+        font-size: 0.85rem;
+    }
+    
+    .bottom-title {
+        font-size: 1.8rem;
+        padding: 0 1rem;
+    }
+    
+    .bottom-subtitle {
+        font-size: 0.9rem;
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .instructor-container {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .main-heading {
+        font-size: 2rem;
     }
     
     .sub-heading {
         font-size: 1rem;
     }
     
-    .hero-btn-cta {
-        padding: 0.875rem 1.25rem;
-        font-size: 0.9rem;
-        max-width: 250px;
+    .rotating-word-container {
+        width: 90px;
     }
     
-    .stats-container {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-        max-width: 280px;
+    .instructor-bg {
+        width: 200px;
+        height: 200px;
     }
     
-    .big-video {
-        width: min(280px, 95vw);
-        height: min(200px, 70vw);
+    .instructor-image {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .instructor-badge {
+        min-width: 180px;
+        padding: 0.7rem 1rem;
+        font-size: 0.7rem;
+    }
+    
+    .badge-title {
+        font-size: 0.8rem;
+    }
+    
+    .badge-subtitle {
+        font-size: 0.6rem;
+    }
+    
+    .bottom-title {
+        font-size: 1.6rem;
     }
 }
-
-/* Ultra-wide screens (1920px+) */
-@media screen and (min-width: 1920px) {
-    .container {
-        max-width: 1400px;
-    }
-    
-    .main-heading {
-        font-size: 4.5rem;
-    }
-    
-    .sub-heading {
-        font-size: 2rem;
-    }
-    
-    .big-video {
-        max-width: 700px;
-        max-height: 500px;
-    }
-}
-
-/* Landscape and short screens */
-@media screen and (orientation: landscape) and (max-height: 600px) {
-    .hero-section {
-        min-height: auto;
-        padding: 2rem 1rem;
-    }
-    
-    .modal-box {
-        padding: 1rem 1.25rem;
-        max-height: 90vh;
-        overflow-y: auto;
-    }
-    
-    .modal-header {
-        margin-bottom: 0.75rem;
-    }
-    
-    .demo-form .form-grid {
-        gap: 0.75rem;
-    }
-    
-    .modal-submit-btn {
-        margin-top: 0.75rem;
-    }
-}
-
-/* Accessibility improvements */
-@media (prefers-reduced-motion: reduce) {
-    .text-changing,
-    .hero-btn-cta,
-    .big-video,
-    .stat-box,
-    .modal-box {
-        transition: none;
-        animation: none;
-    }
-    
-    .big-video {
-        animation: none;
-    }
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-    .modal-box {
-        border-width: 3px;
-    }
-    
-    .form-group input,
-    .form-group select {
-        border-width: 2px;
-    }
-}
-
-/* Touch device optimizations */
-@media (hover: none) and (pointer: coarse) {
-    .hero-btn-cta:hover {
-        transform: none;
-        box-shadow: 0 4px 15px rgba(255, 195, 0, 0.3);
-    }
-    
-    .big-video:hover {
-        transform: none;
-    }
-    
-    .stat-box:hover {
-        transform: none;
-    }
-    
-    .modal-submit-btn:hover:not(:disabled) {
-        transform: none;
-        box-shadow: 0 4px 12px rgba(255, 195, 0, 0.3);
-    }
-    
-    .close-btn:hover {
-        transform: rotate(90deg);
-    }
-    
-    /* Larger touch targets for mobile */
-    .close-btn {
-        min-width: 44px;
-        min-height: 44px;
-    }
-    
-    .form-group input,
-    .form-group select {
-        min-height: 48px;
-    }
-    
-    .modal-submit-btn {
-        min-height: 48px;
-    }
-}
-
-/* Utility Classes */
-.d-flex { display: flex; }
-.flex-column { flex-direction: column; }
-.flex-md-row { flex-direction: column; }
-@media (min-width: 768px) { .flex-md-row { flex-direction: row; } }
-.align-items-center { align-items: center; }
-.justify-content-between { justify-content: space-between; }
-.justify-content-center { justify-content: center; }
-.mb-4 { margin-bottom: 1.5rem; }
-.mt-4 { margin-top: 1.5rem; }
-.mt-5 { margin-top: 3rem; }
-.mt-md-0 { margin-top: 0; }
-@media (max-width: 768px) { .mt-md-0 { margin-top: 1.5rem; } }
-.px-4 { padding-left: 1.5rem; padding-right: 1.5rem; }
-.fw-bold { font-weight: bold; }
-.text-white { color: #fff; }
-.text-center { text-align: center; }
-@media (min-width: 768px) { .text-md-left { text-align: left; } }
-.img-fluid { max-width: 100%; height: auto; }
-.rounded-circle { border-radius: 50% !important; }
-.shadow-lg { box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important; }
-.position-relative { position: relative; }
-.gap-5 { gap: 3rem; }
 `;
 
 // Component to handle the modal logic and UI
@@ -1054,27 +1000,8 @@ const FreeDemoModal = ({ isOpen, onClose }) => {
 Please contact them for the demo class! ♟️`;
         
         try {
-            // Option 1: Use WhatsApp Business API (requires server-side setup)
-            // const response = await fetch('/api/send-whatsapp', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({ number: whatsappNumber, message })
-            // });
-            // return response.ok;
-            
-            // Option 2: Automatic WhatsApp Web link (opens automatically)
             const whatsappUrl = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
-            
-            // Auto-open WhatsApp in a new tab
             const whatsappWindow = window.open(whatsappUrl, '_blank', 'width=500,height=600,scrollbars=yes,resizable=yes');
-            
-            // Optional: Auto-close the WhatsApp window after user presumably sends message
-            // setTimeout(() => {
-            //     if (whatsappWindow && !whatsappWindow.closed) {
-            //         whatsappWindow.close();
-            //     }
-            // }, 10000); // Close after 10 seconds
-            
             return true;
         } catch (error) {
             console.error('WhatsApp send failed:', error);
@@ -1085,47 +1012,6 @@ Please contact them for the demo class! ♟️`;
     // Send email automatically
     const sendEmail = async (data) => {
         try {
-            // Option 1: Use EmailJS (client-side email service)
-            // Uncomment and configure if you want to use EmailJS
-            /*
-            if (window.emailjs) {
-                const result = await window.emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
-                    to_email: 'demo@yourchessacademy.com',
-                    parent_name: data.parentName,
-                    child_name: data.childName,
-                    email: data.email,
-                    phone: data.phone,
-                    age: data.age,
-                    source: data.source,
-                    message: `New chess demo request from ${data.parentName} for ${data.childName} (Age: ${data.age}).`
-                });
-                return result.status === 200;
-            }
-            */
-            
-            // Option 2: Server-side API call (requires backend)
-            /*
-            const response = await fetch('/api/send-email', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    to: 'demo@yourchessacademy.com',
-                    subject: '🎯 New Chess Demo Request',
-                    html: `
-                        <h2>New Chess Demo Request</h2>
-                        <p><strong>Parent:</strong> ${data.parentName}</p>
-                        <p><strong>Child:</strong> ${data.childName}</p>
-                        <p><strong>Email:</strong> ${data.email}</p>
-                        <p><strong>Phone:</strong> ${data.phone}</p>
-                        <p><strong>Age:</strong> ${data.age} years</p>
-                        <p><strong>Source:</strong> ${data.source}</p>
-                    `
-                })
-            });
-            return response.ok;
-            */
-            
-            // Fallback: Auto-open email client with pre-filled content
             const emailAddress = "demo@yourchessacademy.com"; // Replace with your email
             const subject = "🎯 New Chess Demo Request";
             const body = `New Chess Demo Request Details:
@@ -1143,13 +1029,9 @@ Best regards,
 Chess Academy Website`;
             
             const emailUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            // Auto-open email client
             const emailWindow = window.open(emailUrl, '_blank');
             
-            // Check if email client opened successfully
             if (emailWindow) {
-                // Close immediately since we just want to trigger the email client
                 setTimeout(() => {
                     emailWindow.close();
                 }, 1000);
@@ -1170,22 +1052,17 @@ Chess Academy Website`;
         setSubmissionStatus(null);
 
         try {
-            // Send to WhatsApp automatically (no user interaction needed)
             const whatsappSuccess = await sendToWhatsApp(formData);
-            
-            // Small delay before sending email
             await new Promise(resolve => setTimeout(resolve, 800));
             const emailSuccess = await sendEmail(formData);
             
-            // Show success even if one method works
             if (whatsappSuccess || emailSuccess) {
                 setIsSubmitting(false);
                 setSubmissionStatus("success");
                 
-                // Auto close after success
                 setTimeout(() => {
                     if (onClose) onClose();
-                }, 4000); // Give more time to read success message
+                }, 4000);
             } else {
                 throw new Error('Both WhatsApp and Email failed');
             }
@@ -1195,7 +1072,6 @@ Chess Academy Website`;
             setIsSubmitting(false);
             setSubmissionStatus("error");
             
-            // Auto close after error message
             setTimeout(() => {
                 if (onClose) onClose();
             }, 5000);
@@ -1390,7 +1266,6 @@ Chess Academy Website`;
                     </svg>
                 </button>
                 {submissionStatus ? renderStatusMessage() : renderFormContent()}
-                <div className="modal-bg-glow"></div>
             </div>
         </div>
     );
@@ -1423,103 +1298,136 @@ const useCountUp = (end, duration) => {
     return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-// Main Hero Component
+// Custom hook for rotating text animation
+const useRotatingText = (words, interval = 3000) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setIsVisible(false);
+            
+            setTimeout(() => {
+                setCurrentIndex((prevIndex) => 
+                    prevIndex === words.length - 1 ? 0 : prevIndex + 1
+                );
+                setIsVisible(true);
+            }, 300); // Half second for fade transition
+        }, interval);
+
+        return () => clearInterval(timer);
+    }, [words, interval]);
+
+    return { currentWord: words[currentIndex], isVisible };
+};
+
+// Main Component without navbar
 function App() {
-    const [currentWordIndex, setCurrentWordIndex] = useState(0);
-    const [fade, setFade] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     
-    const parentsCount = useCountUp(10000, 3);
-    const countriesCount = useCountUp(50, 3);
-    const coachesCount = useCountUp(400, 3);
+    const parentsCount = useCountUp(6450, 3);
+    const countriesCount = useCountUp(32, 3);
+    const coachesCount = useCountUp(256, 3);
+
+    // Chess-related words for rotation
+    const rotatingWords = [
+        "enjoyable",
+        "strategic",
+        "engaging",
+        "exciting",
+        "rewarding",
+        "intellectual", 
+        "challenging",
+        "fun-filled",
+        "inspiring",
+        "empowering"
+    ];
+
+    const { currentWord, isVisible } = useRotatingText(rotatingWords, 3000);
 
     // Auto-open modal when component mounts
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsModalOpen(true);
-        }, 1500); // Open modal after 1.5 seconds
+        }, 3000); // Open modal after 3 seconds
 
         return () => clearTimeout(timer);
     }, []);
-
-    // Word changing animation effect
-    useEffect(() => {
-        const words = ["interactive", "productive", "enjoyable", "fun", "educational"];
-        const interval = setInterval(() => {
-            setFade(false);
-            setTimeout(() => {
-                setCurrentWordIndex((prev) => (prev + 1) % words.length);
-                setFade(true);
-            }, 300);
-        }, 2500);
-        
-        return () => clearInterval(interval);
-    }, []);
-
-    const words = ["interactive", "productive", "enjoyable", "fun", "educational"];
 
     return (
         <>
             <style>{fullStyles}</style>
             
+            {/* Hero Section */}
             <section className="hero-section">
                 <div className="container">
-                    <div className="row d-flex flex-column flex-md-row align-items-center">
-                        {/* Left Text Section */}
-                        <div className="col-md-6 mb-4 text-section text-center text-md-left">
-                            <h1 className="main-heading fw-bold text-white">
-                                Learn, Play, <span className="text-yellow">Conquer</span>!
+                    <div className="hero-content">
+                        {/* Left Content */}
+                        <div className="hero-text">
+                            <h1 className="main-heading">
+                                Learn, Play, <span className="text-highlight">Conquer!</span>
                             </h1>
-                            <p className="sub-heading mt-4 text-white">
-                                Our Online Chess Classes Are <br />
-                                <span className={`text-changing fw-bold ${fade ? "fade-in" : "fade-out"}`}>
-                                    {words[currentWordIndex]}
-                                </span>{" "}
-                                for kids.
+                            <p className="sub-heading">
+                                Our Online Chess Classes Are<br />
+                                <span className="rotating-word-container">
+                                    <span className={`text-orange ${isVisible ? 'fade-in' : 'fade-out'}`}>
+                                        {currentWord}
+                                    </span>
+                                </span> for kids.
                             </p>
                             
-                            <button
-                                className="hero-btn hero-btn-cta"
+                            <button 
+                                className="hero-btn"
                                 onClick={() => setIsModalOpen(true)}
-                                aria-label="Book a free chess demo class"
                             >
                                 Book Free Demo
                             </button>
 
-                            {/* Dynamic Stats Section */}
-                            <div className="stats-container">
-                                <div className="stat-box">
+                            {/* Stats Section */}
+                            <div className="stats-section">
+                                <div className="stat-item">
+                                    <div className="stat-label">Trusted</div>
                                     <div className="stat-number">{parentsCount}+</div>
-                                    <div className="stat-label">Parents</div>
+                                    <div className="stat-sublabel">Parents</div>
                                 </div>
-                                <div className="stat-box">
+                                <div className="stat-item">
+                                    <div className="stat-label">In</div>
                                     <div className="stat-number">{countriesCount}+</div>
-                                    <div className="stat-label">Countries</div>
+                                    <div className="stat-sublabel">Countries</div>
                                 </div>
-                                <div className="stat-box">
+                                <div className="stat-item">
+                                    <div className="stat-label">FIDE Rated</div>
                                     <div className="stat-number">{coachesCount}+</div>
-                                    <div className="stat-label">FIDE Rated Coaches</div>
+                                    <div className="stat-sublabel">Coaches</div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Right Video Section */}
-                        <div className="col-md-6 text-center mt-5 mt-md-0">
-                            <video
-                                className="big-video"
-                                loading="lazy"
-                                autoPlay
-                                muted
-                                loop
-                                playsInline
-                                controls={false}
-                                aria-label="Chess academy promotional video featuring Grandmaster Srinath Narayanan"
-                            >
-                                <source src={video} type="video/mp4" />
-                                Your browser does not support the video tag.
-                            </video>
+                        {/* Right Content - Instructor */}
+                        <div className="hero-image">
+                            <div className="instructor-container">
+                                
+                                <img 
+                                    src={srinath} 
+                                    alt="Grandmaster Srinath Narayanan - Chess Instructor"
+                                    className="instructor-image"
+                                />
+                                
+                                <div className="instructor-badge">
+                                    <div className="badge-title">Grandmaster Srinath Narayanan</div>
+                                    <div className="badge-subtitle">Captain Of The Gold-Winning Indian Chess Olympiad Team</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* Bottom Section */}
+            <section className="bottom-section">
+                <div className="container">
+                    <h2 className="bottom-title">Curriculum Curated & Coaches Mentored by GM Srinath</h2>
+                    <p className="bottom-subtitle">World-class chess education designed for excellence</p>
                 </div>
             </section>
 

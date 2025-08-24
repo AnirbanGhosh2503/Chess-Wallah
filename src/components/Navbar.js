@@ -148,13 +148,38 @@ function Navbar() {
   // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (menuOpen && !event.target.closest('.mobile-menu') && !event.target.closest('.navbar-toggler')) {
+      if (menuOpen && !event.target.closest('.mobile-menu') && !event.target.closest('.mobile-toggle')) {
         setMenuOpen(false);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [menuOpen]);
+
+  // Close mobile menu on window resize to desktop size
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1440 && menuOpen) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [menuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, [menuOpen]);
 
   const navLinks = [
@@ -170,6 +195,11 @@ function Navbar() {
     { name: 'Intermediate', path: '/courses/intermediate', icon: '🚀' },
     { name: 'Advanced', path: '/courses/advanced', icon: '👑' }
   ];
+
+  const handleLinkClick = () => {
+    setMenuOpen(false);
+    setShowDropdown(false);
+  };
 
   return (
     <>
@@ -207,7 +237,7 @@ function Navbar() {
         }
 
         .navbar-container {
-          max-width: 1400px;
+          max-width: 1600px;
           margin: 0 auto;
           display: flex;
           align-items: center;
@@ -220,6 +250,7 @@ function Navbar() {
           flex-shrink: 0;
           cursor: pointer;
           transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: 1001;
         }
 
         .navbar-logo:hover {
@@ -454,6 +485,12 @@ function Navbar() {
           cursor: pointer;
           padding: 0.5rem;
           position: relative;
+          z-index: 1001;
+          transition: transform 0.3s ease;
+        }
+
+        .mobile-toggle:hover {
+          transform: scale(1.1);
         }
 
         .hamburger {
@@ -476,6 +513,7 @@ function Navbar() {
 
         .mobile-toggle.active .hamburger span:nth-child(1) {
           transform: translateY(8px) rotate(45deg);
+          background: #36d1dc;
         }
 
         .mobile-toggle.active .hamburger span:nth-child(2) {
@@ -485,6 +523,7 @@ function Navbar() {
 
         .mobile-toggle.active .hamburger span:nth-child(3) {
           transform: translateY(-8px) rotate(-45deg);
+          background: #36d1dc;
         }
 
         /* Mobile Backdrop */
@@ -506,7 +545,7 @@ function Navbar() {
           top: 0;
           right: -100%;
           height: 100vh;
-          width: min(400px, 85vw);
+          width: min(450px, 90vw);
           background: linear-gradient(135deg, rgba(10, 36, 99, 0.98), rgba(36, 123, 160, 0.98));
           backdrop-filter: blur(25px);
           -webkit-backdrop-filter: blur(25px);
@@ -526,6 +565,7 @@ function Navbar() {
           text-align: center;
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
           background: rgba(255, 255, 255, 0.05);
+          margin-top: 60px;
         }
 
         .mobile-logo {
@@ -571,7 +611,8 @@ function Navbar() {
           background: rgba(255, 255, 255, 0.05);
         }
 
-        .mobile-nav-link:hover {
+        .mobile-nav-link:hover,
+        .mobile-nav-link:focus {
           color: #ffffff;
           background: rgba(36, 123, 160, 0.2);
           border-color: rgba(36, 123, 160, 0.3);
@@ -629,7 +670,8 @@ function Navbar() {
           text-align: center;
         }
 
-        .course-card:hover {
+        .course-card:hover,
+        .course-card:focus {
           background: rgba(36, 123, 160, 0.2);
           border-color: rgba(36, 123, 160, 0.4);
           transform: translateY(-4px) scale(1.05);
@@ -682,7 +724,8 @@ function Navbar() {
           border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        .mobile-btn.outline:hover {
+        .mobile-btn.outline:hover,
+        .mobile-btn.outline:focus {
           background: rgba(255, 255, 255, 0.1);
           border-color: rgba(255, 255, 255, 0.5);
           color: #ffffff;
@@ -695,7 +738,8 @@ function Navbar() {
           border: none;
         }
 
-        .mobile-btn.primary:hover {
+        .mobile-btn.primary:hover,
+        .mobile-btn.primary:focus {
           transform: translateY(-2px);
           box-shadow: 0 12px 25px rgba(54, 209, 220, 0.3);
         }
@@ -784,18 +828,9 @@ function Navbar() {
           }
         }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-          .navbar-container {
-            padding: 0 1.5rem;
-          }
-          
-          .nav-links {
-            gap: 1.5rem;
-          }
-        }
-
-        @media (max-width: 768px) {
+        /* Responsive Design - Hamburger menu for ALL screens 1440px and below */
+        @media (max-width: 1440px) {
+          /* Hide desktop nav and show mobile toggle for all screens 1440px and below */
           .desktop-nav,
           .navbar-actions {
             display: none;
@@ -806,10 +841,56 @@ function Navbar() {
           }
 
           .navbar-container {
-            padding: 0 1rem;
+            padding: 0 1.5rem;
+          }
+
+          .mobile-menu {
+            width: min(450px, 85vw);
           }
         }
 
+        /* Large tablets and smaller laptops */
+        @media (max-width: 1280px) {
+          .navbar-container {
+            padding: 0 1.5rem;
+          }
+
+          .mobile-menu {
+            width: min(420px, 85vw);
+          }
+        }
+
+        /* Tablets */
+        @media (max-width: 1024px) {
+          .navbar-container {
+            padding: 0 1.5rem;
+          }
+
+          .mobile-menu {
+            width: min(400px, 85vw);
+          }
+        }
+
+        /* Small tablets */
+        @media (max-width: 768px) {
+          .navbar-container {
+            padding: 0 1rem;
+          }
+
+          .mobile-menu {
+            width: min(380px, 88vw);
+          }
+
+          .mobile-header {
+            padding: 1.8rem 1.5rem;
+          }
+
+          .mobile-nav-content {
+            padding: 1.8rem;
+          }
+        }
+
+        /* Mobile phones */
         @media (max-width: 480px) {
           .navbar-container {
             padding: 0 1rem;
@@ -817,11 +898,64 @@ function Navbar() {
 
           .mobile-menu {
             width: 100vw;
+            border-left: none;
+          }
+
+          .mobile-header {
+            padding: 1.5rem;
+            margin-top: 70px;
+          }
+
+          .mobile-nav-content {
+            padding: 1.5rem;
           }
 
           .modal-container {
             margin: 1rem;
             padding: 1.5rem;
+          }
+
+          .courses-grid {
+            grid-template-columns: 1fr 1fr;
+          }
+
+          .course-card {
+            padding: 1.2rem 0.8rem;
+          }
+
+          .card-icon {
+            font-size: 2rem;
+          }
+        }
+
+        @media (max-width: 320px) {
+          .mobile-header {
+            padding: 1rem;
+          }
+
+          .mobile-nav-content {
+            padding: 1rem;
+          }
+
+          .mobile-nav-link {
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+          }
+
+          .courses-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        /* Only show desktop nav for very large screens (1441px and above) */
+        @media (min-width: 1441px) {
+          .desktop-nav,
+          .navbar-actions {
+            display: flex;
+          }
+
+          .mobile-toggle {
+            display: none;
           }
         }
       `}</style>
@@ -839,7 +973,7 @@ function Navbar() {
             <img src={logoimg} alt="Logo" className="logo-image" />
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Only shows on screens larger than 1440px */}
           <div className="desktop-nav">
             <ul className="nav-links">
               {navLinks.map((link, index) => (
@@ -867,7 +1001,7 @@ function Navbar() {
                 
                 <div className={`premium-dropdown ${showDropdown ? 'show' : ''}`}>
                   {courseItems.map((course, index) => (
-                    <a key={index} href={course.path} className="dropdown-item">
+                    <a key={index} href={course.path} className="dropdown-item" onClick={handleLinkClick}>
                       <span className="course-icon">{course.icon}</span>
                       <span className="course-name">{course.name}</span>
                     </a>
@@ -877,7 +1011,7 @@ function Navbar() {
             </ul>
           </div>
 
-          {/* Right Side Buttons */}
+          {/* Right Side Buttons - Only shows on screens larger than 1440px */}
           <div className="navbar-actions">
             <a href="/classroom" className="btn btn-outline">
               <span>Our Classroom</span>
@@ -891,10 +1025,11 @@ function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Toggle - Shows on all screens 1440px and below */}
           <button 
             className={`mobile-toggle ${menuOpen ? 'active' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle mobile menu"
           >
             <div className="hamburger">
               <span></span>
@@ -905,11 +1040,11 @@ function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Available for all non-large-desktop screens */}
       <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
         <div className="mobile-header">
-          <img src={logo} alt="Logo" className="mobile-logo" />
-          <h3 className="mobile-title">Menu</h3>
+          <img src={logoimg} alt="Logo" className="mobile-logo" />
+          <h3 className="mobile-title">Navigation</h3>
         </div>
         
         <div className="mobile-nav-content">
@@ -919,7 +1054,7 @@ function Navbar() {
                 key={index}
                 href={link.path} 
                 className="mobile-nav-link"
-                onClick={() => setMenuOpen(false)}
+                onClick={handleLinkClick}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <span>{link.name}</span>
@@ -939,7 +1074,7 @@ function Navbar() {
                   key={index}
                   href={course.path} 
                   className="course-card"
-                  onClick={() => setMenuOpen(false)}
+                  onClick={handleLinkClick}
                   style={{ animationDelay: `${(navLinks.length + index) * 0.1}s` }}
                 >
                   <span className="card-icon">{course.icon}</span>
@@ -954,7 +1089,7 @@ function Navbar() {
             <a 
               href="/classroom" 
               className="mobile-btn outline"
-              onClick={() => setMenuOpen(false)}
+              onClick={handleLinkClick}
             >
               Our Classroom
             </a>
@@ -973,11 +1108,12 @@ function Navbar() {
 
       {/* Contact Modal */}
       {showContactModal && (
-        <div className="modal-overlay">
+        <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && setShowContactModal(false)}>
           <div className="modal-container">
             <button 
               className="modal-close"
               onClick={() => setShowContactModal(false)}
+              aria-label="Close modal"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
