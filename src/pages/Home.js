@@ -28,7 +28,7 @@ function Home() {
     <>
       <FreeDemoModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
 
-      <Hero />
+      {/* <Hero /> */}
       <WhyChessWallah />
       {/* <SrinathVideo /> */}
       <Testimonials />

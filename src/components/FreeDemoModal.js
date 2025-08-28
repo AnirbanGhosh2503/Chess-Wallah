@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import srinath from '../assets/srinath.png'; // Ensure you have this image in the specified path
 
-// Enhanced CSS without navbar/header styles
+// Enhanced CSS with ultra-tiny modal design
 const fullStyles = `
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
@@ -280,14 +280,14 @@ body {
     opacity: 0.9;
 }
 
-/* Modal Styles - Matching White Design Exactly */
+/* ULTRA TINY MODAL DESIGN */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -305,19 +305,21 @@ body {
 }
 
 .modal-box {
-    background: #ffffff;
+    background: #fff;
     color: #333;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     width: 100%;
-    max-width: 500px;
+    max-width: 280px;
+    max-height: 75vh;
     position: relative;
-    transform: scale(0.9) translateY(20px);
+    transform: scale(0.7) translateY(40px);
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-sizing: border-box;
-    overflow: visible;
+    overflow-y: auto;
+    border: 2px solid #ff8c00;
 }
 
 .modal-overlay.show .modal-box {
@@ -326,188 +328,172 @@ body {
 }
 
 .modal-box.status-view {
-    padding: 2.5rem;
+    padding: 1.2rem;
     text-align: center;
-    max-height: none;
-    min-height: auto;
+    max-width: 240px;
 }
 
-.modal-header {
+/* Tiny Header */
+.tiny-header {
     text-align: center;
-    margin-bottom: 2rem;
-    padding-right: 2rem;
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
 }
 
-.modal-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-}
-
-.modal-subtitle {
+.tiny-title {
     font-size: 0.9rem;
-    color: #666;
-    line-height: 1.4;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 0.2rem;
+    line-height: 1.2;
 }
 
-.close-btn {
+.tiny-subtitle {
+    font-size: 0.6rem;
+    color: #666;
+    line-height: 1.3;
+    font-weight: 500;
+}
+
+/* Tiny Close Button */
+.tiny-close-btn {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background: transparent;
+    top: -4px;
+    right: -4px;
+    background: #ff4757;
     border: none;
-    color: #999;
-    font-size: 1.5rem;
+    color: white;
+    font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.2s ease;
-    padding: 0.5rem;
+    padding: 0;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 22px;
+    height: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10;
+    box-shadow: 0 2px 6px rgba(255, 71, 87, 0.4);
 }
 
-.close-btn:hover,
-.close-btn:focus {
-    color: #333;
-    background: rgba(0, 0, 0, 0.05);
+.tiny-close-btn:hover {
+    background: #ff3742;
+    transform: scale(1.1);
 }
 
-/* Form Styling - White Modal Design */
-.demo-form {
+/* Ultra Compact Form */
+.tiny-form {
     width: 100%;
 }
 
-.demo-form .form-grid {
+.tiny-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    margin-bottom: 0.6rem;
 }
 
-.form-group {
-    position: relative;
+.tiny-input {
     width: 100%;
-    margin-bottom: 1rem;
-}
-
-.form-group label {
-    display: block;
-    font-size: 0.8rem;
-    color: #666;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 0.8rem;
-    background-color: #f8f9fa;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    padding: 0.4rem;
+    background: #f8f9fa;
+    border: 1px solid #e8eaed;
+    border-radius: 4px;
     color: #333;
-    font-size: 0.9rem;
+    font-size: 0.65rem;
+    font-weight: 500;
     transition: all 0.3s ease;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    min-height: 45px;
     box-sizing: border-box;
-}
-
-.form-group input:focus,
-.form-group select:focus {
     outline: none;
+    min-height: 28px;
+}
+
+.tiny-input:focus {
     border-color: #4f5fd8;
-    box-shadow: 0 0 0 3px rgba(79, 95, 216, 0.1);
-    background-color: #fff;
+    box-shadow: 0 0 0 2px rgba(79, 95, 216, 0.1);
+    background: white;
 }
 
-.form-group input::placeholder {
+.tiny-input::placeholder {
     color: #999;
-    font-size: 0.9rem;
+    font-size: 0.6rem;
+    font-weight: 400;
 }
 
-.custom-select-wrapper {
-    position: relative;
+.tiny-select {
     width: 100%;
+    padding: 0.4rem;
+    background: #f8f9fa;
+    border: 1px solid #e8eaed;
+    border-radius: 4px;
+    color: #333;
+    font-size: 0.65rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    outline: none;
+    min-height: 28px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.4rem center;
+    background-repeat: no-repeat;
+    background-size: 0.8rem;
+    padding-right: 1.8rem;
 }
 
-.custom-select-wrapper::after {
-    content: '▼';
-    font-size: 0.8rem;
-    color: #666;
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
+.tiny-select:focus {
+    border-color: #4f5fd8;
+    box-shadow: 0 0 0 2px rgba(79, 95, 216, 0.1);
+    background-color: white;
 }
 
-.modal-submit-btn {
-    grid-column: 1 / -1;
+/* Tiny Submit Button */
+.tiny-submit-btn {
     width: 100%;
-    padding: 1rem;
-    margin-top: 1.5rem;
+    padding: 0.5rem;
+    margin-top: 0.6rem;
     background: linear-gradient(135deg, #ff8c00, #ff7200);
     border: none;
-    border-radius: 25px;
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 600;
+    border-radius: 4px;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 0.3rem;
     transition: all 0.3s ease;
-    min-height: 50px;
-    touch-action: manipulation;
-    box-sizing: border-box;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+    min-height: 32px;
+    box-shadow: 0 4px 8px rgba(255, 140, 0, 0.3);
 }
 
-.modal-submit-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
+.tiny-submit-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(255, 140, 0, 0.4);
 }
 
-.modal-submit-btn:active:not(:disabled) {
+.tiny-submit-btn:active:not(:disabled) {
     transform: translateY(0);
 }
 
-.modal-submit-btn:disabled {
+.tiny-submit-btn:disabled {
     background: #ccc;
     cursor: not-allowed;
     transform: none;
+    box-shadow: none;
 }
 
-.modal-btn-icon {
-    margin-left: 0.5rem;
-    transition: margin-left 0.3s ease;
-    font-size: 1rem;
-}
-
-.modal-submit-btn:not(:disabled):hover .modal-btn-icon {
-    margin-left: 0.75rem;
-}
-
-.spinner {
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top: 3px solid #fff;
+.tiny-spinner {
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-top: 1.5px solid white;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 12px;
+    height: 12px;
     animation: spin 1s linear infinite;
-    margin-right: 10px;
 }
 
 @keyframes spin {
@@ -515,37 +501,83 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Status Message Styles */
-.status-message {
-    padding: 2rem 1rem;
+/* Tiny Trust Section */
+.tiny-trust {
+    background: #f8f9fa;
+    margin: 0.6rem -1rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 8px 8px;
+    text-align: center;
+    border-top: 1px solid #e8eaed;
 }
 
-.status-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
+.tiny-trust-text {
+    font-size: 0.55rem;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.tiny-trust-stats {
     display: flex;
     justify-content: center;
+    gap: 0.8rem;
+    align-items: center;
 }
 
-.success-icon svg {
-    color: #28a745;
+.tiny-trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
 }
 
-.error-icon svg {
-    color: #dc3545;
+.tiny-trust-number {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #ff8c00;
 }
 
-.status-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #333;
+.tiny-trust-label {
+    font-size: 0.5rem;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+}
+
+/* Status Messages */
+.tiny-status {
+    text-align: center;
+    padding: 0.8rem 0;
+}
+
+.tiny-status-icon {
+    font-size: 2rem;
     margin-bottom: 0.5rem;
 }
 
-.status-text {
-    font-size: 1rem;
+.success-icon {
+    color: #28a745;
+}
+
+.error-icon {
+    color: #dc3545;
+}
+
+.tiny-status-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+    color: #1a1a1a;
+}
+
+.tiny-status-text {
+    font-size: 0.65rem;
     color: #666;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 /* Responsive Design */
@@ -680,12 +712,6 @@ body {
         width: 120px;
     }
     
-    .hero-btn {
-        padding: 0.9rem 2rem;
-        font-size: 0.95rem;
-        margin-bottom: 2.5rem;
-    }
-    
     .instructor-bg {
         width: 260px;
         height: 260px;
@@ -703,26 +729,12 @@ body {
         bottom: -15px;
     }
     
-    .badge-title {
-        font-size: 0.9rem;
-        margin-bottom: 0.2rem;
-    }
-    
-    .badge-subtitle {
-        font-size: 0.7rem;
-    }
-    
     .stats-section {
         flex-direction: row;
         justify-content: space-between;
         gap: 0.5rem;
-        text-align: center;
         margin-top: 1.5rem;
         max-width: 100%;
-    }
-    
-    .stat-item {
-        flex: 1;
     }
     
     .stat-item:not(:last-child)::after {
@@ -734,10 +746,7 @@ body {
         margin-bottom: 0.2rem;
     }
     
-    .stat-label {
-        font-size: 0.8rem;
-    }
-    
+    .stat-label,
     .stat-sublabel {
         font-size: 0.8rem;
     }
@@ -751,17 +760,48 @@ body {
         font-size: 1rem;
     }
     
-    .demo-form .form-grid {
-        grid-template-columns: 1fr;
+    /* Even tinier for tablets */
+    .modal-overlay {
+        padding: 0.8rem;
     }
     
     .modal-box {
-        max-width: 90vw;
-        padding: 1.5rem;
+        max-width: 260px;
+        padding: 0.8rem;
+        max-height: 70vh;
     }
     
-    .modal-header {
-        padding-right: 2.5rem;
+    .tiny-title {
+        font-size: 0.8rem;
+    }
+    
+    .tiny-subtitle {
+        font-size: 0.55rem;
+    }
+    
+    .tiny-input,
+    .tiny-select {
+        font-size: 0.6rem;
+        padding: 0.35rem;
+        min-height: 26px;
+    }
+    
+    .tiny-input::placeholder {
+        font-size: 0.55rem;
+    }
+    
+    .tiny-submit-btn {
+        font-size: 0.6rem;
+        padding: 0.45rem;
+        min-height: 30px;
+    }
+    
+    .tiny-trust-number {
+        font-size: 0.65rem;
+    }
+    
+    .tiny-trust-label {
+        font-size: 0.45rem;
     }
 }
 
@@ -789,15 +829,9 @@ body {
         width: 100px;
     }
     
-    .hero-btn {
-        padding: 0.8rem 1.8rem;
-        font-size: 0.9rem;
-        margin-bottom: 2rem;
-    }
-    
     .instructor-bg {
-        width: 300px;
-        height: 300px;
+        width: 200px;
+        height: 200px;
     }
     
     .instructor-image {
@@ -812,29 +846,6 @@ body {
         bottom: -20px;
     }
     
-    .badge-title {
-        font-size: 0.85rem;
-        margin-bottom: 0.2rem;
-    }
-    
-    .badge-subtitle {
-        font-size: 0.65rem;
-    }
-    
-    .stats-section {
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-    
-    .stat-number {
-        font-size: 1.8rem;
-    }
-    
-    .stat-label,
-    .stat-sublabel {
-        font-size: 0.85rem;
-    }
-    
     .bottom-title {
         font-size: 1.8rem;
         padding: 0 1rem;
@@ -845,18 +856,105 @@ body {
         padding: 0 1rem;
     }
     
+    /* Ultra tiny for phones */
+    .modal-overlay {
+        padding: 0.5rem;
+    }
+    
     .modal-box {
-        padding: 1.2rem;
-        margin: 1rem;
+        max-width: 240px;
+        padding: 0.7rem;
+        max-height: 75vh;
+        border-radius: 6px;
     }
     
-    .modal-header {
-        margin-bottom: 1.5rem;
-        padding-right: 2rem;
+    .modal-box.status-view {
+        max-width: 220px;
+        padding: 1rem;
     }
     
-    .form-group {
-        margin-bottom: 0.8rem;
+    .tiny-header {
+        margin-bottom: 0.6rem;
+        padding-right: 1.3rem;
+    }
+    
+    .tiny-title {
+        font-size: 0.75rem;
+    }
+    
+    .tiny-subtitle {
+        font-size: 0.5rem;
+    }
+    
+    .tiny-close-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+        top: -3px;
+        right: -3px;
+    }
+    
+    .tiny-grid {
+        gap: 0.35rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .tiny-input,
+    .tiny-select {
+        font-size: 0.55rem;
+        padding: 0.3rem;
+        min-height: 24px;
+    }
+    
+    .tiny-input::placeholder {
+        font-size: 0.5rem;
+    }
+    
+    .tiny-select {
+        padding-right: 1.5rem;
+        background-size: 0.7rem;
+    }
+    
+    .tiny-submit-btn {
+        font-size: 0.55rem;
+        padding: 0.4rem;
+        min-height: 28px;
+        margin-top: 0.5rem;
+    }
+    
+    .tiny-trust {
+        padding: 0.4rem 0.7rem;
+        margin-top: 0.5rem;
+    }
+    
+    .tiny-trust-text {
+        font-size: 0.5rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .tiny-trust-stats {
+        gap: 0.6rem;
+    }
+    
+    .tiny-trust-number {
+        font-size: 0.6rem;
+    }
+    
+    .tiny-trust-label {
+        font-size: 0.4rem;
+    }
+    
+    .tiny-status-icon {
+        font-size: 1.8rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .tiny-status-title {
+        font-size: 0.8rem;
+    }
+    
+    .tiny-status-text {
+        font-size: 0.6rem;
     }
 }
 
@@ -879,13 +977,13 @@ body {
     }
     
     .instructor-bg {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
     }
     
     .instructor-image {
-        width: 300px;
-        height: 300px;
+        width: 220px;
+        height: 220px;
     }
     
     .instructor-badge {
@@ -894,16 +992,112 @@ body {
         font-size: 0.7rem;
     }
     
-    .badge-title {
-        font-size: 0.8rem;
-    }
-    
-    .badge-subtitle {
-        font-size: 0.6rem;
-    }
-    
     .bottom-title {
         font-size: 1.6rem;
+    }
+    
+    /* Extremely tiny for very small screens */
+    .modal-overlay {
+        padding: 0.3rem;
+    }
+    
+    .modal-box {
+        max-width: 220px;
+        padding: 0.6rem;
+        border-radius: 4px;
+    }
+    
+    .modal-box.status-view {
+        max-width: 200px;
+        padding: 0.8rem;
+    }
+    
+    .tiny-header {
+        margin-bottom: 0.5rem;
+        padding-right: 1.2rem;
+    }
+    
+    .tiny-title {
+        font-size: 0.7rem;
+    }
+    
+    .tiny-subtitle {
+        font-size: 0.45rem;
+    }
+    
+    .tiny-close-btn {
+        width: 18px;
+        height: 18px;
+        font-size: 0.65rem;
+    }
+    
+    .tiny-grid {
+        gap: 0.3rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .tiny-input,
+    .tiny-select {
+        font-size: 0.5rem;
+        padding: 0.25rem;
+        min-height: 22px;
+    }
+    
+    .tiny-input::placeholder {
+        font-size: 0.45rem;
+    }
+    
+    .tiny-select {
+        padding-right: 1.3rem;
+        background-size: 0.6rem;
+    }
+    
+    .tiny-submit-btn {
+        font-size: 0.5rem;
+        padding: 0.35rem;
+        min-height: 26px;
+        margin-top: 0.4rem;
+    }
+    
+    .tiny-trust {
+        padding: 0.35rem 0.6rem;
+        margin-top: 0.4rem;
+    }
+    
+    .tiny-trust-text {
+        font-size: 0.45rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .tiny-trust-stats {
+        gap: 0.5rem;
+    }
+    
+    .tiny-trust-number {
+        font-size: 0.55rem;
+    }
+    
+    .tiny-trust-label {
+        font-size: 0.35rem;
+    }
+    
+    .tiny-status-icon {
+        font-size: 1.6rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .tiny-status-title {
+        font-size: 0.75rem;
+    }
+    
+    .tiny-status-text {
+        font-size: 0.55rem;
+    }
+    
+    .tiny-spinner {
+        width: 10px;
+        height: 10px;
+        border-width: 1px;
     }
 }
 `;
@@ -952,7 +1146,7 @@ const FreeDemoModal = ({ isOpen, onClose }) => {
 
     // Send to WhatsApp automatically
     const sendToWhatsApp = async (data) => {
-        const whatsappNumber = "9475959839"; // Using the phone number from your code
+        const whatsappNumber = "9475959839";
         const message = `New Demo Booking:
 Parent Email: ${data.email}
 Parent Name: ${data.parentName}
@@ -971,10 +1165,9 @@ Source: ${data.source}`;
         }
     };
 
-    // Send email using emailjs (keeping your existing functionality)
+    // Send email using emailjs
     const sendEmail = async (data) => {
         try {
-            // Using your emailjs configuration
             const emailjs = window.emailjs;
             if (emailjs) {
                 await emailjs.send(
@@ -992,20 +1185,16 @@ Source: ${data.source}`;
         }
     };
 
-    // Handles form submission with automatic messaging
+    // Handles form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
         setSubmissionStatus(null);
 
         try {
-            // Send to WhatsApp first
-            const whatsappSuccess = await sendToWhatsApp(formData);
+            await sendToWhatsApp(formData);
+            await sendEmail(formData);
             
-            // Then try to send email
-            const emailSuccess = await sendEmail(formData);
-            
-            // Show success if either worked
             setIsSubmitting(false);
             setSubmissionStatus("success");
             
@@ -1042,152 +1231,143 @@ Source: ${data.source}`;
     // Form content
     const renderFormContent = () => (
         <>
-            <div className="modal-header">
-                <h2 className="modal-title">Book A Free Demo Today</h2>
-                <p className="modal-subtitle">
-                    Be a part of a growing global chess community of kids
-                </p>
+            <div className="tiny-header">
+                <h2 className="tiny-title">Free Chess Demo</h2>
+                <p className="tiny-subtitle">Join 6450+ families worldwide</p>
             </div>
-            <form onSubmit={handleSubmit} className="demo-form">
-                <div className="form-grid">
-                    <div className="form-group">
-                        <label htmlFor="email">Parent's Email ID</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Parent's Email ID"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            autoComplete="email"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="parentName">Parent's Name</label>
-                        <input
-                            type="text"
-                            id="parentName"
-                            name="parentName"
-                            placeholder="Parent's Full Name"
-                            value={formData.parentName}
-                            onChange={handleChange}
-                            required
-                            autoComplete="name"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="childName">Child's Name</label>
-                        <input
-                            type="text"
-                            id="childName"
-                            name="childName"
-                            placeholder="Child's Name"
-                            value={formData.childName}
-                            onChange={handleChange}
-                            required
-                            autoComplete="off"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="phone">Phone (WhatsApp)</label>
-                        <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            placeholder="Mobile Number (Preferably WhatsApp)"
-                            pattern="[0-9]{10}"
-                            maxLength="10"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
-                            autoComplete="tel"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="age">Age</label>
-                        <div className="custom-select-wrapper">
-                            <select 
-                                id="age" 
-                                name="age" 
-                                value={formData.age}
-                                onChange={handleChange} 
-                                required
-                            >
-                                <option value="">Select Age</option>
-                                {[...Array(18)].map((_, i) => (
-                                    <option key={i} value={i + 3}>
-                                        {i + 3}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="source">How Did You Hear About Us</label>
-                        <div className="custom-select-wrapper">
-                            <select 
-                                id="source" 
-                                name="source" 
-                                value={formData.source}
-                                onChange={handleChange} 
-                                required
-                            >
-                                <option value="">Select</option>
-                                <option value="Facebook">Facebook</option>
-                                <option value="Instagram">Instagram</option>
-                                <option value="Google">Google</option>
-                                <option value="YouTube">YouTube</option>
-                                <option value="Word of Mouth">Word of Mouth</option>
-                                <option value="Others">Others</option>
-                            </select>
-                        </div>
-                    </div>
+
+            <form onSubmit={handleSubmit} className="tiny-form">
+                <div className="tiny-grid">
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="tiny-input"
+                        autoComplete="email"
+                    />
+                    
+                    <input
+                        type="text"
+                        name="parentName"
+                        placeholder="Parent Name"
+                        value={formData.parentName}
+                        onChange={handleChange}
+                        required
+                        className="tiny-input"
+                        autoComplete="name"
+                    />
+                    
+                    <input
+                        type="text"
+                        name="childName"
+                        placeholder="Child's Name"
+                        value={formData.childName}
+                        onChange={handleChange}
+                        required
+                        className="tiny-input"
+                        autoComplete="off"
+                    />
+                    
+                    <input
+                        type="tel"
+                        name="phone"
+                        placeholder="WhatsApp Number"
+                        pattern="[0-9]{10}"
+                        maxLength="10"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        className="tiny-input"
+                        autoComplete="tel"
+                    />
+                    
+                    <select 
+                        name="age" 
+                        value={formData.age}
+                        onChange={handleChange} 
+                        required
+                        className="tiny-select"
+                    >
+                        <option value="">Age</option>
+                        {[...Array(18)].map((_, i) => (
+                            <option key={i} value={i + 3}>
+                                {i + 3}
+                            </option>
+                        ))}
+                    </select>
+                    
+                    <select 
+                        name="source" 
+                        value={formData.source}
+                        onChange={handleChange} 
+                        required
+                        className="tiny-select"
+                    >
+                        <option value="">How you found us?</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Google">Google</option>
+                        <option value="YouTube">YouTube</option>
+                        <option value="Word of Mouth">Friend</option>
+                        <option value="Others">Others</option>
+                    </select>
                 </div>
-                <button type="submit" className="modal-submit-btn" disabled={isSubmitting}>
+
+                <button type="submit" className="tiny-submit-btn" disabled={isSubmitting}>
                     {isSubmitting ? (
                         <>
-                            <div className="spinner"></div>
-                            <span className="btn-text">Submitting...</span>
+                            <div className="tiny-spinner"></div>
+                            <span>Booking...</span>
                         </>
                     ) : (
                         <>
-                            <span className="btn-text">Submit</span>
+                            <span>Book Demo</span>
+                            <span>🚀</span>
                         </>
                     )}
                 </button>
             </form>
+
+            <div className="tiny-trust">
+                <p className="tiny-trust-text">Trusted by</p>
+                <div className="tiny-trust-stats">
+                    <div className="tiny-trust-item">
+                        <div className="tiny-trust-number">6450+</div>
+                        <div className="tiny-trust-label">Parents</div>
+                    </div>
+                    <div className="tiny-trust-item">
+                        <div className="tiny-trust-number">32+</div>
+                        <div className="tiny-trust-label">Countries</div>
+                    </div>
+                    <div className="tiny-trust-item">
+                        <div className="tiny-trust-number">256+</div>
+                        <div className="tiny-trust-label">Coaches</div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 
     // Status message content
     const renderStatusMessage = () => (
-        <div className="status-message">
+        <div className="tiny-status">
             {submissionStatus === "success" ? (
                 <>
-                    <div className="status-icon success-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-8.77"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                    </div>
-                    <h3 className="status-title">Success!</h3>
-                    <p className="status-text">
-                        Your request is in. We'll reach out on WhatsApp to schedule your demo.
+                    <div className="tiny-status-icon success-icon">✅</div>
+                    <h3 className="tiny-status-title">Demo Booked!</h3>
+                    <p className="tiny-status-text">
+                        We'll contact you on WhatsApp within 24 hours!
                     </p>
                 </>
             ) : (
                 <>
-                    <div className="status-icon error-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="12"></line>
-                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                        </svg>
-                    </div>
-                    <h3 className="status-title">Oops!</h3>
-                    <p className="status-text">
-                        Something went wrong. Please try again or contact us directly.
+                    <div className="tiny-status-icon error-icon">❌</div>
+                    <h3 className="tiny-status-title">Error</h3>
+                    <p className="tiny-status-text">
+                        Please try again or contact us directly.
                     </p>
                 </>
             )}
@@ -1201,7 +1381,7 @@ Source: ${data.source}`;
         >
             <div className={`modal-box ${submissionStatus ? "status-view" : ""}`}>
                 <button
-                    className="close-btn"
+                    className="tiny-close-btn"
                     onClick={handleClose}
                     aria-label="Close modal"
                 >
@@ -1254,7 +1434,7 @@ const useRotatingText = (words, interval = 3000) => {
                     prevIndex === words.length - 1 ? 0 : prevIndex + 1
                 );
                 setIsVisible(true);
-            }, 300); // Half second for fade transition
+            }, 300);
         }, interval);
 
         return () => clearInterval(timer);
@@ -1263,7 +1443,7 @@ const useRotatingText = (words, interval = 3000) => {
     return { currentWord: words[currentIndex], isVisible };
 };
 
-// Main Component without navbar
+// Main Component
 function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     
@@ -1271,7 +1451,6 @@ function App() {
     const countriesCount = useCountUp(32, 3);
     const coachesCount = useCountUp(256, 3);
 
-    // Chess-related words for rotation
     const rotatingWords = [
         "enjoyable",
         "strategic",
@@ -1287,11 +1466,10 @@ function App() {
 
     const { currentWord, isVisible } = useRotatingText(rotatingWords, 3000);
 
-    // Auto-open modal when component mounts
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsModalOpen(true);
-        }, 3000); // Open modal after 3 seconds
+        }, 3000);
 
         return () => clearTimeout(timer);
     }, []);
@@ -1348,7 +1526,6 @@ function App() {
                         {/* Right Content - Instructor */}
                         <div className="hero-image">
                             <div className="instructor-container">
-                                
                                 <img 
                                     src={srinath} 
                                     alt="Grandmaster Srinath Narayanan - Chess Instructor"

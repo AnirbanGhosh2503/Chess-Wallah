@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import srinath from '../assets/srinath.png'; // Ensure you have this image in the specified path
 
-// Enhanced CSS without navbar/header styles
+// Enhanced CSS without modal
 const fullStyles = `
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
@@ -260,61 +260,6 @@ body {
     color: white;
 }
 
-/* Large Chess Piece Background Props */
-.chess-king-left {
-    position: absolute;
-    top: 15%;
-    left: -20%;
-    font-size: 15rem;
-    color: rgba(200, 200, 200, 0.15);
-    z-index: 0;
-    transform: rotate(-20deg);
-    user-select: none;
-    pointer-events: none;
-}
-
-.chess-queen-right {
-    position: absolute;
-    bottom: 5%;
-    right: -25%;
-    font-size: 12rem;
-    color: rgba(200, 200, 200, 0.12);
-    z-index: 0;
-    transform: rotate(25deg);
-    user-select: none;
-    pointer-events: none;
-}
-
-/* Decorative Elements - Exact positioning matching image */
-.trophy-icon {
-    position: absolute;
-    top: 5%;
-    left: -10%;
-    font-size: 3rem;
-    z-index: 3;
-    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
-}
-
-.star-icon {
-    position: absolute;
-    top: 15%;
-    right: -8%;
-    font-size: 2.2rem;
-    z-index: 3;
-    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
-}
-
-.plus-icon {
-    position: absolute;
-    bottom: 25%;
-    right: -10%;
-    font-size: 2.5rem;
-    color: #bbb;
-    z-index: 3;
-    font-weight: 300;
-    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.1));
-}
-
 /* Bottom Section */
 .bottom-section {
     background: #4c63d2;
@@ -335,237 +280,265 @@ body {
     opacity: 0.9;
 }
 
-/* Demo Form Modal - Matching Original Functionality */
+/* ULTRA TINY MODAL DESIGN - Interactive & Animated */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
+    background: radial-gradient(circle at center, rgba(79, 95, 216, 0.3), rgba(0, 0, 0, 0.9));
+    backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+    transition: opacity 0.5s ease, visibility 0s linear 0.5s;
     padding: 1rem;
+    animation: modalBackgroundPulse 6s ease-in-out infinite;
+}
+
+@keyframes modalBackgroundPulse {
+    0%, 100% { background: radial-gradient(circle at center, rgba(79, 95, 216, 0.2), rgba(0, 0, 0, 0.85)); }
+    50% { background: radial-gradient(circle at center, rgba(255, 140, 0, 0.25), rgba(0, 0, 0, 0.9)); }
 }
 
 .modal-overlay.show {
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.5s ease;
 }
 
 .modal-box {
-    background: linear-gradient(135deg, #1e3a8a, #0c1a40);
-    color: #fff;
-    padding: clamp(1.25rem, 2.5vw, 1.75rem);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 50%, #fff5e6 100%);
+    color: #333;
+    padding: 1rem;
     border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
     width: 100%;
-    max-width: clamp(320px, 85vw, 480px);
+    max-width: 280px;
+    max-height: 75vh;
     position: relative;
-    transform: scale(0.9) translateY(20px);
+    transform: scale(0.5) translateY(100px) rotateX(20deg);
     opacity: 0;
-    transition: all 0.3s ease;
-    border: 2px solid #FFC300;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-sizing: border-box;
-    overflow: visible;
+    overflow-y: auto;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    animation: modalFloat 4s ease-in-out infinite;
+}
+
+@keyframes modalFloat {
+    0%, 100% { transform: scale(1) translateY(0) rotateX(0deg); }
+    25% { transform: scale(1.02) translateY(-2px) rotateX(1deg); }
+    50% { transform: scale(1) translateY(-4px) rotateX(0deg); }
+    75% { transform: scale(1.02) translateY(-2px) rotateX(-1deg); }
+}
+
+.modal-box::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, #4f5fd8, #ff8c00, #4f5fd8, #ff8c00);
+    background-size: 400% 400%;
+    border-radius: 18px;
+    z-index: -1;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .modal-overlay.show .modal-box {
-    transform: scale(1) translateY(0);
+    transform: scale(1) translateY(0) rotateX(0deg);
     opacity: 1;
 }
 
 .modal-box.status-view {
-    padding: clamp(1.5rem, 4vw, 2.5rem);
+    padding: 1.2rem;
     text-align: center;
-    max-height: none;
-    min-height: auto;
+    max-width: 240px;
+    animation: successPulse 2s ease-in-out infinite;
 }
 
-.modal-header {
-    text-align: center;
-    margin-bottom: clamp(1rem, 2vw, 1.5rem);
-    padding-right: 3rem;
+@keyframes successPulse {
+    0%, 100% { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 20px rgba(40, 167, 69, 0.3); }
+    50% { box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(40, 167, 69, 0.5); }
 }
 
-.modal-title {
-    font-size: clamp(1.1rem, 2.8vw, 1.4rem);
-    font-weight: 700;
-    color: #FFBF00;
-    margin-bottom: 0.5rem;
+/* Tiny Header */
+.tiny-header {
+    text-align: center;
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+}
+
+.tiny-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 0.2rem;
+    line-height: 1.2;
+}
+
+.tiny-subtitle {
+    font-size: 0.6rem;
+    color: #666;
     line-height: 1.3;
+    font-weight: 500;
 }
 
-.modal-subtitle {
-    font-size: clamp(0.8rem, 2vw, 0.9rem);
-    color: #ccc;
-    line-height: 1.4;
-}
-
-.close-btn {
+/* Tiny Close Button */
+.tiny-close-btn {
     position: absolute;
-    top: clamp(10px, 2vw, 15px);
-    right: clamp(10px, 2vw, 15px);
-    background: rgba(0, 0, 0, 0.3);
+    top: -4px;
+    right: -4px;
+    background: #ff4757;
     border: none;
-    color: #FFC300;
-    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    color: white;
+    font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.2s ease;
-    padding: clamp(0.4rem, 1vw, 0.6rem);
+    padding: 0;
     border-radius: 50%;
-    width: clamp(32px, 8vw, 44px);
-    height: clamp(32px, 8vw, 44px);
+    width: 22px;
+    height: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    touch-action: manipulation;
     z-index: 10;
-    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 6px rgba(255, 71, 87, 0.4);
 }
 
-.close-btn:hover,
-.close-btn:focus {
-    transform: rotate(90deg) scale(1.1);
-    color: #ff9100;
-    background: rgba(255, 255, 255, 0.2);
+.tiny-close-btn:hover {
+    background: #ff3742;
+    transform: scale(1.1);
 }
 
-.close-btn:active {
-    transform: rotate(90deg) scale(0.95);
-}
-
-/* Form Styling - Two Column Design */
-.demo-form {
+/* Ultra Compact Form */
+.tiny-form {
     width: 100%;
 }
 
-.demo-form .form-grid {
+.tiny-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(0.75rem, 1.5vw, 1rem);
-    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    margin-bottom: 0.6rem;
 }
 
-.form-group {
-    position: relative;
+.tiny-input {
     width: 100%;
-}
-
-.form-group label {
-    display: block;
-    font-size: clamp(0.7rem, 1.6vw, 0.8rem);
-    color: #fff;
-    margin-bottom: 0.4rem;
-    font-weight: 600;
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: clamp(0.6rem, 1.2vw, 0.75rem);
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 6px;
-    color: #fff;
-    font-size: clamp(0.75rem, 1.4vw, 0.85rem);
+    padding: 0.4rem;
+    background: #f8f9fa;
+    border: 1px solid #e8eaed;
+    border-radius: 4px;
+    color: #333;
+    font-size: 0.65rem;
+    font-weight: 500;
     transition: all 0.3s ease;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    min-height: clamp(36px, 7vw, 40px);
     box-sizing: border-box;
-}
-
-.form-group input:focus,
-.form-group select:focus {
     outline: none;
-    border-color: #FFC300;
-    box-shadow: 0 0 0 3px rgba(255, 195, 0, 0.1);
-    background-color: rgba(255, 255, 255, 0.15);
+    min-height: 28px;
 }
 
-.form-group input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: clamp(0.75rem, 1.6vw, 0.875rem);
+.tiny-input:focus {
+    border-color: #4f5fd8;
+    box-shadow: 0 0 0 2px rgba(79, 95, 216, 0.1);
+    background: white;
 }
 
-.custom-select-wrapper {
-    position: relative;
+.tiny-input::placeholder {
+    color: #999;
+    font-size: 0.6rem;
+    font-weight: 400;
+}
+
+.tiny-select {
     width: 100%;
+    padding: 0.4rem;
+    background: #f8f9fa;
+    border: 1px solid #e8eaed;
+    border-radius: 4px;
+    color: #333;
+    font-size: 0.65rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    outline: none;
+    min-height: 28px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.4rem center;
+    background-repeat: no-repeat;
+    background-size: 0.8rem;
+    padding-right: 1.8rem;
 }
 
-.custom-select-wrapper::after {
-    content: '▼';
-    font-size: clamp(0.7rem, 1.5vw, 0.85rem);
-    color: #FFC300;
-    position: absolute;
-    right: clamp(0.75rem, 2vw, 1rem);
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
+.tiny-select:focus {
+    border-color: #4f5fd8;
+    box-shadow: 0 0 0 2px rgba(79, 95, 216, 0.1);
+    background-color: white;
 }
 
-.modal-submit-btn {
-    grid-column: 1 / -1;
+/* Tiny Submit Button */
+.tiny-submit-btn {
     width: 100%;
-    padding: clamp(0.75rem, 1.8vw, 0.9rem);
-    margin-top: clamp(1rem, 2vw, 1.25rem);
-    background: linear-gradient(to right, #FFC300, #ff9100);
+    padding: 0.5rem;
+    margin-top: 0.6rem;
+    background: linear-gradient(135deg, #ff8c00, #ff7200);
     border: none;
-    border-radius: 8px;
-    color: #000;
-    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
-    font-weight: bold;
+    border-radius: 4px;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 0.3rem;
     transition: all 0.3s ease;
-    min-height: clamp(40px, 8vw, 44px);
-    touch-action: manipulation;
-    box-sizing: border-box;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    min-height: 32px;
+    box-shadow: 0 4px 8px rgba(255, 140, 0, 0.3);
 }
 
-.modal-submit-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 195, 0, 0.4);
+.tiny-submit-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(255, 140, 0, 0.4);
 }
 
-.modal-submit-btn:active:not(:disabled) {
+.tiny-submit-btn:active:not(:disabled) {
     transform: translateY(0);
 }
 
-.modal-submit-btn:disabled {
-    background: linear-gradient(to right, #999, #666);
+.tiny-submit-btn:disabled {
+    background: #ccc;
     cursor: not-allowed;
     transform: none;
+    box-shadow: none;
 }
 
-.modal-btn-icon {
-    margin-left: 0.5rem;
-    transition: margin-left 0.3s ease;
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-}
-
-.modal-submit-btn:not(:disabled):hover .modal-btn-icon {
-    margin-left: 0.75rem;
-}
-
-.spinner {
-    border: 3px solid rgba(0, 0, 0, 0.1);
-    border-top: 3px solid #FFC300;
+.tiny-spinner {
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    border-top: 1.5px solid white;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 12px;
+    height: 12px;
     animation: spin 1s linear infinite;
-    margin-right: 10px;
 }
 
 @keyframes spin {
@@ -573,37 +546,83 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Status Message Styles */
-.status-message {
-    padding: 2rem 1rem;
+/* Tiny Trust Section */
+.tiny-trust {
+    background: #f8f9fa;
+    margin: 0.6rem -1rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 8px 8px;
+    text-align: center;
+    border-top: 1px solid #e8eaed;
 }
 
-.status-icon {
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    margin-bottom: 1rem;
+.tiny-trust-text {
+    font-size: 0.55rem;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.tiny-trust-stats {
     display: flex;
     justify-content: center;
+    gap: 0.8rem;
+    align-items: center;
 }
 
-.success-icon svg {
-    color: #FFC300;
+.tiny-trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
 }
 
-.error-icon svg {
-    color: #ff4d4d;
+.tiny-trust-number {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #ff8c00;
 }
 
-.status-title {
-    font-size: clamp(1.25rem, 4vw, 1.5rem);
-    font-weight: 700;
-    color: #fff;
+.tiny-trust-label {
+    font-size: 0.5rem;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+}
+
+/* Status Messages */
+.tiny-status {
+    text-align: center;
+    padding: 0.8rem 0;
+}
+
+.tiny-status-icon {
+    font-size: 2rem;
     margin-bottom: 0.5rem;
 }
 
-.status-text {
-    font-size: clamp(0.875rem, 2.5vw, 1rem);
-    color: #ccc;
-    line-height: 1.5;
+.success-icon {
+    color: #28a745;
+}
+
+.error-icon {
+    color: #dc3545;
+}
+
+.tiny-status-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+    color: #1a1a1a;
+}
+
+.tiny-status-text {
+    font-size: 0.65rem;
+    color: #666;
+    line-height: 1.4;
 }
 
 /* Responsive Design */
@@ -738,12 +757,6 @@ body {
         width: 120px;
     }
     
-    .hero-btn {
-        padding: 0.9rem 2rem;
-        font-size: 0.95rem;
-        margin-bottom: 2.5rem;
-    }
-    
     .instructor-bg {
         width: 260px;
         height: 260px;
@@ -761,26 +774,12 @@ body {
         bottom: -15px;
     }
     
-    .badge-title {
-        font-size: 0.9rem;
-        margin-bottom: 0.2rem;
-    }
-    
-    .badge-subtitle {
-        font-size: 0.7rem;
-    }
-    
     .stats-section {
         flex-direction: row;
         justify-content: space-between;
         gap: 0.5rem;
-        text-align: center;
         margin-top: 1.5rem;
         max-width: 100%;
-    }
-    
-    .stat-item {
-        flex: 1;
     }
     
     .stat-item:not(:last-child)::after {
@@ -792,10 +791,7 @@ body {
         margin-bottom: 0.2rem;
     }
     
-    .stat-label {
-        font-size: 0.8rem;
-    }
-    
+    .stat-label,
     .stat-sublabel {
         font-size: 0.8rem;
     }
@@ -809,8 +805,48 @@ body {
         font-size: 1rem;
     }
     
-    .demo-form .form-grid {
-        grid-template-columns: 1fr;
+    /* Even tinier for tablets */
+    .modal-overlay {
+        padding: 0.8rem;
+    }
+    
+    .modal-box {
+        max-width: 260px;
+        padding: 0.8rem;
+        max-height: 70vh;
+    }
+    
+    .tiny-title {
+        font-size: 0.8rem;
+    }
+    
+    .tiny-subtitle {
+        font-size: 0.55rem;
+    }
+    
+    .tiny-input,
+    .tiny-select {
+        font-size: 0.6rem;
+        padding: 0.35rem;
+        min-height: 26px;
+    }
+    
+    .tiny-input::placeholder {
+        font-size: 0.55rem;
+    }
+    
+    .tiny-submit-btn {
+        font-size: 0.6rem;
+        padding: 0.45rem;
+        min-height: 30px;
+    }
+    
+    .tiny-trust-number {
+        font-size: 0.65rem;
+    }
+    
+    .tiny-trust-label {
+        font-size: 0.45rem;
     }
 }
 
@@ -838,15 +874,9 @@ body {
         width: 100px;
     }
     
-    .hero-btn {
-        padding: 0.8rem 1.8rem;
-        font-size: 0.9rem;
-        margin-bottom: 2rem;
-    }
-    
     .instructor-bg {
-        width: 300px;
-        height: 300px;
+        width: 200px;
+        height: 200px;
     }
     
     .instructor-image {
@@ -861,29 +891,6 @@ body {
         bottom: -20px;
     }
     
-    .badge-title {
-        font-size: 0.85rem;
-        margin-bottom: 0.2rem;
-    }
-    
-    .badge-subtitle {
-        font-size: 0.65rem;
-    }
-    
-    .stats-section {
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-    
-    .stat-number {
-        font-size: 1.8rem;
-    }
-    
-    .stat-label,
-    .stat-sublabel {
-        font-size: 0.85rem;
-    }
-    
     .bottom-title {
         font-size: 1.8rem;
         padding: 0 1rem;
@@ -892,6 +899,107 @@ body {
     .bottom-subtitle {
         font-size: 0.9rem;
         padding: 0 1rem;
+    }
+    
+    /* Ultra tiny for phones */
+    .modal-overlay {
+        padding: 0.5rem;
+    }
+    
+    .modal-box {
+        max-width: 240px;
+        padding: 0.7rem;
+        max-height: 75vh;
+        border-radius: 6px;
+    }
+    
+    .modal-box.status-view {
+        max-width: 220px;
+        padding: 1rem;
+    }
+    
+    .tiny-header {
+        margin-bottom: 0.6rem;
+        padding-right: 1.3rem;
+    }
+    
+    .tiny-title {
+        font-size: 0.75rem;
+    }
+    
+    .tiny-subtitle {
+        font-size: 0.5rem;
+    }
+    
+    .tiny-close-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7rem;
+        top: -3px;
+        right: -3px;
+    }
+    
+    .tiny-grid {
+        gap: 0.35rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .tiny-input,
+    .tiny-select {
+        font-size: 0.55rem;
+        padding: 0.3rem;
+        min-height: 24px;
+    }
+    
+    .tiny-input::placeholder {
+        font-size: 0.5rem;
+    }
+    
+    .tiny-select {
+        padding-right: 1.5rem;
+        background-size: 0.7rem;
+    }
+    
+    .tiny-submit-btn {
+        font-size: 0.55rem;
+        padding: 0.4rem;
+        min-height: 28px;
+        margin-top: 0.5rem;
+    }
+    
+    .tiny-trust {
+        padding: 0.4rem 0.7rem;
+        margin-top: 0.5rem;
+    }
+    
+    .tiny-trust-text {
+        font-size: 0.5rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .tiny-trust-stats {
+        gap: 0.6rem;
+    }
+    
+    .tiny-trust-number {
+        font-size: 0.6rem;
+    }
+    
+    .tiny-trust-label {
+        font-size: 0.4rem;
+    }
+    
+    .tiny-status-icon {
+        font-size: 1.8rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .tiny-status-title {
+        font-size: 0.8rem;
+    }
+    
+    .tiny-status-text {
+        font-size: 0.6rem;
     }
 }
 
@@ -914,13 +1022,13 @@ body {
     }
     
     .instructor-bg {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
     }
     
     .instructor-image {
-        width: 300px;
-        height: 300px;
+        width: 220px;
+        height: 220px;
     }
     
     .instructor-badge {
@@ -929,16 +1037,112 @@ body {
         font-size: 0.7rem;
     }
     
-    .badge-title {
-        font-size: 0.8rem;
-    }
-    
-    .badge-subtitle {
-        font-size: 0.6rem;
-    }
-    
     .bottom-title {
         font-size: 1.6rem;
+    }
+    
+    /* Extremely tiny for very small screens */
+    .modal-overlay {
+        padding: 0.3rem;
+    }
+    
+    .modal-box {
+        max-width: 220px;
+        padding: 0.6rem;
+        border-radius: 4px;
+    }
+    
+    .modal-box.status-view {
+        max-width: 200px;
+        padding: 0.8rem;
+    }
+    
+    .tiny-header {
+        margin-bottom: 0.5rem;
+        padding-right: 1.2rem;
+    }
+    
+    .tiny-title {
+        font-size: 0.7rem;
+    }
+    
+    .tiny-subtitle {
+        font-size: 0.45rem;
+    }
+    
+    .tiny-close-btn {
+        width: 18px;
+        height: 18px;
+        font-size: 0.65rem;
+    }
+    
+    .tiny-grid {
+        gap: 0.3rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .tiny-input,
+    .tiny-select {
+        font-size: 0.5rem;
+        padding: 0.25rem;
+        min-height: 22px;
+    }
+    
+    .tiny-input::placeholder {
+        font-size: 0.45rem;
+    }
+    
+    .tiny-select {
+        padding-right: 1.3rem;
+        background-size: 0.6rem;
+    }
+    
+    .tiny-submit-btn {
+        font-size: 0.5rem;
+        padding: 0.35rem;
+        min-height: 26px;
+        margin-top: 0.4rem;
+    }
+    
+    .tiny-trust {
+        padding: 0.35rem 0.6rem;
+        margin-top: 0.4rem;
+    }
+    
+    .tiny-trust-text {
+        font-size: 0.45rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .tiny-trust-stats {
+        gap: 0.5rem;
+    }
+    
+    .tiny-trust-number {
+        font-size: 0.55rem;
+    }
+    
+    .tiny-trust-label {
+        font-size: 0.35rem;
+    }
+    
+    .tiny-status-icon {
+        font-size: 1.6rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .tiny-status-title {
+        font-size: 0.75rem;
+    }
+    
+    .tiny-status-text {
+        font-size: 0.55rem;
+    }
+    
+    .tiny-spinner {
+        width: 10px;
+        height: 10px;
+        border-width: 1px;
     }
 }
 `;
@@ -987,21 +1191,18 @@ const FreeDemoModal = ({ isOpen, onClose }) => {
 
     // Send to WhatsApp automatically
     const sendToWhatsApp = async (data) => {
-        const whatsappNumber = "+1234567890"; // Replace with your WhatsApp number (include country code)
-        const message = `🎯 *New Chess Demo Request!*
-
-👨‍👩‍👧‍👦 *Parent:* ${data.parentName}
-👶 *Child:* ${data.childName}
-📧 *Email:* ${data.email}
-📱 *Phone:* ${data.phone}
-🎂 *Age:* ${data.age} years
-📢 *Source:* ${data.source}
-
-Please contact them for the demo class! ♟️`;
+        const whatsappNumber = "9475959839";
+        const message = `New Demo Booking:
+Parent Email: ${data.email}
+Parent Name: ${data.parentName}
+Child Name: ${data.childName}
+Phone: ${data.phone}
+Age: ${data.age}
+Source: ${data.source}`;
         
         try {
-            const whatsappUrl = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
-            const whatsappWindow = window.open(whatsappUrl, '_blank', 'width=500,height=600,scrollbars=yes,resizable=yes');
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
             return true;
         } catch (error) {
             console.error('WhatsApp send failed:', error);
@@ -1009,35 +1210,19 @@ Please contact them for the demo class! ♟️`;
         }
     };
 
-    // Send email automatically
+    // Send email using emailjs
     const sendEmail = async (data) => {
         try {
-            const emailAddress = "demo@yourchessacademy.com"; // Replace with your email
-            const subject = "🎯 New Chess Demo Request";
-            const body = `New Chess Demo Request Details:
-
-Parent's Name: ${data.parentName}
-Child's Name: ${data.childName}
-Email: ${data.email}
-Phone: ${data.phone}
-Age: ${data.age} years
-How they heard about us: ${data.source}
-
-Please contact them to schedule the demo class.
-
-Best regards,
-Chess Academy Website`;
-            
-            const emailUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            const emailWindow = window.open(emailUrl, '_blank');
-            
-            if (emailWindow) {
-                setTimeout(() => {
-                    emailWindow.close();
-                }, 1000);
+            const emailjs = window.emailjs;
+            if (emailjs) {
+                await emailjs.send(
+                    "service_1q6rbrf",
+                    "template_ysdx28v",
+                    data,
+                    "PUmhM-4_UpXyOPN1M"
+                );
                 return true;
             }
-            
             return false;
         } catch (error) {
             console.error('Email send failed:', error);
@@ -1045,27 +1230,22 @@ Chess Academy Website`;
         }
     };
 
-    // Handles form submission with automatic messaging
+    // Handles form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
         setSubmissionStatus(null);
 
         try {
-            const whatsappSuccess = await sendToWhatsApp(formData);
-            await new Promise(resolve => setTimeout(resolve, 800));
-            const emailSuccess = await sendEmail(formData);
+            await sendToWhatsApp(formData);
+            await sendEmail(formData);
             
-            if (whatsappSuccess || emailSuccess) {
-                setIsSubmitting(false);
-                setSubmissionStatus("success");
-                
-                setTimeout(() => {
-                    if (onClose) onClose();
-                }, 4000);
-            } else {
-                throw new Error('Both WhatsApp and Email failed');
-            }
+            setIsSubmitting(false);
+            setSubmissionStatus("success");
+            
+            setTimeout(() => {
+                if (onClose) onClose();
+            }, 3000);
             
         } catch (error) {
             console.error('Submission failed:', error);
@@ -1074,7 +1254,7 @@ Chess Academy Website`;
             
             setTimeout(() => {
                 if (onClose) onClose();
-            }, 5000);
+            }, 3000);
         }
     };
 
@@ -1096,153 +1276,143 @@ Chess Academy Website`;
     // Form content
     const renderFormContent = () => (
         <>
-            <div className="modal-header">
-                <h2 className="modal-title">Elevate Your Child's Future</h2>
-                <p className="modal-subtitle">
-                    Book a free, personalized demo class to unlock their potential.
-                </p>
+            <div className="tiny-header">
+                <h2 className="tiny-title">Free Chess Demo</h2>
+                <p className="tiny-subtitle">Join 6450+ families worldwide</p>
             </div>
-            <form onSubmit={handleSubmit} className="demo-form">
-                <div className="form-grid">
-                    <div className="form-group">
-                        <label htmlFor="email">Parent's Email ID</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Your email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            autoComplete="email"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="parentName">Parent's Name</label>
-                        <input
-                            type="text"
-                            id="parentName"
-                            name="parentName"
-                            placeholder="Your name"
-                            value={formData.parentName}
-                            onChange={handleChange}
-                            required
-                            autoComplete="name"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="childName">Child's Name</label>
-                        <input
-                            type="text"
-                            id="childName"
-                            name="childName"
-                            placeholder="Child's name"
-                            value={formData.childName}
-                            onChange={handleChange}
-                            required
-                            autoComplete="off"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="phone">Phone (WhatsApp)</label>
-                        <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            placeholder="10-digit mobile"
-                            pattern="[0-9]{10}"
-                            maxLength="10"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
-                            autoComplete="tel"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="age">Age</label>
-                        <div className="custom-select-wrapper">
-                            <select 
-                                id="age" 
-                                name="age" 
-                                value={formData.age}
-                                onChange={handleChange} 
-                                required
-                            >
-                                <option value="">Select Age</option>
-                                {[...Array(18)].map((_, i) => (
-                                    <option key={i} value={i + 3}>
-                                        {i + 3} years old
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="source">How did you hear about us?</label>
-                        <div className="custom-select-wrapper">
-                            <select 
-                                id="source" 
-                                name="source" 
-                                value={formData.source}
-                                onChange={handleChange} 
-                                required
-                            >
-                                <option value="">Select</option>
-                                <option value="Facebook">Facebook</option>
-                                <option value="Instagram">Instagram</option>
-                                <option value="Google">Google</option>
-                                <option value="YouTube">YouTube</option>
-                                <option value="Word of Mouth">Word of Mouth</option>
-                                <option value="Others">Others</option>
-                            </select>
-                        </div>
-                    </div>
+
+            <form onSubmit={handleSubmit} className="tiny-form">
+                <div className="tiny-grid">
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="tiny-input"
+                        autoComplete="email"
+                    />
+                    
+                    <input
+                        type="text"
+                        name="parentName"
+                        placeholder="Parent Name"
+                        value={formData.parentName}
+                        onChange={handleChange}
+                        required
+                        className="tiny-input"
+                        autoComplete="name"
+                    />
+                    
+                    <input
+                        type="text"
+                        name="childName"
+                        placeholder="Child's Name"
+                        value={formData.childName}
+                        onChange={handleChange}
+                        required
+                        className="tiny-input"
+                        autoComplete="off"
+                    />
+                    
+                    <input
+                        type="tel"
+                        name="phone"
+                        placeholder="WhatsApp Number"
+                        pattern="[0-9]{10}"
+                        maxLength="10"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        className="tiny-input"
+                        autoComplete="tel"
+                    />
+                    
+                    <select 
+                        name="age" 
+                        value={formData.age}
+                        onChange={handleChange} 
+                        required
+                        className="tiny-select"
+                    >
+                        <option value="">Age</option>
+                        {[...Array(18)].map((_, i) => (
+                            <option key={i} value={i + 3}>
+                                {i + 3}
+                            </option>
+                        ))}
+                    </select>
+                    
+                    <select 
+                        name="source" 
+                        value={formData.source}
+                        onChange={handleChange} 
+                        required
+                        className="tiny-select"
+                    >
+                        <option value="">How you found us?</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Google">Google</option>
+                        <option value="YouTube">YouTube</option>
+                        <option value="Word of Mouth">Friend</option>
+                        <option value="Others">Others</option>
+                    </select>
                 </div>
-                <button type="submit" className="modal-submit-btn" disabled={isSubmitting}>
+
+                <button type="submit" className="tiny-submit-btn" disabled={isSubmitting}>
                     {isSubmitting ? (
                         <>
-                            <div className="spinner"></div>
-                            <span className="btn-text">Sending automatically...</span>
+                            <div className="tiny-spinner"></div>
+                            <span>Booking...</span>
                         </>
                     ) : (
                         <>
-                            <span className="btn-text">Book My Demo</span>
-                            <span className="modal-btn-icon">→</span>
+                            <span>Book Demo</span>
+                            <span>🚀</span>
                         </>
                     )}
                 </button>
             </form>
+
+            <div className="tiny-trust">
+                <p className="tiny-trust-text">Trusted by</p>
+                <div className="tiny-trust-stats">
+                    <div className="tiny-trust-item">
+                        <div className="tiny-trust-number">6450+</div>
+                        <div className="tiny-trust-label">Parents</div>
+                    </div>
+                    <div className="tiny-trust-item">
+                        <div className="tiny-trust-number">32+</div>
+                        <div className="tiny-trust-label">Countries</div>
+                    </div>
+                    <div className="tiny-trust-item">
+                        <div className="tiny-trust-number">256+</div>
+                        <div className="tiny-trust-label">Coaches</div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 
     // Status message content
     const renderStatusMessage = () => (
-        <div className="status-message">
+        <div className="tiny-status">
             {submissionStatus === "success" ? (
                 <>
-                    <div className="status-icon success-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-8.77"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                    </div>
-                    <h3 className="status-title">Success!</h3>
-                    <p className="status-text">
-                        Your request has been sent automatically! We'll contact you shortly to schedule the demo.
+                    <div className="tiny-status-icon success-icon">✅</div>
+                    <h3 className="tiny-status-title">Demo Booked!</h3>
+                    <p className="tiny-status-text">
+                        We'll contact you on WhatsApp within 24 hours!
                     </p>
                 </>
             ) : (
                 <>
-                    <div className="status-icon error-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="12"></line>
-                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                        </svg>
-                    </div>
-                    <h3 className="status-title">Oops!</h3>
-                    <p className="status-text">
-                        Something went wrong with the automatic submission. Please try again or contact us directly.
+                    <div className="tiny-status-icon error-icon">❌</div>
+                    <h3 className="tiny-status-title">Error</h3>
+                    <p className="tiny-status-text">
+                        Please try again or contact us directly.
                     </p>
                 </>
             )}
@@ -1256,14 +1426,11 @@ Chess Academy Website`;
         >
             <div className={`modal-box ${submissionStatus ? "status-view" : ""}`}>
                 <button
-                    className="close-btn"
+                    className="tiny-close-btn"
                     onClick={handleClose}
                     aria-label="Close modal"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
+                    ×
                 </button>
                 {submissionStatus ? renderStatusMessage() : renderFormContent()}
             </div>
@@ -1312,7 +1479,7 @@ const useRotatingText = (words, interval = 3000) => {
                     prevIndex === words.length - 1 ? 0 : prevIndex + 1
                 );
                 setIsVisible(true);
-            }, 300); // Half second for fade transition
+            }, 300);
         }, interval);
 
         return () => clearInterval(timer);
@@ -1321,7 +1488,7 @@ const useRotatingText = (words, interval = 3000) => {
     return { currentWord: words[currentIndex], isVisible };
 };
 
-// Main Component without navbar
+// Main Component
 function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     
@@ -1329,7 +1496,6 @@ function App() {
     const countriesCount = useCountUp(32, 3);
     const coachesCount = useCountUp(256, 3);
 
-    // Chess-related words for rotation
     const rotatingWords = [
         "enjoyable",
         "strategic",
@@ -1345,11 +1511,10 @@ function App() {
 
     const { currentWord, isVisible } = useRotatingText(rotatingWords, 3000);
 
-    // Auto-open modal when component mounts
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsModalOpen(true);
-        }, 3000); // Open modal after 3 seconds
+        }, 3000);
 
         return () => clearTimeout(timer);
     }, []);
@@ -1406,7 +1571,6 @@ function App() {
                         {/* Right Content - Instructor */}
                         <div className="hero-image">
                             <div className="instructor-container">
-                                
                                 <img 
                                     src={srinath} 
                                     alt="Grandmaster Srinath Narayanan - Chess Instructor"
